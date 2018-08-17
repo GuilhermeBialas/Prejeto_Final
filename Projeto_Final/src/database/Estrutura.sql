@@ -3,11 +3,12 @@ CREATE DATABASE auto_pecas;
 USE auto_pecas;
 
 CREATE TABLE pecas(
-categoria VARCHAR(50),
- quantidade FLOAT,
- valor FLOAT,
-descricao Varchar(150),
-aplicacao VARCHAR(300),
+categoria         VARCHAR(50),
+quantidade        FLOAT,
+valor             FLOAT,
+descricao         Varchar(150),
+aplicacao         VARCHAR(300),
 unidade_de_medida varchar(5),
-localizacao varchar (50),
-valor_unitario float);
+localizacao       varchar (50),
+valor_unitario    float,
+status_peca       varchar(20));
