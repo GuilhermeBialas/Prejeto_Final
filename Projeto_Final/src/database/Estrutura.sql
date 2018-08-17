@@ -3,6 +3,7 @@ CREATE DATABASE auto_pecas;
 USE auto_pecas;
 
 CREATE TABLE pecas(
+id int AUTO_INCREMENT PRIMARY KEY,
 categoria         VARCHAR(50),
 quantidade        FLOAT,
 valor             FLOAT,
