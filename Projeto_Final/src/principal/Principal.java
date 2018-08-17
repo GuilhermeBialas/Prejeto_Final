@@ -5,6 +5,9 @@
  */
 package principal;
 
+import java.awt.EventQueue;
+import view.Sistema;
+
 /**
  *
  * @author Alunos
@@ -15,7 +18,13 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+          EventQueue.invokeLater(new Runnable() {
+
+              @Override
+              public void run() {
+                  new Sistema();
+              }
+          });
     }
     
 }
