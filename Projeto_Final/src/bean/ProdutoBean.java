@@ -8,6 +8,15 @@ public class ProdutoBean {
     
     private String categoria, descricao, aplicacao, unidade_de_medida , localizacao, status_peca;
     private Float quantidade, valor, valor_unitario; 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCategoria() {
         return categoria;
