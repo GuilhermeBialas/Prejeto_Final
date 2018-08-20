@@ -67,7 +67,37 @@ public class ProdutoDao {
         }
         return false;
  }
-}
+ public ProdutoBean obterProdutoPeloId(int id){
+     String sql = "SELECT id, aplicacao, valor, valorUnitario, quantidade ";
+     Connection conexao = Conexao.obterConexao();
+     if(conexao != null){
+         try {
+             PreparedStatement ps = conexao.prepareStatement(sql);
+             ps.setInt(1,id);
+             ps.execute();
+             ResultSet resultSet = ps.getResultSet();
+             if(resultSet.next()){
+                 ProdutoBean produto = new ProdutoBean();
+                 produto.setId(resultSet.getInt("id"));
+                 produto.setAplicacao(resultSet.getString("aplicacao"));
+                 produto.setValor(resultSet.getFloat("valor"));
+                 produto.setValorUnitario(resultSet.getFloat("valorUnitario"));
+                 produto.setQuantidade(resultSet.getFloat("quantidade"));
+              return produto;
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+         }finally{
+             Conexao.fecharConexao();
+         }
+     }
+     return null;
+ }
+ 
+ 
+ public List<ProdutoBean> obterProdutos()
+ 
+
 
     
 
