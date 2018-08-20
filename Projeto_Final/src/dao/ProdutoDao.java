@@ -5,6 +5,8 @@ import database.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
 
 /**
  *
@@ -95,7 +97,26 @@ public class ProdutoDao {
  }
  
  
- public List<ProdutoBean> obterProdutos()
+ public List<ProdutoBean> obterProdutos(){
+     Connection conexao = Conexao.obterConexao();
+     if(conexao != null){
+     String sql ="SELECT id, aplicacao, valor, valorUnitario, statusPeca";
+         try {
+             Statement statement = conexao.createStatement();
+             statement.execute(sql);
+             ResultSet resultSet = statement.getResultSet();
+             while(resultSet.next()){
+                 ProdutoBean produto = new ProdutoBean();
+                 produto.setId(resultSet.getInt("id"));
+                 produto.setAplicacao(resultSet.getFloat("aplicacao"));
+                 produto.setValor(resultSet.getFloat("valor"));
+                 
+             }
+         } catch (Exception e) {
+         }
+     }
+ }
+     }
  
 
 
