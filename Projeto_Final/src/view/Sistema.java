@@ -6,7 +6,12 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -19,10 +24,12 @@ public class Sistema implements BaseInterfaceJava{
         gerarLocalizacoes();
         gerarDimensoes();*/
         gerarTela();
-        jFrame.setVisible(true);
+        trocaIcone();
+       jFrame.setVisible(true);
     }
     
     private JFrame jFrame;
+   
 
     @Override
     public void gerarTela() {
@@ -51,6 +58,12 @@ public class Sistema implements BaseInterfaceJava{
 
     private void instanciarComponentes() {
         
+    }
+
+    private void trocaIcone() {
+       URL url = this.getClass().getResource("/icones/air-filter.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+       jFrame.setIconImage(imagemTitulo);
     }
     
 }
