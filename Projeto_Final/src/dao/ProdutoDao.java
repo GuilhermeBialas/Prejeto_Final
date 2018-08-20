@@ -25,8 +25,11 @@ public class ProdutoDao {
                 preparedStatement.setString(2, produto.getCategoria());
                 preparedStatement.setString(3, produto.getDescricao());
                 preparedStatement.setString(4, produto.getLocalizacao());
-                preparedStatement.setString(5, produto.getStatus_peca());
-                preparedStatement.setString(6, produto.getUnidade_de_medida());
+                preparedStatement.setString(5, produto.getStatusPecas());
+                preparedStatement.setString(6, produto.getUnidadeDeMedida());
+                preparedStatement.setFloat(7, produto.getQuantidade());
+                preparedStatement.setFloat(8, produto.getValor());
+                preparedStatement.setFloat(9, pro);
                 
             } catch (Exception e) {
             }

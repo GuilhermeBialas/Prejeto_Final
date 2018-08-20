@@ -6,8 +6,8 @@ package bean;
  */
 public class ProdutoBean {
     
-    private String categoria, descricao, aplicacao, unidade_de_medida , localizacao, status_peca;
-    private Float quantidade, valor, valor_unitario; 
+    private String categoria, descricao, aplicacao, unidadeDeMedida , localizacao, statusPecas;
+    private Float quantidade, valor, valorUnitario; 
     private int id;
 
     public int getId() {
@@ -42,12 +42,12 @@ public class ProdutoBean {
         this.aplicacao = aplicacao;
     }
 
-    public String getUnidade_de_medida() {
-        return unidade_de_medida;
+    public String getUnidadeDeMedida() {
+        return unidadeDeMedida;
     }
 
-    public void setUnidade_de_medida(String unidade_de_medida) {
-        this.unidade_de_medida = unidade_de_medida;
+    public void setUnidadeDeMedida(String unidadeDeMedida) {
+        this.unidadeDeMedida = unidadeDeMedida;
     }
 
     public String getLocalizacao() {
@@ -58,12 +58,12 @@ public class ProdutoBean {
         this.localizacao = localizacao;
     }
 
-    public String getStatus_peca() {
-        return status_peca;
+    public String getStatusPecas() {
+        return statusPecas;
     }
 
-    public void setStatus_peca(String status_peca) {
-        this.status_peca = status_peca;
+    public void setStatusPecas(String statusPecas) {
+        this.statusPecas = statusPecas;
     }
 
     public Float getQuantidade() {
@@ -82,11 +82,11 @@ public class ProdutoBean {
         this.valor = valor;
     }
 
-    public Float getValor_unitario() {
-        return valor_unitario;
+    public Float getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValor_unitario(Float valor_unitario) {
-        this.valor_unitario = valor_unitario;
+    public void setValorUnitario(Float valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 }
