@@ -59,11 +59,12 @@ public class ProdutoDao {
             ps.setFloat(4, produto.getValorUnitario());
             ps.setFloat(5, produto.getQuantidade());
             ps.setFloat(6, produto.getValor());
-            return ps.executeUpdade() == 1;
-            
-            
-            
+            return  ps.executeUpdate() == 1;
         } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            Conexao.fecharConexao();
         }
-    }
+        return false;
+ }
 }

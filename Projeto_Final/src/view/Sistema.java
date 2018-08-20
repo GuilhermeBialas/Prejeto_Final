@@ -6,31 +6,51 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Alunos
  */
 public class Sistema implements BaseInterfaceJava{
+    public Sistema (){
+       /* instanciarComponentes();
+        adicionarComponentes();
+        gerarLocalizacoes();
+        gerarDimensoes();*/
+        gerarTela();
+        jFrame.setVisible(true);
+    }
+    
+    private JFrame jFrame;
 
     @Override
     public void gerarTela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jFrame = new JFrame("nome do sistema");
+        jFrame.setSize(677,416);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setLayout(null);
+        jFrame.setResizable(false);
+        jFrame.setDefaultCloseOperation(jFrame.DISPOSE_ON_CLOSE);
     }
 
     @Override
     public void adicionarComponentes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void gerarLocalizacoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void gerarDimensoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
+    private void instanciarComponentes() {
+        
     }
     
 }
