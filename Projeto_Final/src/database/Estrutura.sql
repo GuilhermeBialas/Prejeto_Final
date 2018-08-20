@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS auto_pecas;
 CREATE DATABASE auto_pecas;
 USE auto_pecas;
