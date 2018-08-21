@@ -26,11 +26,12 @@ public class Sistema implements BaseInterfaceJava{
         gerarDimensoes();
         gerarTela();
         trocaIcone();
+        acaoBotaoCadastro();
        jFrame.setVisible(true);
     }
     
     private JFrame jFrame;
-   private JButton jButtonCadastro;
+   private JButton jButtonCadastro, jButtonEstoque, jButtonVenda, jButtonSair;
 
     @Override
     public void gerarTela() {
@@ -44,20 +45,34 @@ public class Sistema implements BaseInterfaceJava{
 
     @Override
     public void adicionarComponentes() {
+        jFrame.add(jButtonCadastro);
+        jFrame.add(jButtonEstoque);
+        jFrame.add(jButtonVenda);
+        jFrame.add(jButtonSair);
         
     }
 
     @Override
     public void gerarLocalizacoes() {
-        
+        jButtonCadastro.setLocation(10,10);
+        jButtonEstoque.setLocation(70,10);
+        jButtonVenda.setLocation(130,10);
+        jButtonSair.setLocation(190,10);
     }
 
     @Override
     public void gerarDimensoes() {
-        
+        jButtonCadastro.setSize(50,50);
+        jButtonEstoque.setSize(50,50);
+        jButtonSair.setSize(50,50);
+        jButtonVenda.setSize(50,50);
     }
 
     private void instanciarComponentes() {
+        jButtonCadastro = new JButton("Cadastro");
+        jButtonEstoque = new JButton("Estoque");
+        jButtonVenda = new JButton("Venda");
+        jButtonSair = new JButton("Sair");
         
     }
 
@@ -65,6 +80,10 @@ public class Sistema implements BaseInterfaceJava{
        URL url = this.getClass().getResource("/icones/air-filter.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
        jFrame.setIconImage(imagemTitulo);
+    }
+
+    private void acaoBotaoCadastro() {
+        
     }
     
 }
