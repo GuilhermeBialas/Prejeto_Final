@@ -6,31 +6,65 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Alunos
  */
 public class Sistema implements BaseInterfaceJava{
+    public Sistema (){
+      instanciarComponentes();
+        adicionarComponentes();
+        gerarLocalizacoes();
+        gerarDimensoes();
+        gerarTela();
+        trocaIcone();
+       jFrame.setVisible(true);
+    }
+    
+    private JFrame jFrame;
+   private JButton jButtonCadastro;
 
     @Override
     public void gerarTela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jFrame = new JFrame("nome do sistema");
+        jFrame.setSize(800,600);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setLayout(null);
+        jFrame.setResizable(false);
+        jFrame.setDefaultCloseOperation(jFrame.DISPOSE_ON_CLOSE);
     }
 
     @Override
     public void adicionarComponentes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void gerarLocalizacoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void gerarDimensoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
+    private void instanciarComponentes() {
+        
+    }
+
+    private void trocaIcone() {
+       URL url = this.getClass().getResource("/icones/air-filter.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+       jFrame.setIconImage(imagemTitulo);
     }
     
 }

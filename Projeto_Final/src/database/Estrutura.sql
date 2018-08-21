@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS auto_pecas;
 CREATE DATABASE auto_pecas;
 USE auto_pecas;
 
-CREATE TABLE pecas(
+CREATE TABLE produtos(
     id int AUTO_INCREMENT PRIMARY KEY,
     categoria         varchar(50),
     quantidade        float,
