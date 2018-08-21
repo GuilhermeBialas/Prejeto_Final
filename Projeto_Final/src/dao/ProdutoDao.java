@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -98,6 +99,7 @@ public class ProdutoDao {
     }
 
     public List<ProdutoBean> obterProdutos() {
+        List<ProdutoBean> produtos = new ArrayList<>();
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
             String sql = "SELECT id, aplicacao, valor, valorUnitario, FROM produtos";
