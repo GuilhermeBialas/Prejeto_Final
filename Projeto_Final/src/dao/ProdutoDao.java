@@ -100,7 +100,7 @@ public class ProdutoDao {
     public List<ProdutoBean> obterProdutos() {
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
-            String sql = "SELECT id, aplicacao, valor, valorUnitario, statusPeca, FROM produtos";
+            String sql = "SELECT id, aplicacao, valor, valorUnitario, FROM produtos";
             try {
                 Statement statement = conexao.createStatement();
                 statement.execute(sql);
@@ -110,6 +110,8 @@ public class ProdutoDao {
                     produto.setId(resultSet.getInt("id"));
                     produto.setAplicacao(resultSet.getString("aplicacao"));
                     produto.setValor(resultSet.getFloat("valor"));
+                    produto.setValorUnitario(resultSet.getFloat("valorUnitario"));
+                    
                     produtos.add(produto);
                 }
             } catch (Exception e) {
@@ -118,8 +120,8 @@ public class ProdutoDao {
                 Conexao.fecharConexao();
             }
         }
-        L
-        return produtos;
+
+       return produtos;
     }
 
 }
