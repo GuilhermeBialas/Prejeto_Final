@@ -52,7 +52,7 @@ public class ProdutoDao {
     public boolean alterar(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
         String sql = "UPDATE pecas SET quantidade = ?,"
-    + " valor = ?, descricao = ?,unidadeDeMedida = ?, localizacao = ?, valorUnitario = ? ";
+                + " valor = ?, descricao = ?,unidadeDeMedida = ?, localizacao = ?, valorUnitario = ? ";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, produto.getDescricao());
@@ -61,65 +61,65 @@ public class ProdutoDao {
             ps.setFloat(4, produto.getValorUnitario());
             ps.setFloat(5, produto.getQuantidade());
             ps.setFloat(6, produto.getValor());
-            return  ps.executeUpdate() == 1;
+            return ps.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             Conexao.fecharConexao();
         }
         return false;
- }
- public ProdutoBean obterProdutoPeloId(int id){
-     String sql = "SELECT id, aplicacao, valor, valorUnitario, quantidade ";
-     Connection conexao = Conexao.obterConexao();
-     if(conexao != null){
-         try {
-             PreparedStatement ps = conexao.prepareStatement(sql);
-             ps.setInt(1,id);
-             ps.execute();
-             ResultSet resultSet = ps.getResultSet();
-             if(resultSet.next()){
-                 ProdutoBean produto = new ProdutoBean();
-                 produto.setId(resultSet.getInt("id"));
-                 produto.setAplicacao(resultSet.getString("aplicacao"));
-                 produto.setValor(resultSet.getFloat("valor"));
-                 produto.setValorUnitario(resultSet.getFloat("valorUnitario"));
-                 produto.setQuantidade(resultSet.getFloat("quantidade"));
-              return produto;
-             }
-         } catch (Exception e) {
-             e.printStackTrace();
-         }finally{
-             Conexao.fecharConexao();
-         }
-     }
-     return null;
- }
- 
- 
- public List<ProdutoBean> obterProdutos(){
-     Connection conexao = Conexao.obterConexao();
-     if(conexao != null){
-     String sql ="SELECT id, aplicacao, valor, valorUnitario, statusPeca";
-         try {
-             Statement statement = conexao.createStatement();
-             statement.execute(sql);
-             ResultSet resultSet = statement.getResultSet();
-             while(resultSet.next()){
-                 ProdutoBean produto = new ProdutoBean();
-                 produto.setId(resultSet.getInt("id"));
-                 produto.setAplicacao(resultSet.getString("aplicacao"));
-                 produto.setValor(resultSet.getFloat("valor"));
-                 
-                 
-             }
-         } catch (Exception e) {
-         }
-     }
- }
-     }
- 
+    }
 
+    public ProdutoBean obterProdutoPeloId(int id) {
+        String sql = "SELECT id, aplicacao, valor, valorUnitario, quantidade ";
+        Connection conexao = Conexao.obterConexao();
+        if (conexao != null) {
+            try {
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setInt(1, id);
+                ps.execute();
+                ResultSet resultSet = ps.getResultSet();
+                if (resultSet.next()) {
+                    ProdutoBean produto = new ProdutoBean();
+                    produto.setId(resultSet.getInt("id"));
+                    produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setValor(resultSet.getFloat("valor"));
+                    produto.setValorUnitario(resultSet.getFloat("valorUnitario"));
+                    produto.setQuantidade(resultSet.getFloat("quantidade"));
+                    return produto;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                Conexao.fecharConexao();
+            }
+        }
+        return null;
+    }
 
-    
+    public List<ProdutoBean> obterProdutos() {
+        Connection conexao = Conexao.obterConexao();
+        if (conexao != null) {
+            String sql = "SELECT id, aplicacao, valor, valorUnitario, statusPeca, FROM produtos";
+            try {
+                Statement statement = conexao.createStatement();
+                statement.execute(sql);
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()) {
+                    ProdutoBean produto = new ProdutoBean();
+                    produto.setId(resultSet.getInt("id"));
+                    produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setValor(resultSet.getFloat("valor"));
+                    produtos.add(produto);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                Conexao.fecharConexao();
+            }
+        }
+        L
+        return produtos;
+    }
 
+}
