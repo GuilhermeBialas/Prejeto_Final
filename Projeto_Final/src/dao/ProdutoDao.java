@@ -108,8 +108,9 @@ public class ProdutoDao {
              while(resultSet.next()){
                  ProdutoBean produto = new ProdutoBean();
                  produto.setId(resultSet.getInt("id"));
-                 produto.setAplicacao(resultSet.getFloat("aplicacao"));
+                 produto.setAplicacao(resultSet.getString("aplicacao"));
                  produto.setValor(resultSet.getFloat("valor"));
+                 
                  
              }
          } catch (Exception e) {
