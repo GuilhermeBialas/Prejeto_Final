@@ -13,5 +13,6 @@ CREATE TABLE produtos(
     unidade_de_medida varchar(5),
     localizacao       varchar (50),
     valor_unitario    float,
-    status_peca       varchar(20)
+    status_peca       varchar(20),
+    peso              float
 );

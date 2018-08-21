@@ -20,8 +20,8 @@ public class ProdutoDao {
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
             String sql = "INSERT INTO produto"
-                    + "\n(categoria, quantidade, valor, descricao, aplicacao, unidade_de_medida, localizacao, valor_unitario, status_peca)"
-                    + "\nVALUES(?,?,?,?,?,?,?,?,?)";
+                    + "\n(categoria, quantidade, valor, descricao, aplicacao, unidade_de_medida, localizacao, valor_unitario, status_peca, peso)"
+                    + "\nVALUES(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -34,6 +34,7 @@ public class ProdutoDao {
                 preparedStatement.setFloat(7, produto.getQuantidade());
                 preparedStatement.setFloat(8, produto.getValor());
                 preparedStatement.setFloat(9, produto.getValorUnitario());
+                preparedStatement.setFloat(10, produto.getPeso());
                 preparedStatement.execute();
 
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -72,7 +73,7 @@ public class ProdutoDao {
     }
 
     public ProdutoBean obterProdutoPeloId(int id) {
-        String sql = "SELECT id, aplicacao, valor, valorUnitario, quantidade ";
+        String sql = "SELECT id, aplicacao, valor, valorUnitario, quantidade , peso";
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
             try {
@@ -87,6 +88,7 @@ public class ProdutoDao {
                     produto.setValor(resultSet.getFloat("valor"));
                     produto.setValorUnitario(resultSet.getFloat("valorUnitario"));
                     produto.setQuantidade(resultSet.getFloat("quantidade"));
+                    produto.setPeso(resultSet.getFloat("peso"));
                     return produto;
                 }
             } catch (Exception e) {
