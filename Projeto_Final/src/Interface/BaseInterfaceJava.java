@@ -13,4 +13,6 @@ public interface BaseInterfaceJava {
     void gerarLocalizacoes();
 
     void gerarDimensoes();
+     
+    void instanciarComponentes();
 }
