@@ -8,38 +8,48 @@ package view;
 import Interface.BaseInterfaceJava;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
  *
- * @author Alunos
+ * @author Márcio Pedro Schiehl
  */
 public class Sistema implements BaseInterfaceJava{
     public Sistema (){
         gerarTela();
         trocaIcone();
-        instaciarComponentes();
+        instanciarComponentes();
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
-        //acaoBotaoCadastro();
+        acaoBotaoCadastro();
+        acaoBotaoEstoque();
+        acaoBotaoVenda();
+        acaoBotaoSair();
        jFrame.setVisible(true);
     }
     
     private JFrame jFrame;
    private JButton jButtonCadastro, jButtonEstoque, jButtonVenda, jButtonSair;
 
-    @Override
-    public void instaciarComponentes() {
-        jButtonCadastro = new JButton("Cadastro");
+    /*@Override
+    public void instanciarComponentes() {
+       jButtonCadastro = new JButton("Cadastro");
         jButtonEstoque = new JButton("Estoque");
         jButtonVenda = new JButton("Venda");
         jButtonSair = new JButton("Sair");
-    }
+    }*/
+
+    
+   
     @Override
     public void gerarTela() {
         jFrame = new JFrame("nome do sistema");
@@ -47,20 +57,8 @@ public class Sistema implements BaseInterfaceJava{
         jFrame.setLocationRelativeTo(null);
         jFrame.setLayout(null);
         jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(jFrame.DISPOSE_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(jFrame.EXIT_ON_CLOSE);
     }
-
-    @Override
-    public void adicionarComponentes() {
-        jFrame.add(jButtonCadastro);
-        jFrame.add(jButtonEstoque);
-        jFrame.add(jButtonVenda);
-        jFrame.add(jButtonSair);
-        
-    }
-   
-        
-   
 
     @Override
     public void gerarLocalizacoes() {
@@ -85,9 +83,65 @@ public class Sistema implements BaseInterfaceJava{
        jFrame.setIconImage(imagemTitulo);
     }
 
-   /* private void acaoBotaoCadastro() {
-        
-    }*/
+    private void acaoBotaoCadastro() {
+        jButtonCadastro.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em Construção");
+                // new Cadastro();
+            }
+        });
+    }
+
+    private void acaoBotaoEstoque() {
+        jButtonEstoque.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em Construção");
+                //new Estoque();
+            }
+        });
+    }
+
+    private void acaoBotaoVenda() {
+        jButtonVenda.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em Construção");
+                //new Vendas();
+               
+            }
+        });
+    }
+
+    private void acaoBotaoSair() {
+        jButtonSair.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 System.exit(0);
+            }
+        });
+    }
+
+    @Override
+    public void instaciarComponentes() {
+        jButtonCadastro = new JButton("Cadastro");
+        jButtonEstoque = new JButton("Estoque");
+        jButtonVenda = new JButton("Venda");
+        jButtonSair = new JButton("Sair");
+    }
+
+    @Override
+    public void adicionarComponentes() {
+        jFrame.add(jButtonCadastro);
+        jFrame.add(jButtonEstoque);
+        jFrame.add(jButtonVenda);
+        jFrame.add(jButtonSair);
+    }
 
 
     
