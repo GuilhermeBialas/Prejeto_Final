@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -19,22 +20,22 @@ import javax.swing.JLabel;
  */
 public class Sistema implements BaseInterfaceJava{
     public Sistema (){
-       /* instanciarComponentes();
+      instanciarComponentes();
         adicionarComponentes();
         gerarLocalizacoes();
-        gerarDimensoes();*/
+        gerarDimensoes();
         gerarTela();
         trocaIcone();
        jFrame.setVisible(true);
     }
     
     private JFrame jFrame;
-   
+   private JButton jButtonCadastro;
 
     @Override
     public void gerarTela() {
         jFrame = new JFrame("nome do sistema");
-        jFrame.setSize(677,416);
+        jFrame.setSize(800,600);
         jFrame.setLocationRelativeTo(null);
         jFrame.setLayout(null);
         jFrame.setResizable(false);
