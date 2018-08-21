@@ -96,6 +96,11 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldUnidadeDeMedida.setSize(100, 20);
         jTextFieldLocalizacao.setSize(100, 20);
         jTextFieldValorUnitario.setSize(100, 20);
+        jTextFieldStatusPeca.setSize(100,20);
+        jTextFieldPeso.setSize(100,20);
+        
+        //JLabel's
+        
 
     }
 
