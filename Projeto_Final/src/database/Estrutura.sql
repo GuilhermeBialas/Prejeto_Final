@@ -5,11 +5,11 @@ USE auto_pecas;
 
 CREATE TABLE produtos(
     id int AUTO_INCREMENT PRIMARY KEY,
-    categoria         VARCHAR(50),
-    quantidade        FLOAT,
-    valor             FLOAT,
+    categoria         varchar(50),
+    quantidade        float,
+    valor             float,
     descricao         Varchar(150),
-    aplicacao         VARCHAR(300),
+    aplicacao         varchar(300),
     unidade_de_medida varchar(5),
     localizacao       varchar (50),
     valor_unitario    float,
