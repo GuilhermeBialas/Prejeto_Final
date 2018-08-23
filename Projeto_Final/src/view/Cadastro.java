@@ -25,7 +25,7 @@ public class Cadastro implements BaseInterfaceJava {
             jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
     private JButton jButtonSalvar, jButtonExcluir, jButtonAdicionar;
 
-    public void Cadastro() {
+    public  Cadastro() {
         instanciarComponentes();
         gerarTela();
         adicionarComponentes();
