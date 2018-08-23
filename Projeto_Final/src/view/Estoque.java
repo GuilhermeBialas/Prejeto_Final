@@ -171,5 +171,25 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         jButtonExcluir = new JButton("Excluir");
         jButtonAdicionar = new JButton("Adicionar");
     }
+
+    private void acaoBotaoEstoque() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void acaoBotaoVenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void acaoBotaoSair() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void acaoBotaoCadastro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void trocaIcone() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
       }
