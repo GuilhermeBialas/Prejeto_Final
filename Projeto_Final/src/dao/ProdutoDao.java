@@ -50,6 +50,24 @@ public class ProdutoDao {
         }
         return 0;
     }
+    public boolean vender(ProdutoBean produto){
+        Connection conexao = Conexao.obterConexao();
+        String sql = "UPDATE pecas SET quantidade = ? WHERE descricao = ?;";
+      
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setString(1, produto.getDescricao());
+                  
+            ps.setFloat(2, produto.getQuantidade());
+            
+            return ps.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Conexao.fecharConexao();
+        }
+        return false;
+    }
 
     public boolean alterar(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
