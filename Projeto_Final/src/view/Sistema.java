@@ -108,8 +108,8 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Em Construção");
-                //new Vendas();
+                //JOptionPane.showMessageDialog(null, "Em Construção");
+                new Vendas();
 
             }
         });
