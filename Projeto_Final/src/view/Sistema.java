@@ -38,10 +38,10 @@ public class Sistema implements BaseInterfaceJava {
         acaoBotaoEstoque();
         acaoBotaoVenda();
         acaoBotaoSair();
-        jFrame.setVisible(true);
+        jFrameSistema.setVisible(true);
     }
 
-    private JFrame jFrame;
+    private JFrame jFrameSistema;
     private JButton jButtonCadastro, jButtonEstoque, jButtonVenda, jButtonSair;
 
     @Override
@@ -54,12 +54,12 @@ public class Sistema implements BaseInterfaceJava {
 
     @Override
     public void gerarTela() {
-        jFrame = new JFrame("nome do sistema");
-        jFrame.setSize(800, 600);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setLayout(null);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(jFrame.EXIT_ON_CLOSE);
+        jFrameSistema = new JFrame("nome do sistema");
+        jFrameSistema.setSize(800, 600);
+        jFrameSistema.setLocationRelativeTo(null);
+        jFrameSistema.setLayout(null);
+        jFrameSistema.setResizable(false);
+        jFrameSistema.setDefaultCloseOperation(jFrameSistema.EXIT_ON_CLOSE);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Sistema implements BaseInterfaceJava {
     private void trocaIcone() {
         URL url = this.getClass().getResource("/icones/air-filter.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        jFrame.setIconImage(imagemTitulo);
+        jFrameSistema.setIconImage(imagemTitulo);
        // jButtonCadastro.setIcon(new ImageIcon("/icones/add_item.png"));
     }
 
@@ -92,7 +92,7 @@ public class Sistema implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showMessageDialog(null, "Em Construção");
-                           new Cadastro();
+            new Cadastro();
             }
         });
     }
@@ -132,10 +132,10 @@ public class Sistema implements BaseInterfaceJava {
 
     @Override
     public void adicionarComponentes() {
-        jFrame.add(jButtonCadastro);
-        jFrame.add(jButtonEstoque);
-        jFrame.add(jButtonVenda);
-        jFrame.add(jButtonSair);
+        jFrameSistema.add(jButtonCadastro);
+        jFrameSistema.add(jButtonEstoque);
+        jFrameSistema.add(jButtonVenda);
+        jFrameSistema.add(jButtonSair);
     }
 
 }

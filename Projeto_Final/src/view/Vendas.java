@@ -19,26 +19,29 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author Leonardo Moreira
  */
-    public class Vendas implements BaseInterfaceJava {
-        private JFrame jFrame;
+public class Vendas implements BaseInterfaceJava {
+
+    private JFrame jFrameVendas;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao,
-            jLabelUnidadeDeMedida, jLabelValorUnitario,jLabelStatusPeca, jLabelPeso;
-    private JTextField jTextFieldQuantiade, jTextFieldValor,jTextFieldDescricao,jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
-            jTextFieldLocalizacao, jTextFieldValorUnitario,jTextFieldStatusPeca,jTextFieldPeso;
-    private JButton jButtonVender, jButtonExcluir,jButtonSair;
-    
-    public  Vendas(){
+            jLabelUnidadeDeMedida, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso;
+    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
+            jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
+    private JButton jButtonVender, jButtonExcluir, jButtonSair;
+
+    public Vendas() {
         instanciarComponentes();
         gerarTela();
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
-        jFrame.setVisible(true);
-        
+        acaoBotaoSair();
+        acaoBotaoVender();
+        jFrameVendas.setVisible(true);
+
     }
 
-        @Override
-        public void instanciarComponentes() {
+    @Override
+    public void instanciarComponentes() {
         jLabelQuantidade = new JLabel("Quantidade");
         jLabelValor = new JLabel("Valor");
         jLabelDescricao = new JLabel("Descricao");
@@ -62,50 +65,53 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         jButtonVender = new JButton("Vender");
         jButtonExcluir = new JButton("Cancelar");
         jButtonSair = new JButton("Sair");
-        }
-        @Override
-        public void gerarTela() {
-        jFrame = new JFrame("Venda de Produtos");
-        jFrame.setSize(530, 400);
-        jFrame.setLayout(null);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        }
-        @Override
-        public void adicionarComponentes() {
-        jFrame.add(jLabelQuantidade);
-        jFrame.add(jLabelValor);
-        jFrame.add(jLabelDescricao);
-        jFrame.add(jLabelUnidadeDeMedida);
-        jFrame.add(jLabelValorUnitario);
-        jFrame.add(jLabelStatusPeca);
-        jFrame.add(jLabelPeso);
+    }
+
+    @Override
+    public void gerarTela() {
+        jFrameVendas = new JFrame("Venda de Produtos");
+        jFrameVendas.setSize(530, 400);
+        jFrameVendas.setLayout(null);
+        jFrameVendas.setLocationRelativeTo(null);
+        jFrameVendas.setResizable(false);
+        jFrameVendas.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+
+    @Override
+    public void adicionarComponentes() {
+        jFrameVendas.add(jLabelQuantidade);
+        jFrameVendas.add(jLabelValor);
+        jFrameVendas.add(jLabelDescricao);
+        jFrameVendas.add(jLabelUnidadeDeMedida);
+        jFrameVendas.add(jLabelValorUnitario);
+        jFrameVendas.add(jLabelStatusPeca);
+        jFrameVendas.add(jLabelPeso);
 
         //JTextField's
-        jFrame.add(jTextFieldQuantiade);
-        jFrame.add(jTextFieldValor);
-        jFrame.add(jTextFieldDescricao);
-        jFrame.add(jTextFieldAplicacao);
-        jFrame.add(jTextFieldUnidadeDeMedida);
-        jFrame.add(jTextFieldLocalizacao);
-        jFrame.add(jTextFieldValorUnitario);
-        jFrame.add(jTextFieldStatusPeca);
-        jFrame.add(jTextFieldPeso);
+        jFrameVendas.add(jTextFieldQuantiade);
+        jFrameVendas.add(jTextFieldValor);
+        jFrameVendas.add(jTextFieldDescricao);
+        jFrameVendas.add(jTextFieldAplicacao);
+        jFrameVendas.add(jTextFieldUnidadeDeMedida);
+        jFrameVendas.add(jTextFieldLocalizacao);
+        jFrameVendas.add(jTextFieldValorUnitario);
+        jFrameVendas.add(jTextFieldStatusPeca);
+        jFrameVendas.add(jTextFieldPeso);
 
         //JButton's
-        jFrame.add(jButtonVender);
-        jFrame.add(jButtonExcluir);
-        jFrame.add(jButtonSair);
-            
-        }
-        @Override
-        public void gerarDimensoes() {
-            //JButton's
+        jFrameVendas.add(jButtonVender);
+        jFrameVendas.add(jButtonExcluir);
+        jFrameVendas.add(jButtonSair);
+
+    }
+
+    @Override
+    public void gerarDimensoes() {
+        //JButton's
         jButtonVender.setSize(100, 50);
         jButtonExcluir.setSize(100, 50);
-        jButtonSair.setSize(100,50);
-        
+        jButtonSair.setSize(100, 50);
+
         //JTextField's
         jTextFieldQuantiade.setSize(100, 20);
         jTextFieldValor.setSize(100, 20);
@@ -125,71 +131,73 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         jLabelValorUnitario.setSize(100, 20);
         jLabelStatusPeca.setSize(100, 20);
         jLabelPeso.setSize(100, 20);
-            
-        }
-        @Override
-        public void gerarLocalizacoes() {
-            //Descricao
-      jLabelDescricao.setLocation(10,10);
-      jTextFieldDescricao.setLocation(120,10);
-        
+
+    }
+
+    @Override
+    public void gerarLocalizacoes() {
+        //Descricao
+        jLabelDescricao.setLocation(10, 10);
+        jTextFieldDescricao.setLocation(120, 10);
+
         //Quantidade
         jLabelQuantidade.setLocation(10, 40);
         jTextFieldQuantiade.setLocation(120, 40);
-        
+
         //Valor
-        
         jLabelValor.setLocation(10, 70);
         jTextFieldValor.setLocation(120, 70);
-        
+
         //Aplicacao
         jTextFieldAplicacao.setLocation(120, 100);
-        
+
         //UnidadeDeMedida
         jLabelUnidadeDeMedida.setLocation(10, 140);
         jTextFieldUnidadeDeMedida.setLocation(120, 140);
-        
+
         //Localizacao
-        jTextFieldLocalizacao.setLocation(120,180);
-        
+        jTextFieldLocalizacao.setLocation(120, 180);
+
         //ValorUnitario
         jLabelValorUnitario.setLocation(10, 210);
-        jTextFieldValorUnitario.setLocation(120,210);
-        
+        jTextFieldValorUnitario.setLocation(120, 210);
+
         //StatusPeca
         jLabelStatusPeca.setLocation(10, 240);
         jTextFieldStatusPeca.setLocation(120, 240);
-        
+
         //Peso
         jLabelPeso.setLocation(10, 280);
         jTextFieldPeso.setLocation(120, 280);
-        
+
         //BotaoSalvar
-        jButtonVender.setLocation(300,10);
-        
+        jButtonVender.setLocation(300, 10);
+
         //BotaoExcluir
-        jButtonExcluir.setLocation(300,70);
-        
+        jButtonExcluir.setLocation(300, 70);
+
         //BotaoSair
-        jButtonSair.setLocation(300,130);
-        }
-        private void acaoBotaoVender(){
-            jButtonVender.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
-                }
-            });
-        }
-        private void acaoBotaoSair(){
-            jButtonSair.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
-                }
-            });
-        }
-    
+        jButtonSair.setLocation(300, 130);
     }
+
+    private void acaoBotaoVender() {
+        jButtonVender.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
+
+    private void acaoBotaoSair() {
+        jButtonSair.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFrameVendas.dispose();
+            }
+        });
+    }
+
+}
