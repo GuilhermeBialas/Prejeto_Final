@@ -6,6 +6,9 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import view.Estoque;
+import view.Cadastro;
+import view.Vendas;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -79,6 +82,7 @@ public class Sistema implements BaseInterfaceJava {
         URL url = this.getClass().getResource("/icones/air-filter.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         jFrame.setIconImage(imagemTitulo);
+       // jButtonCadastro.setIcon(new ImageIcon("/icones/add_item.png"));
     }
 
     private void acaoBotaoCadastro() {
