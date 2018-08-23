@@ -31,6 +31,7 @@ public class Cadastro implements BaseInterfaceJava {
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
+        jFrame.setVisible(true);
 
     }
 
