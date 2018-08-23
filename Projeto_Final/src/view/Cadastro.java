@@ -31,13 +31,14 @@ public class Cadastro implements BaseInterfaceJava {
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
+        jFrame.setVisible(true);
 
     }
 
     @Override
     public void gerarTela() {
         jFrame = new JFrame("Cadastro de Produtos");
-        jFrame.setSize(530, 340);
+        jFrame.setSize(800, 600);
         jFrame.setLayout(null);
         jFrame.setLocationRelativeTo(null);
         jFrame.setResizable(false);
@@ -77,7 +78,52 @@ public class Cadastro implements BaseInterfaceJava {
 
     @Override
     public void gerarLocalizacoes() {
-    
+        //Descricao
+      jLabelDescricao.setLocation(10,10);
+      jTextFieldDescricao.setLocation(120,10);
+        
+        //Quantidade
+        jLabelQuantidade.setLocation(10, 40);
+        jTextFieldQuantiade.setLocation(120, 40);
+        
+        //Valor
+        
+        jLabelValor.setLocation(10, 70);
+        jTextFieldValor.setLocation(120, 70);
+        
+        //Aplicacao
+        jLabelAplicacao.setLocation(10, 100);
+        jTextFieldAplicacao.setLocation(120, 100);
+        
+        //UnidadeDeMedida
+        jLabelUnidadeDeMedida.setLocation(10, 140);
+        jTextFieldUnidadeDeMedida.setLocation(120, 140);
+        
+        //Localizacao
+        jLabelLocalizacao.setLocation(10,180);
+        jTextFieldLocalizacao.setLocation(120,180);
+        
+        //ValorUnitario
+        jLabelValorUnitario.setLocation(10, 210);
+        jTextFieldValorUnitario.setLocation(120,210);
+        
+        //StatusPeca
+        jLabelStatusPeca.setLocation(10, 240);
+        jTextFieldStatusPeca.setLocation(120, 240);
+        
+        //Peso
+        jLabelPeso.setLocation(10, 280);
+        jTextFieldPeso.setLocation(120, 280);
+        
+        //BotaoSalvar
+        jButtonSalvar.setLocation(300,10);
+        
+        //BotaoExcluir
+        jButtonExcluir.setLocation(300,70);
+        
+        //BotaoAdicionar
+        jButtonAdicionar.setLocation(300, 150);
+        
     }
 
     @Override
