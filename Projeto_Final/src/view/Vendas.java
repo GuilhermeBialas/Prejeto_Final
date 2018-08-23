@@ -104,7 +104,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
             //JButton's
         jButtonVender.setSize(100, 50);
         jButtonExcluir.setSize(100, 50);
-
+        jButtonSair.setSize(100,50);
+        
         //JTextField's
         jTextFieldQuantiade.setSize(100, 20);
         jTextFieldValor.setSize(100, 20);
@@ -169,9 +170,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         //BotaoExcluir
         jButtonExcluir.setLocation(300,70);
         
-        //BotaoAdicionar
+        //BotaoSair
+        jButtonSair.setLocation(300,130);
         }
-        private void acaoBotaoSalvar(){
+        private void acaoBotaoVender(){
             jButtonVender.addActionListener(new ActionListener() {
 
                 @Override
@@ -181,7 +183,13 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
             });
         }
         private void acaoBotaoSair(){
-            
+            jButtonSair.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    
+                }
+            });
         }
     
     }
