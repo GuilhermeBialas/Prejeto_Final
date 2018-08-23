@@ -36,7 +36,9 @@ public class Sistema implements BaseInterfaceJava{
         acaoBotaoSair();
        jFrame.setVisible(true);
     }
-    
+    public static void main(String[] args) {
+        new Sistema();
+    }
     private JFrame jFrame;
    private JButton jButtonCadastro, jButtonEstoque, jButtonVenda, jButtonSair;
 
