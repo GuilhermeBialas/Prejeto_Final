@@ -26,7 +26,7 @@ public class Cadastro implements BaseInterfaceJava {
     private JButton jButtonSalvar, jButtonExcluir, jButtonAdicionar;
 
     public void Cadastro() {
-        instaciarComponentes();
+        instanciarComponentes();
         gerarTela();
         adicionarComponentes();
         gerarLocalizacoes();
@@ -77,7 +77,7 @@ public class Cadastro implements BaseInterfaceJava {
 
     @Override
     public void gerarLocalizacoes() {
-
+    
     }
 
     @Override
@@ -96,17 +96,26 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldUnidadeDeMedida.setSize(100, 20);
         jTextFieldLocalizacao.setSize(100, 20);
         jTextFieldValorUnitario.setSize(100, 20);
-        jTextFieldStatusPeca.setSize(100,20);
-        jTextFieldPeso.setSize(100,20);
-        
+        jTextFieldStatusPeca.setSize(100, 20);
+        jTextFieldPeso.setSize(100, 20);
+
         //JLabel's
-        
+        jLabelQuantidade.setSize(100, 20);
+        jLabelValor.setSize(100, 20);
+        jLabelDescricao.setSize(100, 20);
+        jLabelAplicacao.setSize(100, 20);
+        jLabelUnidadeDeMedida.setSize(100, 20);
+        jLabelLocalizacao.setSize(100, 20);
+        jLabelValorUnitario.setSize(100, 20);
+        jLabelStatusPeca.setSize(100, 20);
+        jLabelPeso.setSize(100, 20);
 
     }
 
     @Override
-    public void instaciarComponentes() {
-        //JLabel's  
+    public void instanciarComponentes() {
+        //JLabel's 
+
         jLabelQuantidade = new JLabel("Quantidade");
         jLabelValor = new JLabel("Valor");
         jLabelDescricao = new JLabel("Descricao");
@@ -132,9 +141,6 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonSalvar = new JButton("Salva");
         jButtonExcluir = new JButton("Excluir");
         jButtonAdicionar = new JButton("Adicionar");
-
     }
-
-   
 
 }
