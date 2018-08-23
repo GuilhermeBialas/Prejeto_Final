@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+
 /**
  *
  * @author Alunos Carlos Augusto Borges
@@ -66,5 +67,3 @@ import javax.swing.JTextField;
     }
         
       }
-     
-
