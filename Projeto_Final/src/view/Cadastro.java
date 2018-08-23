@@ -6,9 +6,12 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -25,12 +28,13 @@ public class Cadastro implements BaseInterfaceJava {
             jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
     private JButton jButtonSalvar, jButtonExcluir, jButtonAdicionar;
 
-    public  Cadastro() {
+    public Cadastro() {
         instanciarComponentes();
         gerarTela();
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
+        acaoBotaoSalvar();
         jFrame.setVisible(true);
 
     }
@@ -79,51 +83,50 @@ public class Cadastro implements BaseInterfaceJava {
     @Override
     public void gerarLocalizacoes() {
         //Descricao
-      jLabelDescricao.setLocation(10,10);
-      jTextFieldDescricao.setLocation(120,10);
-        
+        jLabelDescricao.setLocation(10, 10);
+        jTextFieldDescricao.setLocation(120, 10);
+
         //Quantidade
         jLabelQuantidade.setLocation(10, 40);
         jTextFieldQuantiade.setLocation(120, 40);
-        
+
         //Valor
-        
         jLabelValor.setLocation(10, 70);
         jTextFieldValor.setLocation(120, 70);
-        
+
         //Aplicacao
         jLabelAplicacao.setLocation(10, 100);
         jTextFieldAplicacao.setLocation(120, 100);
-        
+
         //UnidadeDeMedida
         jLabelUnidadeDeMedida.setLocation(10, 140);
         jTextFieldUnidadeDeMedida.setLocation(120, 140);
-        
+
         //Localizacao
-        jLabelLocalizacao.setLocation(10,180);
-        jTextFieldLocalizacao.setLocation(120,180);
-        
+        jLabelLocalizacao.setLocation(10, 180);
+        jTextFieldLocalizacao.setLocation(120, 180);
+
         //ValorUnitario
         jLabelValorUnitario.setLocation(10, 210);
-        jTextFieldValorUnitario.setLocation(120,210);
-        
+        jTextFieldValorUnitario.setLocation(120, 210);
+
         //StatusPeca
         jLabelStatusPeca.setLocation(10, 240);
         jTextFieldStatusPeca.setLocation(120, 240);
-        
+
         //Peso
         jLabelPeso.setLocation(10, 280);
         jTextFieldPeso.setLocation(120, 280);
-        
+
         //BotaoSalvar
-        jButtonSalvar.setLocation(300,10);
-        
+        jButtonSalvar.setLocation(500, 10);
+
         //BotaoExcluir
-        jButtonExcluir.setLocation(300,70);
-        
+        jButtonExcluir.setLocation(500, 70);
+
         //BotaoAdicionar
-        jButtonAdicionar.setLocation(300, 150);
-        
+        jButtonAdicionar.setLocation(500, 150);
+
     }
 
     @Override
@@ -166,7 +169,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelValor = new JLabel("Valor");
         jLabelDescricao = new JLabel("Descricao");
         jLabelAplicacao = new JLabel("Aplicação");
-        jLabelUnidadeDeMedida = new JLabel("Unidade De medida");
+        jLabelUnidadeDeMedida = new JLabel("Und Medida");
         jLabelLocalizacao = new JLabel("Localização");
         jLabelValorUnitario = new JLabel("ValorUnitario");
         jLabelStatusPeca = new JLabel("Status da Peça");
@@ -189,4 +192,25 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonAdicionar = new JButton("Adicionar");
     }
 
+    private void acaoBotaoSalvar() {
+        jButtonSalvar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jTextFieldDescricao.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "A descricao deve ser preenchida");
+                    jTextFieldDescricao.requestFocus();
+                    return ;
+                }
+                if (jTextFieldAplicacao.getText().trim().isEmpty()) {
+                     JOptionPane.showMessageDialog(null, "A Aplicacao deve ser preenchida");
+                    jTextFieldDescricao.requestFocus();
+                    return ;
+                }
+            }
+        });
+
+    }
 }
+
+
