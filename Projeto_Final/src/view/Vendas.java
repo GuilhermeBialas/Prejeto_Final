@@ -6,10 +6,13 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -22,7 +25,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
             jLabelUnidadeDeMedida, jLabelValorUnitario,jLabelStatusPeca, jLabelPeso;
     private JTextField jTextFieldQuantiade, jTextFieldValor,jTextFieldDescricao,jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
             jTextFieldLocalizacao, jTextFieldValorUnitario,jTextFieldStatusPeca,jTextFieldPeso;
-    private JButton jButtonSalvar, jButtonExcluir;
+    private JButton jButtonVender, jButtonExcluir,jButtonSair;
     
     public  Vendas(){
         instanciarComponentes();
@@ -56,8 +59,9 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         jTextFieldPeso = new JTextField("");
 
         //JButton's
-        jButtonSalvar = new JButton("Estoque");
+        jButtonVender = new JButton("Vender");
         jButtonExcluir = new JButton("Cancelar");
+        jButtonSair = new JButton("Sair");
         }
         @Override
         public void gerarTela() {
@@ -90,14 +94,15 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         jFrame.add(jTextFieldPeso);
 
         //JButton's
-        jFrame.add(jButtonSalvar);
+        jFrame.add(jButtonVender);
         jFrame.add(jButtonExcluir);
+        jFrame.add(jButtonSair);
             
         }
         @Override
-        public void gerarLocalizacoes() {
+        public void gerarDimensoes() {
             //JButton's
-        jButtonSalvar.setSize(100, 50);
+        jButtonVender.setSize(100, 50);
         jButtonExcluir.setSize(100, 50);
 
         //JTextField's
@@ -122,7 +127,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
             
         }
         @Override
-        public void gerarDimensoes() {
+        public void gerarLocalizacoes() {
             //Descricao
       jLabelDescricao.setLocation(10,10);
       jTextFieldDescricao.setLocation(120,10);
@@ -159,12 +164,24 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         jTextFieldPeso.setLocation(120, 280);
         
         //BotaoSalvar
-        jButtonSalvar.setLocation(300,10);
+        jButtonVender.setLocation(300,10);
         
         //BotaoExcluir
         jButtonExcluir.setLocation(300,70);
         
         //BotaoAdicionar
+        }
+        private void acaoBotaoSalvar(){
+            jButtonVender.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    
+                }
+            });
+        }
+        private void acaoBotaoSair(){
+            
         }
     
     }

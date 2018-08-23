@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
+
 /**
  *
  * @author Alunos Carlos Augusto Borges
@@ -172,5 +173,3 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
     }
         
       }
-     
-

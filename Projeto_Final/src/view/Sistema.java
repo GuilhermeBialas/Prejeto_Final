@@ -26,7 +26,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
  * @author Márcio Pedro Schiehl
  */
 public class Sistema implements BaseInterfaceJava {
-
+    //construtor da clase
     public Sistema() {
         gerarTela();
         trocaIcone();
@@ -76,8 +76,9 @@ public class Sistema implements BaseInterfaceJava {
         jButtonEstoque.setSize(100, 50);
         jButtonSair.setSize(100, 50);
         jButtonVenda.setSize(100, 50);
+       
     }
-
+        //troca o icone padrao
     private void trocaIcone() {
         URL url = this.getClass().getResource("/icones/air-filter.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
