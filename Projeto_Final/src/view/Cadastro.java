@@ -21,7 +21,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class Cadastro implements BaseInterfaceJava {
 
-    private JFrame jFrame;
+    private JFrame jFrameCadastro;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
             jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso;
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
@@ -35,48 +35,48 @@ public class Cadastro implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         acaoBotaoSalvar();
-        jFrame.setVisible(true);
+        jFrameCadastro.setVisible(true);
 
     }
 
     @Override
     public void gerarTela() {
-        jFrame = new JFrame("Cadastro de Produtos");
-        jFrame.setSize(800, 600);
-        jFrame.setLayout(null);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        jFrameCadastro = new JFrame("Cadastro de Produtos");
+        jFrameCadastro.setSize(800, 600);
+        jFrameCadastro.setLayout(null);
+        jFrameCadastro.setLocationRelativeTo(null);
+        jFrameCadastro.setResizable(false);
+        jFrameCadastro.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @Override
     public void adicionarComponentes() {
         //jLabel's
-        jFrame.add(jLabelQuantidade);
-        jFrame.add(jLabelValor);
-        jFrame.add(jLabelDescricao);
-        jFrame.add(jLabelAplicacao);
-        jFrame.add(jLabelUnidadeDeMedida);
-        jFrame.add(jLabelLocalizacao);
-        jFrame.add(jLabelValorUnitario);
-        jFrame.add(jLabelStatusPeca);
-        jFrame.add(jLabelPeso);
+        jFrameCadastro.add(jLabelQuantidade);
+        jFrameCadastro.add(jLabelValor);
+        jFrameCadastro.add(jLabelDescricao);
+        jFrameCadastro.add(jLabelAplicacao);
+        jFrameCadastro.add(jLabelUnidadeDeMedida);
+        jFrameCadastro.add(jLabelLocalizacao);
+        jFrameCadastro.add(jLabelValorUnitario);
+        jFrameCadastro.add(jLabelStatusPeca);
+        jFrameCadastro.add(jLabelPeso);
 
         //JTextField's
-        jFrame.add(jTextFieldQuantiade);
-        jFrame.add(jTextFieldValor);
-        jFrame.add(jTextFieldDescricao);
-        jFrame.add(jTextFieldAplicacao);
-        jFrame.add(jTextFieldUnidadeDeMedida);
-        jFrame.add(jTextFieldLocalizacao);
-        jFrame.add(jTextFieldValorUnitario);
-        jFrame.add(jTextFieldStatusPeca);
-        jFrame.add(jTextFieldPeso);
+        jFrameCadastro.add(jTextFieldQuantiade);
+        jFrameCadastro.add(jTextFieldValor);
+        jFrameCadastro.add(jTextFieldDescricao);
+        jFrameCadastro.add(jTextFieldAplicacao);
+        jFrameCadastro.add(jTextFieldUnidadeDeMedida);
+        jFrameCadastro.add(jTextFieldLocalizacao);
+        jFrameCadastro.add(jTextFieldValorUnitario);
+        jFrameCadastro.add(jTextFieldStatusPeca);
+        jFrameCadastro.add(jTextFieldPeso);
 
         //JButton's
-        jFrame.add(jButtonSalvar);
-        jFrame.add(jButtonExcluir);
-        jFrame.add(jButtonAdicionar);
+        jFrameCadastro.add(jButtonSalvar);
+        jFrameCadastro.add(jButtonExcluir);
+        jFrameCadastro.add(jButtonAdicionar);
 
     }
 
@@ -206,6 +206,13 @@ public class Cadastro implements BaseInterfaceJava {
                      JOptionPane.showMessageDialog(null, "A Aplicacao deve ser preenchida");
                     jTextFieldDescricao.requestFocus();
                     return ;
+                }
+                if (jTextFieldValor.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "O valor deve ser preenchido");
+                    jTextFieldValor.requestFocus();
+                }
+                if (jTextFieldValor.getText().trim().) {
+                    
                 }
             }
         });

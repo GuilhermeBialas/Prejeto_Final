@@ -14,7 +14,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
      public class Estoque implements BaseInterfaceJava {
          
-           private JFrame jFrame;
+     private JFrame jFrameEstoque;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
             jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso;
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
@@ -28,7 +28,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
-        jFrame.setVisible(true);
+        jFrameEstoque.setVisible(true);
         
     }
 
@@ -39,38 +39,38 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
     @Override
     public void gerarTela() {
-        jFrame = new JFrame("Cadastro de Estoque");
-        jFrame.setSize(800, 600);
-        jFrame.setLayout(null);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);    }
+        jFrameEstoque = new JFrame("Cadastro de Estoque");
+        jFrameEstoque.setSize(800, 600);
+        jFrameEstoque.setLayout(null);
+        jFrameEstoque.setLocationRelativeTo(null);
+        jFrameEstoque.setResizable(false);
+        jFrameEstoque.setDefaultCloseOperation(DISPOSE_ON_CLOSE);    }
 
     
     public void adicionarComponentes() {
-        jFrame.add(jLabelQuantidade);
-        jFrame.add(jLabelValor);
-        jFrame.add(jLabelDescricao);
-        jFrame.add(jLabelAplicacao);
-        jFrame.add(jLabelUnidadeDeMedida);
-        jFrame.add(jLabelLocalizacao);
-        jFrame.add(jLabelValorUnitario);
-        jFrame.add(jLabelStatusPeca);
-        jFrame.add(jLabelPeso);
+        jFrameEstoque.add(jLabelQuantidade);
+        jFrameEstoque.add(jLabelValor);
+        jFrameEstoque.add(jLabelDescricao);
+        jFrameEstoque.add(jLabelAplicacao);
+        jFrameEstoque.add(jLabelUnidadeDeMedida);
+        jFrameEstoque.add(jLabelLocalizacao);
+        jFrameEstoque.add(jLabelValorUnitario);
+        jFrameEstoque.add(jLabelStatusPeca);
+        jFrameEstoque.add(jLabelPeso);
 
-        jFrame.add(jTextFieldQuantiade);
-        jFrame.add(jTextFieldValor);
-        jFrame.add(jTextFieldDescricao);
-        jFrame.add(jTextFieldAplicacao);
-        jFrame.add(jTextFieldUnidadeDeMedida);
-        jFrame.add(jTextFieldLocalizacao);
-        jFrame.add(jTextFieldValorUnitario);
-        jFrame.add(jTextFieldStatusPeca);
-        jFrame.add(jTextFieldPeso);
+        jFrameEstoque.add(jTextFieldQuantiade);
+        jFrameEstoque.add(jTextFieldValor);
+        jFrameEstoque.add(jTextFieldDescricao);
+        jFrameEstoque.add(jTextFieldAplicacao);
+        jFrameEstoque.add(jTextFieldUnidadeDeMedida);
+        jFrameEstoque.add(jTextFieldLocalizacao);
+        jFrameEstoque.add(jTextFieldValorUnitario);
+        jFrameEstoque.add(jTextFieldStatusPeca);
+        jFrameEstoque.add(jTextFieldPeso);
 
-        jFrame.add(jButtonSalvar);
-        jFrame.add(jButtonExcluir);
-        jFrame.add(jButtonAdicionar);
+        jFrameEstoque.add(jButtonSalvar);
+        jFrameEstoque.add(jButtonExcluir);
+        jFrameEstoque.add(jButtonAdicionar);
     }
 
     
