@@ -54,7 +54,7 @@ public class Sistema implements BaseInterfaceJava {
 
     @Override
     public void gerarTela() {
-        jFrameSistema = new JFrame("nome do sistema");
+        jFrameSistema = new JFrame("Auto System");
         jFrameSistema.setSize(800, 600);
         jFrameSistema.setLocationRelativeTo(null);
         jFrameSistema.setLayout(null);

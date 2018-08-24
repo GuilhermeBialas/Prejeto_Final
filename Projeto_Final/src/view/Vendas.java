@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -19,16 +20,16 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Leonardo Moreira
+ * @author Leonardo Moreira and Márcio Pedro Schiehl
  */
 public class Vendas implements BaseInterfaceJava {
 
     private JFrame jFrameVendas;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao,
             jLabelUnidadeDeMedida, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso;
-    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
-            jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
-    private JButton jButtonVender, jButtonExcluir, jButtonSair;
+    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldUnidadeDeMedida,
+             jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
+    private JButton jButtonIncluir, jButtonCancelar, jButtonSair;
     private DefaultTableModel dtm;
     private JScrollPane jScrollPane;
     private JTable jTablePedido;
@@ -41,7 +42,8 @@ public class Vendas implements BaseInterfaceJava {
         gerarDimensoes();
         configuarJTable();
         acaoBotaoSair();
-        acaoBotaoVender();
+        acaoBotaoCancelar();
+        acaoBotaoIncluir();
         jFrameVendas.setVisible(true);
 
     }
@@ -60,16 +62,14 @@ public class Vendas implements BaseInterfaceJava {
         jTextFieldQuantiade = new JTextField("");
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
-        jTextFieldAplicacao = new JTextField("");
         jTextFieldUnidadeDeMedida = new JTextField("");
-        jTextFieldLocalizacao = new JTextField("");
         jTextFieldValorUnitario = new JTextField("");
         jTextFieldStatusPeca = new JTextField("");
         jTextFieldPeso = new JTextField("");
 
         //JButton's
-        jButtonVender = new JButton("Vender");
-        jButtonExcluir = new JButton("Cancelar");
+        jButtonIncluir = new JButton("Incluir");
+        jButtonCancelar = new JButton("Cancelar Pedido");
         jButtonSair = new JButton("Sair");
         
         //JTable's
@@ -102,16 +102,14 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.add(jTextFieldQuantiade);
         jFrameVendas.add(jTextFieldValor);
         jFrameVendas.add(jTextFieldDescricao);
-        jFrameVendas.add(jTextFieldAplicacao);
         jFrameVendas.add(jTextFieldUnidadeDeMedida);
-        jFrameVendas.add(jTextFieldLocalizacao);
         jFrameVendas.add(jTextFieldValorUnitario);
         jFrameVendas.add(jTextFieldStatusPeca);
         jFrameVendas.add(jTextFieldPeso);
 
         //JButton's
-        jFrameVendas.add(jButtonVender);
-        jFrameVendas.add(jButtonExcluir);
+        jFrameVendas.add(jButtonIncluir);
+        jFrameVendas.add(jButtonCancelar);
         jFrameVendas.add(jButtonSair);
         
         //JTable's
@@ -121,17 +119,15 @@ public class Vendas implements BaseInterfaceJava {
     @Override
     public void gerarDimensoes() {
         //JButton's
-        jButtonVender.setSize(100, 50);
-        jButtonExcluir.setSize(100, 50);
+        jButtonIncluir.setSize(100, 50);
+        jButtonCancelar.setSize(100, 50);
         jButtonSair.setSize(100, 50);
 
         //JTextField's
         jTextFieldQuantiade.setSize(100, 20);
         jTextFieldValor.setSize(100, 20);
         jTextFieldDescricao.setSize(100, 20);
-        jTextFieldAplicacao.setSize(100, 20);
         jTextFieldUnidadeDeMedida.setSize(100, 20);
-        jTextFieldLocalizacao.setSize(100, 20);
         jTextFieldValorUnitario.setSize(100, 20);
         jTextFieldStatusPeca.setSize(100, 20);
         jTextFieldPeso.setSize(100, 20);
@@ -164,15 +160,9 @@ public class Vendas implements BaseInterfaceJava {
         jLabelValor.setLocation(10, 70);
         jTextFieldValor.setLocation(120, 70);
 
-        //Aplicacao
-        jTextFieldAplicacao.setLocation(120, 100);
-
         //UnidadeDeMedida
         jLabelUnidadeDeMedida.setLocation(10, 140);
         jTextFieldUnidadeDeMedida.setLocation(120, 140);
-
-        //Localizacao
-        jTextFieldLocalizacao.setLocation(120, 180);
 
         //ValorUnitario
         jLabelValorUnitario.setLocation(10, 210);
@@ -187,10 +177,10 @@ public class Vendas implements BaseInterfaceJava {
         jTextFieldPeso.setLocation(120, 280);
 
         //BotaoSalvar
-        jButtonVender.setLocation(10, 320);
+        jButtonIncluir.setLocation(10, 320);
 
         //BotaoExcluir
-        jButtonExcluir.setLocation(120, 320);
+        jButtonCancelar.setLocation(120, 320);
 
         //BotaoSair
         jButtonSair.setLocation(230, 320);
@@ -198,13 +188,35 @@ public class Vendas implements BaseInterfaceJava {
         //Jtable
         jScrollPane.setLocation(340,10);
     }
+    private void validacao(){
+        
+    }
 
-    private void acaoBotaoVender() {
-        jButtonVender.addActionListener(new ActionListener() {
+    private void acaoBotaoIncluir() {
+        jButtonIncluir.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(jTextFieldDescricao.getText().trim().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve ser preenchido","Vendas",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    return;
+                }
+                if(jTextFieldDescricao.getText().length()<3){
+                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve conter no minimo 3 caracteres para incluir","Vendas",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    return;
+                }
+                
+            }
+        });
+    }
+    private void acaoBotaoCancelar(){
+        jButtonCancelar.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpaCampos();
             }
         });
     }
@@ -226,6 +238,15 @@ public class Vendas implements BaseInterfaceJava {
         dtm.addColumn("Valor unitario");
         dtm.addColumn("Valor Total");
         jTablePedido.setModel(dtm);
+    }
+    private void limpaCampos(){
+        jTextFieldDescricao.setText("");
+        jTextFieldPeso.setText("");
+        jTextFieldQuantiade.setText("");
+        jTextFieldStatusPeca.setText("");
+        jTextFieldUnidadeDeMedida.setText("");
+        jTextFieldValor.setText("");
+        jTextFieldValorUnitario.setText("");
     }
 
 }
