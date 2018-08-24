@@ -234,7 +234,7 @@ public class Cadastro implements BaseInterfaceJava {
                     JOptionPane.showMessageDialog(null, "O valor deve ser preenchido");
                     jTextFieldValor.requestFocus();
                 }
-
+//teste
             }
         });
 
