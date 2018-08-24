@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,6 +29,9 @@ public class Vendas implements BaseInterfaceJava {
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
             jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
     private JButton jButtonVender, jButtonExcluir, jButtonSair;
+    private DefaultTableModel dtm;
+    private JScrollPane jScrollPane;
+    private JTable jTablePedido;
 
     public Vendas() {
         instanciarComponentes();
@@ -34,6 +39,7 @@ public class Vendas implements BaseInterfaceJava {
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
+        configuarJTable();
         acaoBotaoSair();
         acaoBotaoVender();
         jFrameVendas.setVisible(true);
@@ -65,12 +71,17 @@ public class Vendas implements BaseInterfaceJava {
         jButtonVender = new JButton("Vender");
         jButtonExcluir = new JButton("Cancelar");
         jButtonSair = new JButton("Sair");
+        
+        //JTable's
+        jTablePedido = new JTable();
+        configuarJTable();
+        jScrollPane = new JScrollPane(jTablePedido);
     }
 
     @Override
     public void gerarTela() {
         jFrameVendas = new JFrame("Venda de Produtos");
-        jFrameVendas.setSize(530, 400);
+        jFrameVendas.setSize(800, 600);
         jFrameVendas.setLayout(null);
         jFrameVendas.setLocationRelativeTo(null);
         jFrameVendas.setResizable(false);
@@ -102,7 +113,9 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.add(jButtonVender);
         jFrameVendas.add(jButtonExcluir);
         jFrameVendas.add(jButtonSair);
-
+        
+        //JTable's
+        jFrameVendas.add(jScrollPane);
     }
 
     @Override
@@ -131,6 +144,9 @@ public class Vendas implements BaseInterfaceJava {
         jLabelValorUnitario.setSize(100, 20);
         jLabelStatusPeca.setSize(100, 20);
         jLabelPeso.setSize(100, 20);
+        
+        //JTable's
+        jScrollPane.setSize(400,400);
 
     }
 
@@ -171,13 +187,16 @@ public class Vendas implements BaseInterfaceJava {
         jTextFieldPeso.setLocation(120, 280);
 
         //BotaoSalvar
-        jButtonVender.setLocation(300, 10);
+        jButtonVender.setLocation(10, 320);
 
         //BotaoExcluir
-        jButtonExcluir.setLocation(300, 70);
+        jButtonExcluir.setLocation(120, 320);
 
         //BotaoSair
-        jButtonSair.setLocation(300, 130);
+        jButtonSair.setLocation(230, 320);
+        
+        //Jtable
+        jScrollPane.setLocation(340,10);
     }
 
     private void acaoBotaoVender() {
@@ -198,6 +217,15 @@ public class Vendas implements BaseInterfaceJava {
                 jFrameVendas.dispose();
             }
         });
+    }
+
+    private void configuarJTable() {
+        dtm = new DefaultTableModel();
+        dtm.addColumn("Descrição");
+        dtm.addColumn("Quantidade");
+        dtm.addColumn("Valor unitario");
+        dtm.addColumn("Valor Total");
+        jTablePedido.setModel(dtm);
     }
 
 }
