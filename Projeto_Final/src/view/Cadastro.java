@@ -9,6 +9,7 @@ import Interface.BaseInterfaceJava;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +28,7 @@ public class Cadastro implements BaseInterfaceJava {
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
             jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
     private JButton jButtonSalvar, jButtonExcluir, jButtonAdicionar;
+    private JComboBox jComboBox;
 
     public Cadastro() {
         instanciarComponentes();
@@ -211,13 +213,15 @@ public class Cadastro implements BaseInterfaceJava {
                     JOptionPane.showMessageDialog(null, "O valor deve ser preenchido");
                     jTextFieldValor.requestFocus();
                 }
+<<<<<<< HEAD
                 if (jTextFieldValor.getText().trim()){
                     
                 }
+=======
+                
+>>>>>>> 0a2260ae368c9c8bc801afd959e9f24f3b4ae102
             }
         });
 
     }
 }
-
-
