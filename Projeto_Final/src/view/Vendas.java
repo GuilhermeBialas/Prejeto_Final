@@ -6,6 +6,7 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -189,7 +190,29 @@ public class Vendas implements BaseInterfaceJava {
         jScrollPane.setLocation(340,10);
     }
     private void validacao(){
-        
+         if(jTextFieldDescricao.getText().trim().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve ser preenchido","Vendas",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    jLabelDescricao.setForeground(Color.red);
+                    return;
+                }
+        if(jTextFieldDescricao.getText().length()<3){
+                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve conter no minimo 3 caracteres para incluir","Vendas",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    jLabelDescricao.setForeground(Color.red);
+                    return;
+                }
+        if(Float.parseFloat(jTextFieldQuantiade.getText())<=0){
+            JOptionPane.showMessageDialog(null,"O Campo quntidade deve conter no minimo valor igual ou superior 1 para incluir","Vendas",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    return;
+            
+        }
+        if(jTextFieldQuantiade.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"O Campo Quantidade deve ser preenchido","Vendas",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    return;
+        }
     }
 
     private void acaoBotaoIncluir() {
@@ -197,17 +220,9 @@ public class Vendas implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(jTextFieldDescricao.getText().trim().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve ser preenchido","Vendas",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    return;
-                }
-                if(jTextFieldDescricao.getText().length()<3){
-                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve conter no minimo 3 caracteres para incluir","Vendas",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    return;
-                }
-                
+               validacao();
+               JOptionPane.showMessageDialog(null,"Validação correta","Vendas",JOptionPane.PLAIN_MESSAGE);
+                   
             }
         });
     }
@@ -248,5 +263,10 @@ public class Vendas implements BaseInterfaceJava {
         jTextFieldValor.setText("");
         jTextFieldValorUnitario.setText("");
     }
-
+    private void jLabelBlack(){
+            jLabelDescricao.setForeground(Color.black);
+            jLabelQuantidade.setForeground(Color.black);
+            
+            
+    }
 }
