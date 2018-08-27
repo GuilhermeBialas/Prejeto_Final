@@ -22,7 +22,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
- * @author Guilherme Bialas
+ * @author Guilherme Bialas(guilhermebialas31@gmail.com)
+ * @date 2018-08-27
  */
 public class Cadastro implements BaseInterfaceJava {
 
@@ -33,7 +34,7 @@ public class Cadastro implements BaseInterfaceJava {
             jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso, jTextFieldCategoria;
     private JButton jButtonSalvar, jButtonExcluir, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
-    //  private ButtonGroup buttonGroup;
+    private ButtonGroup buttonGroup;
     private JComboBox jComboBoxLocalizacao;
 
     public Cadastro() {
@@ -44,6 +45,7 @@ public class Cadastro implements BaseInterfaceJava {
         gerarDimensoes();
         //definirRadioButton();
         acaoBotaoSalvar();
+        adicionarComboBoxLocalizacao();
         jFrameCadastro.setVisible(true);
 
     }
@@ -81,7 +83,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jTextFieldDescricao);
         jFrameCadastro.add(jTextFieldAplicacao);
         jFrameCadastro.add(jTextFieldUnidadeDeMedida);
-        jFrameCadastro.add(jTextFieldLocalizacao);
+        jFrameCadastro.add(jComboBoxLocalizacao);
         jFrameCadastro.add(jTextFieldValorUnitario);
 
         jFrameCadastro.add(jTextFieldPeso);
@@ -173,7 +175,9 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldDescricao.setSize(100, 20);
         jTextFieldAplicacao.setSize(100, 20);
         jTextFieldUnidadeDeMedida.setSize(100, 20);
+
         jComboBoxLocalizacao.setSize(200, 20);
+
         jTextFieldValorUnitario.setSize(100, 20);
         jTextFieldStatusPeca.setSize(100, 20);
         jTextFieldPeso.setSize(100, 20);
@@ -241,26 +245,24 @@ public class Cadastro implements BaseInterfaceJava {
         jRadioButtonNovo = new JRadioButton("Novo");
         jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
 
-        adicionarComboBoxLocalizacao();
+        jComboBoxLocalizacao = new JComboBox();
 
         jLabelAutoSystems = new JLabel("");
     }
 
     private void adicionarComboBoxLocalizacao() {
-        DefaultComboBoxModel<String> localizacao = new DefaultComboBoxModel<>();
-        localizacao.addElement("Norte");
-        localizacao.addElement("Nordeste");
-        localizacao.addElement("Centr-Oeste");
-        localizacao.addElement("Sudeste");
-        localizacao.addElement("Sul");
-        jComboBoxLocalizacao.setModel(localizacao);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Acre", "Alagoas", "Amapá", "Amazonas", "Bahia",
+            "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais,"
+            + "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia",
+            "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"});
+        jComboBoxLocalizacao.setModel(modelo);
         jComboBoxLocalizacao.setSelectedIndex(-1);
     }
+
     //private void definirRadioButton() {
     // buttonGroup.add(jRadioButtonNovo);
     //   buttonGroup.add(jRadioButtonSemiNovo);
     // }
-
     private void acaoBotaoSalvar() {
         jButtonSalvar.addActionListener(new ActionListener() {
 
