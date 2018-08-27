@@ -29,8 +29,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vendas implements BaseInterfaceJava{
     private JFrame jFrameVendas;
-    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo;
-    private JTextField jTextFieldId;
+    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo,jLabelDescricao,jLabelQuantidade;
+    private JTextField jTextFieldId, jTextFieldDescricao,jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private ButtonGroup buttonGroup;
     private JButton jButtonSair;
@@ -72,8 +72,13 @@ public class Vendas implements BaseInterfaceJava{
         jFrameVendas.add(jLabelCategoria);
         jFrameVendas.add(jLabelNovo);
         jFrameVendas.add(jLabelSemiNovo);
+        jFrameVendas.add(jLabelDescricao);
+        jFrameVendas.add(jLabelQuantidade);
         //JTextField's do Projeto
         jFrameVendas.add(jTextFieldId);
+        jFrameVendas.add(jTextFieldDescricao);
+        jFrameVendas.add(jTextFieldQuantidade);
+        //JRadionButton's
         jFrameVendas.add(jRadioButtonNovo);
         jFrameVendas.add(jRadioButtonSemiNovo);
         //JButton's
@@ -93,8 +98,12 @@ public class Vendas implements BaseInterfaceJava{
         jLabelCategoria.setLocation(230, 10);
         jLabelNovo.setLocation(180,10);
         jLabelSemiNovo.setLocation(180,40);
+        jLabelDescricao.setLocation(500,10);
+        jLabelQuantidade.setLocation(10,40);
         //JTextiField's
         jTextFieldId.setLocation(60, 10);
+        jTextFieldDescricao.setLocation(550,10);
+        jTextFieldQuantidade.setLocation(90,40);
         //JButton's
         jRadioButtonSemiNovo.setLocation(160,10);
         jRadioButtonNovo.setLocation(160,40);
@@ -113,10 +122,12 @@ public class Vendas implements BaseInterfaceJava{
        jLabelCategoria.setSize(100, 20);
        jLabelNovo.setSize(100,20);
        jLabelSemiNovo.setSize(100,20);
-       
-       jRadioButtonSemiNovo.setSize(100,20);
-       
+       jLabelDescricao.setSize(45,20);
+       jLabelQuantidade.setSize(70,20);
+          
        jTextFieldId.setSize(50, 20);
+       jTextFieldDescricao.setSize(230,20);
+       jTextFieldQuantidade.setSize(50,20);
        
        jRadioButtonNovo.setSize(20,20);
        jRadioButtonSemiNovo.setSize(20,20);
@@ -126,19 +137,23 @@ public class Vendas implements BaseInterfaceJava{
        jScrollPaneBuscador.setSize(360,360);
        jScrollPanePedido.setSize(360,360);
        
-       jComboBoxCategoria.setSize(100,20);
+       jComboBoxCategoria.setSize(192,20);
        
     }
 
     @Override
     public void instanciarComponentes() {
         jLabelID  = new JLabel("Numero");
-        jLabelStatus = new JLabel("Status");
+        jLabelStatus = new JLabel("Status:");
         jLabelCategoria = new JLabel("Categoria");
         jLabelSemiNovo = new JLabel("Semi Novo");
         jLabelNovo = new JLabel("Novo");
+        jLabelDescricao = new JLabel("Produto");
+        jLabelQuantidade = new JLabel("Quantidade");
         
         jTextFieldId = new JTextField();
+        jTextFieldDescricao = new JTextField();
+        jTextFieldQuantidade = new JTextField();
         
       jRadioButtonNovo = new JRadioButton();
       jRadioButtonSemiNovo = new JRadioButton();
