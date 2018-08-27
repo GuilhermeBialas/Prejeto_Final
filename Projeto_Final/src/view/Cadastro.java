@@ -127,10 +127,10 @@ public class Cadastro implements BaseInterfaceJava {
 
         //StatusPeca
         jLabelStatusPeca.setLocation(10, 240);
-        jLabelRadioButtonNovo.setLocation(150, 240);
-        jRadioButtonNovo.setLocation(270,240);
-        jLabelRadioButtonSemiNovo.setLocation(170,240);
-        jRadioButtonSemiNovo.setLocation(230,240 );
+        jRadioButtonNovo.setLocation(120,240);
+        jRadioButtonSemiNovo.setLocation(170,240 );
+        jLabelRadioButtonNovo.setLocation(120, 260);
+        jLabelRadioButtonSemiNovo.setLocation(170,260);
 
         //Peso
         jLabelPeso.setLocation(10, 300);
@@ -146,8 +146,8 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonAdicionar.setLocation(450, 150);
 
         //Categoria
-        jLabelCategoria.setLocation(10, 370);
-        jTextFieldCategoria.setLocation(120, 370);
+        jLabelCategoria.setLocation(10, 350);
+        jTextFieldCategoria.setLocation(120, 350);
 
         jLabelAutoSystems.setLocation(10, 10);
     }
@@ -185,7 +185,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelCategoria.setSize(100, 20);
         
         jLabelRadioButtonNovo.setSize(50,20);
-        jLabelRadioButtonSemiNovo.setSize(50,20);
+        jLabelRadioButtonSemiNovo.setSize(100,20);
 
         //RadioButton
         jRadioButtonNovo.setSize(20, 20);
@@ -208,7 +208,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelPeso = new JLabel("Peso");
         jLabelCategoria = new JLabel("Categoria");
         jLabelRadioButtonNovo = new JLabel("Novo");
-        jLabelRadioButtonSemiNovo = new JLabel("Semi novo");
+        jLabelRadioButtonSemiNovo = new JLabel("Semi Novo");
 
         //JTextField's
         jTextFieldQuantiade = new JTextField("");
@@ -228,8 +228,13 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonAdicionar = new JButton("Adicionar");
 
         //RadioButton
+
         jRadioButtonNovo = new JRadioButton("Novo");
         jRadioButtonSemiNovo = new JRadioButton("");
+
+       jRadioButtonNovo = new JRadioButton("Novo");
+       jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
+
 
         jLabelAutoSystems = new JLabel("");
     }

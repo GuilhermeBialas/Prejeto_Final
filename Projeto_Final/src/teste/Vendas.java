@@ -8,10 +8,12 @@ package teste;
 import Interface.BaseInterfaceJava;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -26,6 +28,8 @@ public class Vendas implements BaseInterfaceJava{
     private JFrame jFrameVendas;
     private JLabel jLabelID, jLabelStatus, jLabelCategoria;
     private JTextField jTextFieldId;
+    private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
+    private ButtonGroup buttonGroup;
     
     /*private DefaultTableModel dtm;
     private JScrollPane jScrollPane;
@@ -36,6 +40,7 @@ public class Vendas implements BaseInterfaceJava{
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
+        radionGroup();
         //configuarJTable();
         gerarLocalizacoes();
          gerarDimensoes();
@@ -60,25 +65,33 @@ public class Vendas implements BaseInterfaceJava{
         jFrameVendas.add(jLabelCategoria);
         //JTextField's do Projeto
         jFrameVendas.add(jTextFieldId);
+        jFrameVendas.add(jRadioButtonNovo);
+        jFrameVendas.add(jRadioButtonSemiNovo);
     }
 
     @Override
     public void gerarLocalizacoes() {
         //Localização das JLabel's
         jLabelID.setLocation(10,10);
-        jLabelStatus.setLocation(170,10);
+        jLabelStatus.setLocation(110,10);
         jLabelCategoria.setLocation(230, 10);
         
-        jTextFieldId.setLocation(420, 10);
+        jTextFieldId.setLocation(60, 10);
+        
+        jRadioButtonSemiNovo.setLocation(160,10);
+        jRadioButtonNovo.setLocation(160,40);
     }
 
     @Override
     public void gerarDimensoes() {
-       jLabelID.setSize(10,20);
-       jLabelStatus.setLocation(10,20);
-       jLabelCategoria.setLocation(10, 20);
+       jLabelID.setSize(50,20);
+       jLabelStatus.setSize(100,20);
+       jLabelCategoria.setSize(100, 20);
         
-       jTextFieldId.setLocation(10, 20);
+       jTextFieldId.setSize(50, 20);
+       
+       jRadioButtonNovo.setSize(20,20);
+       jRadioButtonSemiNovo.setSize(20,20);
     }
 
     @Override
@@ -88,7 +101,16 @@ public class Vendas implements BaseInterfaceJava{
         jLabelCategoria = new JLabel("Categoria");
         
         jTextFieldId = new JTextField();
+        
+      jRadioButtonNovo = new JRadioButton("Novo");
+      jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
     };
+
+    private void radionGroup() {
+        ButtonGroup jradioButtonGroup  = new ButtonGroup();
+        jradioButtonGroup.add(jRadioButtonSemiNovo);
+        jradioButtonGroup.add(jRadioButtonNovo);
+    }
     
     
 }
