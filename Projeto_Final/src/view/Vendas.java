@@ -21,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Leonardo Moreira and Márcio Pedro Schiehl
+ * @author Leonardo Moreira 
+ * @author Márcio Pedro Schiehl(mpschiehl@outlook.com)
  */
 public class Vendas implements BaseInterfaceJava {
 

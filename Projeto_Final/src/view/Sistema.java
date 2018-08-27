@@ -23,7 +23,8 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
  *
- * @author Márcio Pedro Schiehl
+ * @author Márcio Pedro Schiehl(mpschiehl@outlook.com)
+ * @date 2018-08-27
  */
 public class Sistema implements BaseInterfaceJava {
     //construtor da clase
