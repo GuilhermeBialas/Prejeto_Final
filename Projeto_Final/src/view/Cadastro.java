@@ -220,8 +220,8 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonAdicionar = new JButton("Adicionar");
 
         //RadioButton
-        jRadioButtonNovo = new JRadioButton("Novo");
-        jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
+       jRadioButtonNovo = new JRadioButton("Novo");
+       jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
 
         jLabelAutoSystems = new JLabel("");
     }
