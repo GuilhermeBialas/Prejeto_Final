@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -31,14 +32,16 @@ public class Cadastro implements BaseInterfaceJava {
 
     private JFrame jFrameCadastro;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
-            jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso, jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
-    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
+            jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso,
+            jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
+    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldUnidadeDeMedida,
             jTextFieldValorUnitario, jTextFieldPeso;
     private JButton jButtonSair, jButtonLimpar, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
-
     private JComboBox jComboBoxLocalizacao, jComboBoxCategoria;
     private JTextArea jTextAreaAplicacao;
+    private JScrollPane jScrollPaneAplicacao;
+    private ButtonGroup buttonGroup;
 
     public Cadastro() {
         instanciarComponentes();
@@ -46,13 +49,13 @@ public class Cadastro implements BaseInterfaceJava {
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
-        //definirRadioButton();
         acaoBotaoAdicionar();
         adicionarComboBoxLocalizacao();
         adicionarComboBoxCategoria();
         acaoBotaoLimpar();
         limparCampos();
         acaoSair();
+        configurarJScrollPane();
         jFrameCadastro.setVisible(true);
 
     }
@@ -110,6 +113,9 @@ public class Cadastro implements BaseInterfaceJava {
 
         //TextArea
         jFrameCadastro.add(jTextAreaAplicacao);
+
+        //JScrollPane
+        jFrameCadastro.add(jScrollPaneAplicacao);
 
     }
 
@@ -169,20 +175,23 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxCategoria.setLocation(190, 160);
 
         jLabelAutoSystems.setLocation(10, 10);
+
+        //SCrollPane
+        jScrollPaneAplicacao.setLocation(20, 210);
     }
 
     @Override
     public void gerarDimensoes() {
 
         //JButton's
-         jButtonSair.setSize(100, 35);
-         jButtonLimpar.setSize(100, 35);
-         jButtonAdicionar.setSize(100, 35);
+        jButtonSair.setSize(100, 35);
+        jButtonLimpar.setSize(100, 35);
+        jButtonAdicionar.setSize(100, 35);
         //JTextField's
         jTextFieldQuantiade.setSize(150, 20);
         jTextFieldValor.setSize(150, 20);
         jTextFieldDescricao.setSize(350, 20);
-       
+
         jTextFieldUnidadeDeMedida.setSize(100, 20);
 
         jTextFieldValorUnitario.setSize(150, 20);
@@ -214,6 +223,9 @@ public class Cadastro implements BaseInterfaceJava {
 
         //TextArea
         jTextAreaAplicacao.setSize(600, 80);
+
+        //ScrollPane
+        jScrollPaneAplicacao.setSize(600, 80);
     }
 
     @Override
@@ -236,7 +248,7 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldQuantiade = new JTextField("");
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
-        jTextFieldAplicacao = new JTextField("");
+
         jTextFieldUnidadeDeMedida = new JTextField("");
 
         jTextFieldValorUnitario = new JTextField("");
@@ -248,12 +260,14 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonLimpar = new JButton("Limpar");
         jButtonAdicionar = new JButton("Adicionar");
 
+        buttonGroup = new ButtonGroup();
+
         //RadioButton
         jRadioButtonNovo = new JRadioButton("Novo");
         jRadioButtonSemiNovo = new JRadioButton("");
 
-        jRadioButtonNovo = new JRadioButton("Novo");
-        jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
+        buttonGroup.add(jRadioButtonNovo);
+        buttonGroup.add(jRadioButtonSemiNovo);
 
         //ComboBox
         jComboBoxLocalizacao = new JComboBox();
@@ -262,6 +276,9 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelAutoSystems = new JLabel("");
 
         jTextAreaAplicacao = new JTextArea();
+
+        //SCrollPane
+        jScrollPaneAplicacao = new JScrollPane();
     }
 
     private void adicionarComboBoxCategoria() {
@@ -282,7 +299,7 @@ public class Cadastro implements BaseInterfaceJava {
     }
 
     private void acaoBotaoAdicionar() {
-        jButtonSair.addActionListener(new ActionListener() {
+        jButtonAdicionar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -302,9 +319,13 @@ public class Cadastro implements BaseInterfaceJava {
                     jTextFieldValor.requestFocus();
                 }
                 if (jTextFieldQuantiade.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "");
+                    JOptionPane.showMessageDialog(null, "Quantidade deve ser preenchida");
                 }
-
+                if (jTextFieldUnidadeDeMedida.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null,"Unidade de Medida deve ser Preenchida");
+                }
+               
+            
             }
         });
 
@@ -318,12 +339,11 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldUnidadeDeMedida.setText("");
         jComboBoxLocalizacao.setSelectedIndex(-1);
         jTextFieldValorUnitario.setText("");
-        //Está errado o RadioButton
-        jRadioButtonNovo.setText("");
-        jRadioButtonSemiNovo.setText("");
-
         jTextFieldPeso.setText("");
+        
         jComboBoxCategoria.setSelectedIndex(-1);
+        
+        buttonGroup.clearSelection();
     }
 
     private void acaoBotaoLimpar() {
@@ -344,5 +364,15 @@ public class Cadastro implements BaseInterfaceJava {
                 jFrameCadastro.dispose();
             }
         });
+    }
+
+    private void configurarJScrollPane() {
+        jScrollPaneAplicacao.setViewportView(jTextAreaAplicacao);
+        jScrollPaneAplicacao.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPaneAplicacao.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jTextAreaAplicacao.setLineWrap(true);
+
     }
 }
