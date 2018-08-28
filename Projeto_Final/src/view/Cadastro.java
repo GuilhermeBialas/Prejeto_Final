@@ -31,11 +31,11 @@ public class Cadastro implements BaseInterfaceJava {
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
             jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso, jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldAplicacao, jTextFieldUnidadeDeMedida,
-            jTextFieldLocalizacao, jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso, jTextFieldCategoria;
-    private JButton jButtonSalvar, jButtonExcluir, jButtonAdicionar;
+            jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
+    private JButton jButtonSair , jButtonLimpar, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
-    private ButtonGroup buttonGroup;
-    private JComboBox jComboBoxLocalizacao;
+    
+    private JComboBox jComboBoxLocalizacao, jComboBoxCategoria;
 
     public Cadastro() {
         instanciarComponentes();
@@ -44,8 +44,12 @@ public class Cadastro implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         //definirRadioButton();
-        acaoBotaoSalvar();
+        acaoBotaoAdicionar();
         adicionarComboBoxLocalizacao();
+        adicionarComboBoxCategoria();
+        acaoBotaoLimpar();
+        limparCampos();
+        acaoSair();
         jFrameCadastro.setVisible(true);
 
     }
@@ -83,15 +87,14 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jTextFieldDescricao);
         jFrameCadastro.add(jTextFieldAplicacao);
         jFrameCadastro.add(jTextFieldUnidadeDeMedida);
-        jFrameCadastro.add(jComboBoxLocalizacao);
+
         jFrameCadastro.add(jTextFieldValorUnitario);
 
         jFrameCadastro.add(jTextFieldPeso);
-        jFrameCadastro.add(jTextFieldCategoria);
 
         //JButton's
-        jFrameCadastro.add(jButtonSalvar);
-        jFrameCadastro.add(jButtonExcluir);
+        jFrameCadastro.add(jButtonSair );
+        jFrameCadastro.add(jButtonLimpar);
         jFrameCadastro.add(jButtonAdicionar);
 
         //CheckBox
@@ -100,6 +103,7 @@ public class Cadastro implements BaseInterfaceJava {
 
         //ComboBox
         jFrameCadastro.add(jComboBoxLocalizacao);
+        jFrameCadastro.add(jComboBoxCategoria);
 
     }
 
@@ -128,7 +132,7 @@ public class Cadastro implements BaseInterfaceJava {
 
         //Localizacao
         jLabelLocalizacao.setLocation(10, 180);
-        jComboBoxLocalizacao.setLocation(150, 180);
+        jComboBoxLocalizacao.setLocation(120, 180);
 
         //ValorUnitario
         jLabelValorUnitario.setLocation(10, 210);
@@ -146,17 +150,17 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldPeso.setLocation(120, 300);
 
         //BotaoSalvar
-        jButtonSalvar.setLocation(450, 10);
+        jButtonSair .setLocation(450, 10);
 
         //BotaoExcluir
-        jButtonExcluir.setLocation(450, 70);
+        jButtonLimpar.setLocation(450, 70);
 
         //BotaoAdicionar
         jButtonAdicionar.setLocation(450, 150);
 
         //Categoria
         jLabelCategoria.setLocation(10, 340);
-        jTextFieldCategoria.setLocation(120, 340);
+        jComboBoxCategoria.setLocation(120, 340);
 
         jLabelAutoSystems.setLocation(10, 10);
     }
@@ -165,8 +169,8 @@ public class Cadastro implements BaseInterfaceJava {
     public void gerarDimensoes() {
 
         //JButton's
-        jButtonSalvar.setSize(100, 35);
-        jButtonExcluir.setSize(100, 35);
+        jButtonSair.setSize(100, 35);
+        jButtonLimpar.setSize(100, 35);
         jButtonAdicionar.setSize(100, 35);
 
         //JTextField's
@@ -176,12 +180,9 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldAplicacao.setSize(100, 20);
         jTextFieldUnidadeDeMedida.setSize(100, 20);
 
-        jComboBoxLocalizacao.setSize(200, 20);
-
         jTextFieldValorUnitario.setSize(100, 20);
         jTextFieldStatusPeca.setSize(100, 20);
         jTextFieldPeso.setSize(100, 20);
-        jTextFieldCategoria.setSize(100, 20);
 
         //JLabel's
         jLabelQuantidade.setSize(100, 20);
@@ -203,6 +204,10 @@ public class Cadastro implements BaseInterfaceJava {
         jRadioButtonSemiNovo.setSize(20, 20);
 
         jLabelAutoSystems.setSize(200, 200);
+
+        //ComboBox
+        jComboBoxCategoria.setSize(150, 20);
+        jComboBoxLocalizacao.setSize(150, 20);
     }
 
     @Override
@@ -231,11 +236,11 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldValorUnitario = new JTextField("");
         jTextFieldStatusPeca = new JTextField("");
         jTextFieldPeso = new JTextField("");
-        jTextFieldCategoria = new JTextField("");
+      
 
         //JButton's
-        jButtonSalvar = new JButton("Salvar");
-        jButtonExcluir = new JButton("Excluir");
+        jButtonSair  = new JButton("Sair");
+        jButtonLimpar = new JButton("Limpar");
         jButtonAdicionar = new JButton("Adicionar");
 
         //RadioButton
@@ -245,9 +250,19 @@ public class Cadastro implements BaseInterfaceJava {
         jRadioButtonNovo = new JRadioButton("Novo");
         jRadioButtonSemiNovo = new JRadioButton("SemiNovo");
 
+        //ComboBox
         jComboBoxLocalizacao = new JComboBox();
+        jComboBoxCategoria = new JComboBox();
 
         jLabelAutoSystems = new JLabel("");
+    }
+
+    private void adicionarComboBoxCategoria() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Acessórios e acabamento", "Injeção e carburador",
+            "Motor","Polias e tensores","Retentor e junta","Supenção e freios","Correas e corrente de comando"
+        });
+        jComboBoxCategoria.setModel(modelo);
+        jComboBoxCategoria.setSelectedIndex(-1);
     }
 
     private void adicionarComboBoxLocalizacao() {
@@ -259,12 +274,9 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setSelectedIndex(-1);
     }
 
-    //private void definirRadioButton() {
-    // buttonGroup.add(jRadioButtonNovo);
-    //   buttonGroup.add(jRadioButtonSemiNovo);
-    // }
-    private void acaoBotaoSalvar() {
-        jButtonSalvar.addActionListener(new ActionListener() {
+    
+    private void acaoBotaoAdicionar() {
+        jButtonSair .addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -290,5 +302,41 @@ public class Cadastro implements BaseInterfaceJava {
             }
         });
 
+    }
+    
+    private void limparCampos(){
+        jTextFieldQuantiade.setText("");
+        jTextFieldValor.setText("");
+        jTextFieldDescricao.setText("");
+        jTextFieldAplicacao.setText("");
+        jTextFieldUnidadeDeMedida.setText("");
+        jComboBoxLocalizacao.setSelectedIndex(-1);
+        jTextFieldValorUnitario.setText("");
+        //Está errado o RadioButton
+        jRadioButtonNovo.setText("");
+        jRadioButtonSemiNovo.setText("");
+        
+        jTextFieldPeso.setText("");
+        jComboBoxCategoria.setSelectedIndex(-1);
+    }
+    
+    private void acaoBotaoLimpar(){
+         jButtonLimpar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limparCampos();
+            }
+        });
+    }
+    
+    private void acaoSair(){
+        jButtonSair.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFrameCadastro.dispose();
+            }
+        });
     }
 }
