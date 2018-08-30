@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import sun.misc.FloatingDecimal;
 
 /**
  *
@@ -304,28 +305,46 @@ public class Cadastro implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (jTextFieldDescricao.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "A descricao deve ser preenchida");
+                if (jTextFieldDescricao.getText().length() <= 3) {
+                    JOptionPane.showMessageDialog(null,
+                            "A descricao deve conter no mínimo três caracteres", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
                     jTextFieldDescricao.requestFocus();
                     return;
                 }
                 if (jTextAreaAplicacao.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "A Aplicacao deve ser preenchida");
+                    JOptionPane.showMessageDialog(null,
+                            "A Aplicacao deve ser preenchida", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
                     jTextFieldDescricao.requestFocus();
                     return;
                 }
-                if (jTextFieldValor.getText().trim().isEmpty()) {
-                    //   JOptionPane.showMessageDialog(null, "");
+                if (FloatingDecimal.parseFloat(jTextFieldValor.getText()) <= 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "Valor deve ser maior que 0", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
                     jTextFieldValor.requestFocus();
+                    return;
                 }
-                if (jTextFieldQuantiade.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Quantidade deve ser preenchida");
+                if (Float.parseFloat(jTextFieldQuantiade.getText()) <= 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "Quantidade deve ser no minímo uma unidade", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
+                    jTextFieldQuantiade.requestFocus();
+                    return;
                 }
                 if (jTextFieldUnidadeDeMedida.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null,"Unidade de Medida deve ser Preenchida");
+                    JOptionPane.showMessageDialog(null,
+                            "Unidade de Medida deve ser Preenchida", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-               
-            
+                if (!jRadioButtonNovo.isSelected() && !jRadioButtonSemiNovo.isSelected()) {
+                    JOptionPane.showMessageDialog(null,
+                            "Deve ser selecionado se é novo ou semi novo", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
+
+                }
+
             }
         });
 
@@ -340,9 +359,9 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setSelectedIndex(-1);
         jTextFieldValorUnitario.setText("");
         jTextFieldPeso.setText("");
-        
+
         jComboBoxCategoria.setSelectedIndex(-1);
-        
+
         buttonGroup.clearSelection();
     }
 
