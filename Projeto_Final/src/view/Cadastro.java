@@ -232,18 +232,18 @@ public class Cadastro implements BaseInterfaceJava {
     @Override
     public void instanciarComponentes() {
         //JLabel's 
-        jLabelQuantidade = new JLabel("Quantidade");
-        jLabelValor = new JLabel("Valor");
-        jLabelDescricao = new JLabel("Descrição do produto:");
-        jLabelAplicacao = new JLabel("Aplicação");
-        jLabelUnidadeDeMedida = new JLabel("Und Medida");
-        jLabelLocalizacao = new JLabel("Localização");
-        jLabelValorUnitario = new JLabel("ValorUnitario");
-        jLabelStatusPeca = new JLabel("Status da Peça");
-        jLabelPeso = new JLabel("Peso");
-        jLabelCategoria = new JLabel("Categoria");
-        jLabelRadioButtonNovo = new JLabel("Novo");
-        jLabelRadioButtonSemiNovo = new JLabel("Semi Novo");
+        jLabelQuantidade = new JLabel("Quantidade: ");
+        jLabelValor = new JLabel("Valor: ");
+        jLabelDescricao = new JLabel("Descrição do produto: ");
+        jLabelAplicacao = new JLabel("Aplicação: ");
+        jLabelUnidadeDeMedida = new JLabel("Und Medida: ");
+        jLabelLocalizacao = new JLabel("Localização: ");
+        jLabelValorUnitario = new JLabel("ValorUnitario: ");
+        jLabelStatusPeca = new JLabel("Status da Peça: ");
+        jLabelPeso = new JLabel("Peso: ");
+        jLabelCategoria = new JLabel("Categoria: ");
+        jLabelRadioButtonNovo = new JLabel("Novo: ");
+        jLabelRadioButtonSemiNovo = new JLabel("Semi Novo: ");
 
         //JTextField's
         jTextFieldQuantiade = new JTextField("");
