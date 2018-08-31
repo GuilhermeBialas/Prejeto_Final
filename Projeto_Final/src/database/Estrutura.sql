@@ -16,3 +16,5 @@ CREATE TABLE produtos(
     status_peca       varchar(20),
     peso              float
 );
+
+
