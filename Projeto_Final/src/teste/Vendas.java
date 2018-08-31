@@ -6,6 +6,7 @@
 package teste;
 
 import Interface.BaseInterfaceJava;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -27,17 +28,17 @@ import javax.swing.table.DefaultTableModel;
  * @author Márcio Pedro Schiehl(mpschiehl@outlook.com)
  * @date 2018-08-27
  */
-public class Vendas implements BaseInterfaceJava{
+public class Vendas implements BaseInterfaceJava {
     private JFrame jFrameVendas;
     private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo,jLabelDescricao,jLabelQuantidade;
     private JTextField jTextFieldId, jTextFieldDescricao,jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private ButtonGroup buttonGroup;
-    private JButton jButtonSair;
+    private JButton jButtonSair, jButtonIncuir;
     private DefaultTableModel dtm,dtmp;
     private JScrollPane jScrollPaneBuscador,jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
-    private JComboBox jComboBoxCategoria;
+    private JComboBox jComboBoxCategoriaC;
     public Vendas(){
         instanciarComponentes();
         gerarTela();
@@ -51,6 +52,7 @@ public class Vendas implements BaseInterfaceJava{
         comboBoxConfigura();
         gerarLocalizacoes();
          gerarDimensoes();
+         acaoBotaoIncluir();
         instanciarComponentes();
         jFrameVendas.setVisible(true);
     }
@@ -83,11 +85,12 @@ public class Vendas implements BaseInterfaceJava{
         jFrameVendas.add(jRadioButtonSemiNovo);
         //JButton's
         jFrameVendas.add(jButtonSair);
+        jFrameVendas.add(jButtonIncuir);
         //adiciona a JTable's
          jFrameVendas.add(jScrollPaneBuscador);
          jFrameVendas.add(jScrollPanePedido);
          //JComboBox's
-         jFrameVendas.add(jComboBoxCategoria);
+         jFrameVendas.add(jComboBoxCategoriaC);
     }
 
     @Override
@@ -104,15 +107,17 @@ public class Vendas implements BaseInterfaceJava{
         jTextFieldId.setLocation(60, 10);
         jTextFieldDescricao.setLocation(550,10);
         jTextFieldQuantidade.setLocation(90,40);
-        //JButton's
+        //jRadion's
         jRadioButtonSemiNovo.setLocation(160,10);
         jRadioButtonNovo.setLocation(160,40);
+        //JButton's
         jButtonSair.setLocation(680,530);
+        jButtonIncuir.setLocation(10,530);
         //Jtable's
         jScrollPaneBuscador.setLocation(10,70);
         jScrollPanePedido.setLocation(410,70);
         //JComboBox's
-        jComboBoxCategoria.setLocation(300 ,10);
+        jComboBoxCategoriaC.setLocation(300 ,10);
     }
 
     @Override
@@ -133,11 +138,12 @@ public class Vendas implements BaseInterfaceJava{
        jRadioButtonSemiNovo.setSize(20,20);
        
        jButtonSair.setSize(100,35);
+       jButtonIncuir.setSize(100, 35);
        
        jScrollPaneBuscador.setSize(360,360);
        jScrollPanePedido.setSize(360,360);
        
-       jComboBoxCategoria.setSize(192,20);
+       jComboBoxCategoriaC.setSize(192,20);
        
     }
 
@@ -159,6 +165,7 @@ public class Vendas implements BaseInterfaceJava{
       jRadioButtonSemiNovo = new JRadioButton();
       
       jButtonSair = new JButton("Sair");
+      jButtonIncuir = new JButton("Incluir");
       
       jTableBusca = new JTable();
       jTablePedido = new JTable();
@@ -166,13 +173,23 @@ public class Vendas implements BaseInterfaceJava{
        jScrollPaneBuscador = new JScrollPane(jTableBusca);
        jScrollPanePedido = new JScrollPane(jTablePedido);
        
-       jComboBoxCategoria = new JComboBox();
+       jComboBoxCategoriaC = new JComboBox();
     };
 
     private void radionGroup() {
         ButtonGroup jradioButtonGroup  = new ButtonGroup();
         jradioButtonGroup.add(jRadioButtonSemiNovo);
         jradioButtonGroup.add(jRadioButtonNovo);
+    }
+    private void validacao(){
+      /* String  categoria = jComboBoxCategoriaC.getSelectedItem().toString();
+        JOptionPane.showMessageDialog(null, categoria);*/
+        if(jComboBoxCategoriaC.getSelectedIndex() == -1||jComboBoxCategoriaC.getSelectedItem()==null ){
+           JOptionPane.showMessageDialog(null, "A categoria de ser Selecionada", "Erro Categoria",JOptionPane.ERROR_MESSAGE);
+           jLabelCategoria.setForeground(Color.red);
+           jComboBoxCategoriaC.requestFocus();
+           return;
+       }
     }
 
     private void acaobotao() {
@@ -204,13 +221,22 @@ public class Vendas implements BaseInterfaceJava{
     } 
 
     private void comboBoxConfigura() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel
-        ( new Object[]{"Acessorios e acabamento","Centrais e modulos",
+        
+        jComboBoxCategoriaC.setModel(new javax.swing.DefaultComboBoxModel <>(new String[]{"Acessorios e acabamento","Centrais e modulos",
             "Injeção e carburador","Motor","Polias e Tensores","Retentor e Junta",
-            "Suspenção e Freio","Correias e Corente de Comando"});
-        jComboBoxCategoria.setModel(modelo);
-        jComboBoxCategoria.setSelectedIndex(-1);
+            "Suspenção e Freio","Correias e Corente de Comando"}));
+        jComboBoxCategoriaC.setSelectedIndex(-1);
+        jComboBoxCategoriaC.setToolTipText("Categoria");
     }
+    private void acaoBotaoIncluir(){
+        jButtonIncuir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                validacao();
+            }
+        });
+    }
+        
     
     
 }
