@@ -6,7 +6,7 @@
 package view;
 
 import Interface.BaseInterfaceJava;
-import view.Estoque2;
+import view.Estoque;
 import view.Cadastro;
 import view.Vendas;
 import java.awt.Image;
@@ -104,7 +104,7 @@ public class Sistema implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showMessageDialog(null, "Em Construção");
-                new Estoque2();
+                new Estoque().setVisible(true);
             }
         });
     }

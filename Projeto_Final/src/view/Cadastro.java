@@ -319,7 +319,7 @@ public class Cadastro implements BaseInterfaceJava {
                     jTextFieldDescricao.requestFocus();
                     return;
                 }
-                if (FloatingDecimal.parseFloat(jTextFieldValor.getText()) <= 0) {
+                if (Float.parseFloat(jTextFieldValor.getText()) <= 0) {
                     JOptionPane.showMessageDialog(null,
                             "Valor deve ser maior que 0", "Cadastro",
                             JOptionPane.ERROR_MESSAGE);
