@@ -27,6 +27,7 @@ import sun.misc.FloatingDecimal;
 /**
  *
  * @author Guilherme Bialas(guilhermebialas31@gmail.com)
+ * @author Marcio Pedro Schiehl(mpschiehl@outlook.com)
  * @date 2018-08-27
  */
 public class Cadastro implements BaseInterfaceJava {
@@ -379,6 +380,7 @@ public class Cadastro implements BaseInterfaceJava {
                     jTextFieldQuantiade.requestFocus();
                     return;
         }
+        
         if (Float.parseFloat(jTextFieldQuantiade.getText()) <= 0) {
                     JOptionPane.showMessageDialog(null,
                             "Quantidade deve ser no minímo uma unidade", "Cadastro",
@@ -390,17 +392,24 @@ public class Cadastro implements BaseInterfaceJava {
                     JOptionPane.showMessageDialog(null,
                             "Unidade de Medida deve ser Preenchida", "Cadastro",
                             JOptionPane.ERROR_MESSAGE);
+                    jTextFieldUnidadeDeMedida.requestFocus();
                     return;
                 }
-                
-                if (jTextAreaAplicacao.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null,
-                            "A Aplicacao deve ser preenchida", "Cadastro",
+        if (jTextFieldPeso.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,
+                            "O Peso deve ser Informado", "Cadastro",
                             JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
+            jTextFieldPeso.requestFocus();
                     return;
-                }
-                if(jTextFieldValor.getText().isEmpty()){
+        }
+        if(jComboBoxLocalizacao.getSelectedIndex()== -1){
+            JOptionPane.showMessageDialog(null,
+                            "A Localização deve ser Informado", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
+            jComboBoxLocalizacao.requestFocus();
+                    return;
+        }
+        if(jTextFieldValor.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,
                             "Valor deve ser informado.", "Cadastro",
                             JOptionPane.ERROR_MESSAGE);
@@ -415,6 +424,28 @@ public class Cadastro implements BaseInterfaceJava {
                     jTextFieldValor.requestFocus();
                     return;
                 }
+                if (jComboBoxCategoria.getSelectedIndex()== -1){
+                    JOptionPane.showMessageDialog(null,
+                            "A Categoria deve ser Informado", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
+            jComboBoxCategoria.requestFocus();
+                    return;
+                }
+               if(jTextFieldValorUnitario.getText().trim().isEmpty()){
+                   JOptionPane.showMessageDialog(null,
+                            "o Valor Unitario deve ser Informado", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
+                   jTextFieldValorUnitario.requestFocus();
+                   return;
+               }
+                if (jTextAreaAplicacao.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null,
+                            "A Aplicacao deve ser preenchida", "Cadastro",
+                            JOptionPane.ERROR_MESSAGE);
+                    jTextFieldDescricao.requestFocus();
+                    return;
+                }
+                
                 
                 
                 
