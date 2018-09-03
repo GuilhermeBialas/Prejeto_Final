@@ -9,8 +9,11 @@ import Interface.BaseInterfaceJava;
 import bean.ProdutoBean;
 import dao.ProdutoDao;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ButtonGroup;
@@ -48,11 +51,12 @@ public class Vendas implements BaseInterfaceJava {
     public Vendas() {
         instanciarComponentes();
         gerarTela();
+        trocaIcone();
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
         radionGroup();
-        acaobotao();
+        acaobotaoSair();
         configuarJTableBusca();
         configurarJTablePedido();
         comboBoxConfigura();
@@ -221,7 +225,7 @@ public class Vendas implements BaseInterfaceJava {
         
     }
 
-    private void acaobotao() {
+    private void acaobotaoSair() {
         jButtonSair.addActionListener(new ActionListener() {
 
             @Override
@@ -284,5 +288,12 @@ public class Vendas implements BaseInterfaceJava {
         }
     }
     }   
+     private void trocaIcone() {
+        URL url = this.getClass().getResource("/icones/shopping_cart.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        jFrameVendas.setIconImage(imagemTitulo);
+
+    }
+
 
 }
