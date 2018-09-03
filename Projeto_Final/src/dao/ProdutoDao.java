@@ -122,7 +122,7 @@ public class ProdutoDao {
         List<ProdutoBean> produtos = new ArrayList<>();
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
-            String sql = "SELECT id, aplicacao, valor, valor_unitario FROM produtos;";
+            String sql = "SELECT id, aplicacao,descricao, quantidade,valor, valor_unitario FROM produtos;";
             try {
                 Statement statement = conexao.createStatement();
                 statement.execute(sql);
@@ -131,6 +131,8 @@ public class ProdutoDao {
                     ProdutoBean produto = new ProdutoBean();
                     produto.setId(resultSet.getInt("id"));
                     produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQuantidade(resultSet.getFloat("quantidade"));
                     produto.setValor(resultSet.getFloat("valor"));
                     produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
                     
