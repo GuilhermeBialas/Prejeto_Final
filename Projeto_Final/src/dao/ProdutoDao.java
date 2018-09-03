@@ -72,7 +72,7 @@ public class ProdutoDao {
     public boolean alterar(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
         String sql = "UPDATE pecas SET quantidade = ?,"
-                + " valor = ?, descricao = ?,unidadeDeMedida = ?, localizacao = ?, valorUnitario = ? ";
+                + " valor = ?, descricao = ?,unidade_de_medida = ?, localizacao = ?, valor_unitario = ? ";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, produto.getDescricao());
@@ -91,7 +91,7 @@ public class ProdutoDao {
     }
 
     public ProdutoBean obterProdutoPeloId(int id) {
-        String sql = "SELECT id, aplicacao, valor, valorUnitario, quantidade , peso";
+        String sql = "SELECT id, aplicacao, valor, valor_unitario, quantidade , peso";
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
             try {
@@ -104,7 +104,7 @@ public class ProdutoDao {
                     produto.setId(resultSet.getInt("id"));
                     produto.setAplicacao(resultSet.getString("aplicacao"));
                     produto.setValor(resultSet.getFloat("valor"));
-                    produto.setValorUnitario(resultSet.getFloat("valorUnitario"));
+                    produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
                     produto.setQuantidade(resultSet.getFloat("quantidade"));
                     produto.setPeso(resultSet.getFloat("peso"));
                     return produto;
