@@ -6,9 +6,13 @@
 package teste;
 
 import Interface.BaseInterfaceJava;
+import bean.ProdutoBean;
+import dao.ProdutoDao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -55,6 +59,7 @@ public class Vendas implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         acaoBotaoIncluir();
+        acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
     }
 
@@ -262,5 +267,22 @@ public class Vendas implements BaseInterfaceJava {
             }
         });
     }
+    private void acaoPopularTabelaCampoVazio(){
+      if(jTextFieldDescricao.getText().trim().isEmpty()||jTextFieldId.getText().trim().isEmpty()){
+        List<ProdutoBean> produtos = new ProdutoDao().obterProdutos();
+        DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+       
+        dtm.setRowCount(0);
+        
+        for (ProdutoBean produto : produtos) {
+            dtm.addRow(new Object[]{
+                produto.getDescricao(),
+                produto.getQuantidade(),
+                produto.getValorUnitario(),
+                produto.getValor()
+            });
+        }
+    }
+    }   
 
 }
