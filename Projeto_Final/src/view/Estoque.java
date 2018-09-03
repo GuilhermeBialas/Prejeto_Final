@@ -107,7 +107,15 @@ public class Estoque extends javax.swing.JFrame {
             new String [] {
                 "número", "Categoria", "Valor total", "valor Unitário", "Status", "Peso", "Localização"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {

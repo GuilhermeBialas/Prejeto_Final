@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Conexao {
     private static String CLASS_NAME = "com.mysql.jbc.driver";
-    private static String HOST = "jdbc:mysql:/localhost/pecas";
+    private static String HOST = "jdbc:mysql:/localhost/produtos";
     private static String LOGIN = "root";
     private static String SENHA = "";
     private static Connection conexao;
