@@ -6,6 +6,7 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import bean.ProdutoBean;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -307,6 +308,7 @@ public class Cadastro implements BaseInterfaceJava {
             public void actionPerformed(ActionEvent e) {
                validacao();
                 
+       // limparCampos();
             }
         });
 
