@@ -8,7 +8,7 @@ package view;
 import Interface.BaseInterfaceJava;
 import view.Estoque;
 import view.Cadastro;
-import view.Vendas;
+import teste.VendasOld;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -92,8 +92,7 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(null, "Em Construção");
-            new Cadastro();
+              new Cadastro();
             }
         });
     }
@@ -103,7 +102,6 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(null, "Em Construção");
                 new Estoque().setVisible(true);
             }
         });
@@ -114,9 +112,8 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(null, "Em Construção");
-                //new Vendas();
-                new teste.Vendas();
+               new Vendas();
+               
 
             }
         });

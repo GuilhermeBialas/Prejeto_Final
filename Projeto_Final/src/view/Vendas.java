@@ -6,13 +6,24 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import bean.ProdutoBean;
+import dao.ProdutoDao;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -21,63 +32,39 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Leonardo Moreira 
  * @author Márcio Pedro Schiehl(mpschiehl@outlook.com)
+ * @date 2018-08-27
  */
 public class Vendas implements BaseInterfaceJava {
 
     private JFrame jFrameVendas;
-    private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao,
-            jLabelUnidadeDeMedida, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso;
-    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldUnidadeDeMedida,
-             jTextFieldValorUnitario, jTextFieldStatusPeca, jTextFieldPeso;
-    private JButton jButtonIncluir, jButtonCancelar, jButtonSair;
-    private DefaultTableModel dtm;
-    private JScrollPane jScrollPane;
-    private JTable jTablePedido;
+    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo, jLabelDescricao, jLabelQuantidade;
+    private JTextField jTextFieldId, jTextFieldDescricao, jTextFieldQuantidade;
+    private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
+    private ButtonGroup buttonGroup;
+    private JButton jButtonSair, jButtonIncuir;
+    private DefaultTableModel dtm, dtmp;
+    private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
+    private JTable jTableBusca, jTablePedido;
+    private JComboBox jComboBoxCategoriaC;
 
     public Vendas() {
         instanciarComponentes();
         gerarTela();
+        trocaIcone();
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
-        configuarJTable();
-        acaoBotaoSair();
-        acaoBotaoCancelar();
+        radionGroup();
+        acaobotaoSair();
+        configuarJTableBusca();
+        configurarJTablePedido();
+        comboBoxConfigura();
+        gerarLocalizacoes();
+        gerarDimensoes();
         acaoBotaoIncluir();
+        acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
-
-    }
-
-    @Override
-    public void instanciarComponentes() {
-        jLabelQuantidade = new JLabel("Quantidade");
-        jLabelValor = new JLabel("Valor");
-        jLabelDescricao = new JLabel("Descricao");
-        jLabelUnidadeDeMedida = new JLabel("Unidade De medida");
-        jLabelValorUnitario = new JLabel("ValorUnitario");
-        jLabelStatusPeca = new JLabel("Status da Peça");
-        jLabelPeso = new JLabel("Peso");
-
-        //JTextField's
-        jTextFieldQuantiade = new JTextField("");
-        jTextFieldValor = new JTextField("");
-        jTextFieldDescricao = new JTextField("");
-        jTextFieldUnidadeDeMedida = new JTextField("");
-        jTextFieldValorUnitario = new JTextField("");
-        jTextFieldStatusPeca = new JTextField("");
-        jTextFieldPeso = new JTextField("");
-
-        //JButton's
-        jButtonIncluir = new JButton("Incluir");
-        jButtonCancelar = new JButton("Cancelar Pedido");
-        jButtonSair = new JButton("Sair");
-        
-        //JTable's
-        jTablePedido = new JTable();
-        configuarJTable();
-        jScrollPane = new JScrollPane(jTablePedido);
     }
 
     @Override
@@ -92,152 +79,153 @@ public class Vendas implements BaseInterfaceJava {
 
     @Override
     public void adicionarComponentes() {
-        jFrameVendas.add(jLabelQuantidade);
-        jFrameVendas.add(jLabelValor);
+        //JLabel's do Projeto
+        jFrameVendas.add(jLabelID);
+        jFrameVendas.add(jLabelStatus);
+        jFrameVendas.add(jLabelCategoria);
+        jFrameVendas.add(jLabelNovo);
+        jFrameVendas.add(jLabelSemiNovo);
         jFrameVendas.add(jLabelDescricao);
-        jFrameVendas.add(jLabelUnidadeDeMedida);
-        jFrameVendas.add(jLabelValorUnitario);
-        jFrameVendas.add(jLabelStatusPeca);
-        jFrameVendas.add(jLabelPeso);
-
-        //JTextField's
-        jFrameVendas.add(jTextFieldQuantiade);
-        jFrameVendas.add(jTextFieldValor);
+        jFrameVendas.add(jLabelQuantidade);
+        //JTextField's do Projeto
+        jFrameVendas.add(jTextFieldId);
         jFrameVendas.add(jTextFieldDescricao);
-        jFrameVendas.add(jTextFieldUnidadeDeMedida);
-        jFrameVendas.add(jTextFieldValorUnitario);
-        jFrameVendas.add(jTextFieldStatusPeca);
-        jFrameVendas.add(jTextFieldPeso);
-
+        jFrameVendas.add(jTextFieldQuantidade);
+        //JRadionButton's
+        jFrameVendas.add(jRadioButtonNovo);
+        jFrameVendas.add(jRadioButtonSemiNovo);
         //JButton's
-        jFrameVendas.add(jButtonIncluir);
-        jFrameVendas.add(jButtonCancelar);
         jFrameVendas.add(jButtonSair);
-        
-        //JTable's
-        jFrameVendas.add(jScrollPane);
-    }
-
-    @Override
-    public void gerarDimensoes() {
-        //JButton's
-        jButtonIncluir.setSize(100, 50);
-        jButtonCancelar.setSize(100, 50);
-        jButtonSair.setSize(100, 50);
-
-        //JTextField's
-        jTextFieldQuantiade.setSize(100, 20);
-        jTextFieldValor.setSize(100, 20);
-        jTextFieldDescricao.setSize(100, 20);
-        jTextFieldUnidadeDeMedida.setSize(100, 20);
-        jTextFieldValorUnitario.setSize(100, 20);
-        jTextFieldStatusPeca.setSize(100, 20);
-        jTextFieldPeso.setSize(100, 20);
-
-        //JLabel's
-        jLabelQuantidade.setSize(100, 20);
-        jLabelValor.setSize(100, 20);
-        jLabelDescricao.setSize(100, 20);
-        jLabelUnidadeDeMedida.setSize(100, 20);
-        jLabelValorUnitario.setSize(100, 20);
-        jLabelStatusPeca.setSize(100, 20);
-        jLabelPeso.setSize(100, 20);
-        
-        //JTable's
-        jScrollPane.setSize(400,400);
-
+        jFrameVendas.add(jButtonIncuir);
+        //adiciona a JTable's
+        jFrameVendas.add(jScrollPaneBuscador);
+        jFrameVendas.add(jScrollPanePedido);
+        //JComboBox's
+        jFrameVendas.add(jComboBoxCategoriaC);
     }
 
     @Override
     public void gerarLocalizacoes() {
-        //Descricao
-        jLabelDescricao.setLocation(10, 10);
-        jTextFieldDescricao.setLocation(120, 10);
-
-        //Quantidade
+        //Localização das JLabel's
+        jLabelID.setLocation(10, 10);
+        jLabelStatus.setLocation(110, 10);
+        jLabelCategoria.setLocation(230, 10);
+        jLabelNovo.setLocation(180, 10);
+        jLabelSemiNovo.setLocation(180, 40);
+        jLabelDescricao.setLocation(500, 10);
         jLabelQuantidade.setLocation(10, 40);
-        jTextFieldQuantiade.setLocation(120, 40);
+        //JTextiField's
+        jTextFieldId.setLocation(60, 10);
+        jTextFieldDescricao.setLocation(550, 10);
+        jTextFieldQuantidade.setLocation(90, 40);
+        //jRadion's
+        jRadioButtonSemiNovo.setLocation(160, 10);
+        jRadioButtonNovo.setLocation(160, 40);
+        //JButton's
+        jButtonSair.setLocation(680, 530);
+        jButtonIncuir.setLocation(10, 530);
+        //Jtable's
+        jScrollPaneBuscador.setLocation(10, 70);
+        jScrollPanePedido.setLocation(410, 70);
+        //JComboBox's
+        jComboBoxCategoriaC.setLocation(300, 10);
+    }
 
-        //Valor
-        jLabelValor.setLocation(10, 70);
-        jTextFieldValor.setLocation(120, 70);
+    @Override
+    public void gerarDimensoes() {
+        jLabelID.setSize(50, 20);
+        jLabelStatus.setSize(100, 20);
+        jLabelCategoria.setSize(100, 20);
+        jLabelNovo.setSize(100, 20);
+        jLabelSemiNovo.setSize(100, 20);
+        jLabelDescricao.setSize(45, 20);
+        jLabelQuantidade.setSize(70, 20);
 
-        //UnidadeDeMedida
-        jLabelUnidadeDeMedida.setLocation(10, 140);
-        jTextFieldUnidadeDeMedida.setLocation(120, 140);
+        jTextFieldId.setSize(50, 20);
+        jTextFieldDescricao.setSize(230, 20);
+        jTextFieldQuantidade.setSize(50, 20);
 
-        //ValorUnitario
-        jLabelValorUnitario.setLocation(10, 210);
-        jTextFieldValorUnitario.setLocation(120, 210);
+        jRadioButtonNovo.setSize(20, 20);
+        jRadioButtonSemiNovo.setSize(20, 20);
 
-        //StatusPeca
-        jLabelStatusPeca.setLocation(10, 240);
-        jTextFieldStatusPeca.setLocation(120, 240);
+        jButtonSair.setSize(100, 35);
+        jButtonIncuir.setSize(100, 35);
 
-        //Peso
-        jLabelPeso.setLocation(10, 280);
-        jTextFieldPeso.setLocation(120, 280);
+        jScrollPaneBuscador.setSize(360, 360);
+        jScrollPanePedido.setSize(360, 360);
 
-        //BotaoSalvar
-        jButtonIncluir.setLocation(10, 320);
+        jComboBoxCategoriaC.setSize(192, 20);
 
-        //BotaoExcluir
-        jButtonCancelar.setLocation(120, 320);
+    }
 
-        //BotaoSair
-        jButtonSair.setLocation(230, 320);
+    @Override
+    public void instanciarComponentes() {
+        jLabelID = new JLabel("Numero");
+        jLabelStatus = new JLabel("Status:");
+        jLabelCategoria = new JLabel("Categoria");
+        jLabelSemiNovo = new JLabel("Semi Novo");
+        jLabelNovo = new JLabel("Novo");
+        jLabelDescricao = new JLabel("Produto");
+        jLabelQuantidade = new JLabel("Quantidade");
+
+        jTextFieldId = new JTextField();
+        jTextFieldDescricao = new JTextField();
+        jTextFieldQuantidade = new JTextField();
+
+        jRadioButtonNovo = new JRadioButton();
+        jRadioButtonSemiNovo = new JRadioButton();
+
+        jButtonSair = new JButton("Sair");
+        jButtonIncuir = new JButton("Incluir");
+
+        jTableBusca = new JTable();
+        jTablePedido = new JTable();
+
+        jScrollPaneBuscador = new JScrollPane(jTableBusca);
+        jScrollPanePedido = new JScrollPane(jTablePedido);
+
+        jComboBoxCategoriaC = new JComboBox();
+    }
+
+    ;
+
+    private void radionGroup() {
+        ButtonGroup jradioButtonGroup = new ButtonGroup();
+        jradioButtonGroup.add(jRadioButtonSemiNovo);
+        jradioButtonGroup.add(jRadioButtonNovo);
+    }
+
+    private void validacao() {
+      
+        if(!jRadioButtonNovo.isSelected() && !jRadioButtonSemiNovo.isSelected()){
+            JOptionPane.showMessageDialog(null, "O Status deve ser Marcado", "Erro Status", JOptionPane.ERROR_MESSAGE);
+           jLabelStatus.setForeground(Color.red);
+           return;
+        }
+        if (jComboBoxCategoriaC.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "A categoria deve ser Selecionada", "Erro Categoria", JOptionPane.ERROR_MESSAGE);
+            jLabelCategoria.setForeground(Color.red);
+            jComboBoxCategoriaC.requestFocus();
+            return;
+        }
         
-        //Jtable
-        jScrollPane.setLocation(340,10);
-    }
-    private void validacao(){
-         if(jTextFieldDescricao.getText().trim().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve ser preenchido","Vendas",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    jLabelDescricao.setForeground(Color.red);
-                    return;
-                }
-        if(jTextFieldDescricao.getText().length()<3){
-                    JOptionPane.showMessageDialog(null,"O Campo Descrição deve conter no minimo 3 caracteres para incluir","Vendas",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    jLabelDescricao.setForeground(Color.red);
-                    return;
-                }
-        if(Float.parseFloat(jTextFieldQuantiade.getText())<=0){
-            JOptionPane.showMessageDialog(null,"O Campo quntidade deve conter no minimo valor igual ou superior 1 para incluir","Vendas",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    return;
-            
+        
+        if(jTextFieldDescricao.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Você deve informar o Produto", "Erro Descrição", JOptionPane.ERROR_MESSAGE);
+            jTextFieldDescricao.requestFocus();
+            jLabelDescricao.setForeground(Color.red);
+            return;
         }
-        if(jTextFieldQuantiade.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"O Campo Quantidade deve ser preenchido","Vendas",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    return;
+        
+        if (jTextFieldQuantidade.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Você deve informar a quantidade", "Erro Quantidade null", JOptionPane.ERROR_MESSAGE);
+            jLabelQuantidade.setForeground(Color.red);
+            return;
         }
+        
     }
 
-    private void acaoBotaoIncluir() {
-        jButtonIncluir.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               validacao();
-               JOptionPane.showMessageDialog(null,"Validação correta","Vendas",JOptionPane.PLAIN_MESSAGE);
-                   
-            }
-        });
-    }
-    private void acaoBotaoCancelar(){
-        jButtonCancelar.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                limpaCampos();
-            }
-        });
-    }
-
-    private void acaoBotaoSair() {
+    private void acaobotaoSair() {
         jButtonSair.addActionListener(new ActionListener() {
 
             @Override
@@ -247,27 +235,65 @@ public class Vendas implements BaseInterfaceJava {
         });
     }
 
-    private void configuarJTable() {
+    private void configuarJTableBusca() {
         dtm = new DefaultTableModel();
         dtm.addColumn("Descrição");
         dtm.addColumn("Quantidade");
         dtm.addColumn("Valor unitario");
         dtm.addColumn("Valor Total");
-        jTablePedido.setModel(dtm);
+        jTableBusca.setModel(dtm);
     }
-    private void limpaCampos(){
-        jTextFieldDescricao.setText("");
-        jTextFieldPeso.setText("");
-        jTextFieldQuantiade.setText("");
-        jTextFieldStatusPeca.setText("");
-        jTextFieldUnidadeDeMedida.setText("");
-        jTextFieldValor.setText("");
-        jTextFieldValorUnitario.setText("");
+
+    private void configurarJTablePedido() {
+        dtmp = new DefaultTableModel();
+        dtmp.addColumn("Descrição");
+        dtmp.addColumn("Quantidade");
+        dtmp.addColumn("Valor unitario");
+        dtmp.addColumn("Valor Total");
+        jTablePedido.setModel(dtmp);
     }
-    private void jLabelBlack(){
-            jLabelDescricao.setForeground(Color.black);
-            jLabelQuantidade.setForeground(Color.black);
-            
-            
+
+    private void comboBoxConfigura() {
+
+        jComboBoxCategoriaC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Acessorios e acabamento", "Centrais e modulos",
+            "Injeção e carburador", "Motor", "Polias e Tensores", "Retentor e Junta",
+            "Suspenção e Freio", "Correias e Corente de Comando"}));
+        jComboBoxCategoriaC.setSelectedIndex(-1);
+        jComboBoxCategoriaC.setToolTipText("Categoria");
+
     }
+
+    private void acaoBotaoIncluir() {
+        jButtonIncuir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                validacao();
+            }
+        });
+    }
+    private void acaoPopularTabelaCampoVazio(){
+      if(jTextFieldDescricao.getText().trim().isEmpty()||jTextFieldId.getText().trim().isEmpty()){
+        List<ProdutoBean> produtos = new ProdutoDao().obterProdutos();
+        DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+       
+        dtm.setRowCount(0);
+        
+        for (ProdutoBean produto : produtos) {
+            dtm.addRow(new Object[]{
+                produto.getDescricao(),
+                produto.getQuantidade(),
+                produto.getValorUnitario(),
+                produto.getValor()
+            });
+        }
+    }
+    }   
+     private void trocaIcone() {
+        URL url = this.getClass().getResource("/icones/shopping_cart.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        jFrameVendas.setIconImage(imagemTitulo);
+
+    }
+
+
 }
