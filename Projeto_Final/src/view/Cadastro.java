@@ -307,8 +307,8 @@ public class Cadastro implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent e) {
                validacao();
-                
-       // limparCampos();
+               
+               
             }
         });
 
