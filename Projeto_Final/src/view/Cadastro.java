@@ -31,10 +31,10 @@ public class Cadastro implements BaseInterfaceJava {
 
     private JFrame jFrameCadastro;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
-            jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso,
+            jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelStatusPeca, jLabelPeso,
             jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao,
-            jTextFieldValorUnitario, jTextFieldPeso;
+             jTextFieldPeso;
     private JButton jButtonSair, jButtonLimpar, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private JComboBox jComboBoxLocalizacao, jComboBoxCategoria, jComboBoxUnidadeDeMedida;
@@ -79,7 +79,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jLabelAplicacao);
         jFrameCadastro.add(jLabelUnidadeDeMedida);
         jFrameCadastro.add(jLabelLocalizacao);
-        jFrameCadastro.add(jLabelValorUnitario);
+        
         jFrameCadastro.add(jLabelStatusPeca);
         jFrameCadastro.add(jLabelPeso);
         jFrameCadastro.add(jLabelCategoria);
@@ -92,7 +92,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jTextFieldValor);
         jFrameCadastro.add(jTextFieldDescricao);
 
-        jFrameCadastro.add(jTextFieldValorUnitario);
+       
 
         jFrameCadastro.add(jTextFieldPeso);
 
@@ -146,8 +146,7 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setLocation(420, 110);
 
         //ValorUnitario
-        jLabelValorUnitario.setLocation(420, 135);
-        jTextFieldValorUnitario.setLocation(420, 160);
+       
 
         //StatusPeca
         jLabelStatusPeca.setLocation(420, 35);
@@ -193,7 +192,7 @@ public class Cadastro implements BaseInterfaceJava {
 
         jComboBoxUnidadeDeMedida.setSize(100, 20);
 
-        jTextFieldValorUnitario.setSize(150, 20);
+      
 
         jTextFieldPeso.setSize(110, 20);
 
@@ -204,7 +203,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelAplicacao.setSize(100, 20);
         jLabelUnidadeDeMedida.setSize(100, 20);
         jLabelLocalizacao.setSize(100, 20);
-        jLabelValorUnitario.setSize(100, 20);
+        
         jLabelStatusPeca.setSize(100, 20);
         jLabelPeso.setSize(100, 20);
         jLabelCategoria.setSize(100, 20);
@@ -236,7 +235,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelAplicacao = new JLabel("Aplicação: ");
         jLabelUnidadeDeMedida = new JLabel("Und Medida: ");
         jLabelLocalizacao = new JLabel("Localização: ");
-        jLabelValorUnitario = new JLabel("ValorUnitario: ");
+      
         jLabelStatusPeca = new JLabel("Status da Peça: ");
         jLabelPeso = new JLabel("Peso: ");
         jLabelCategoria = new JLabel("Categoria: ");
@@ -248,7 +247,7 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
 
-        jTextFieldValorUnitario = new JTextField("");
+      
 
         jTextFieldPeso = new JTextField("");
 
@@ -321,7 +320,7 @@ public class Cadastro implements BaseInterfaceJava {
         jTextAreaAplicacao.setText("");
         jComboBoxUnidadeDeMedida.setSelectedIndex(-1);
         jComboBoxLocalizacao.setSelectedIndex(-1);
-        jTextFieldValorUnitario.setText("");
+       
         jTextFieldPeso.setText("");
         jComboBoxCategoria.setSelectedIndex(-1);
         buttonGroup.clearSelection();
@@ -437,13 +436,7 @@ public class Cadastro implements BaseInterfaceJava {
             jComboBoxCategoria.requestFocus();
             return;
         }
-        if (jTextFieldValorUnitario.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null,
-                    "o Valor Unitario deve ser Informado", "Cadastro",
-                    JOptionPane.ERROR_MESSAGE);
-            jTextFieldValorUnitario.requestFocus();
-            return;
-        }
+      
         if (jTextAreaAplicacao.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "A Aplicacao deve ser preenchida", "Cadastro",
