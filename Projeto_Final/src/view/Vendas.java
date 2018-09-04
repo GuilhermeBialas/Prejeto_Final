@@ -42,6 +42,7 @@ public class Vendas implements BaseInterfaceJava {
     private JTextField jTextFieldId, jTextFieldDescricao, jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private ButtonGroup jradioButtonGroup;
+    private JButton jButtonSair, jButtonIncuir, jButtonTestes;
     private DefaultTableModel dtm, dtmp;
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
@@ -64,6 +65,7 @@ public class Vendas implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         acaoBotaoIncluir();
+        acaoBotaotests();
         acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
     }
@@ -291,8 +293,12 @@ public class Vendas implements BaseInterfaceJava {
     }
     private void limpatela(){
         jTextFieldId.setText("");
-        
-       jradioButtonGroup.clearSelection();
+       if(jRadioButtonNovo.isSelected()){
+            jRadioButtonNovo.setSelected(false);
+        }
+        if(jRadioButtonSemiNovo.isSelected()){
+            jRadioButtonSemiNovo.setSelected(false);
+        }
         jComboBoxCategoriaC.setSelectedIndex(-1);
         jTextFieldDescricao.setText("");
         jTextFieldQuantidade.setText("");
