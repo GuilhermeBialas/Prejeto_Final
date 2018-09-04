@@ -6,11 +6,8 @@
 package view;
 
 import Interface.BaseInterfaceJava;
-import bean.ProdutoBean;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javafx.scene.control.ComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,7 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-
 
 /**
  *
@@ -95,8 +91,6 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jTextFieldQuantiade);
         jFrameCadastro.add(jTextFieldValor);
         jFrameCadastro.add(jTextFieldDescricao);
-
-      
 
         jFrameCadastro.add(jTextFieldValorUnitario);
 
@@ -254,7 +248,6 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
 
-
         jTextFieldValorUnitario = new JTextField("");
 
         jTextFieldPeso = new JTextField("");
@@ -302,19 +295,20 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setModel(modelo);
         jComboBoxLocalizacao.setSelectedIndex(-1);
     }
-    private void adicionarComboBoxUnidadeDeMedida(){
-         DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Kit","Peça"});
+
+    private void adicionarComboBoxUnidadeDeMedida() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Kit", "Peça"});
         jComboBoxUnidadeDeMedida.setModel(modelo);
         jComboBoxUnidadeDeMedida.setSelectedIndex(-1);
     }
+
     private void acaoBotaoAdicionar() {
         jButtonAdicionar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               validacao();
-               
-               
+                validacao();
+
             }
         });
 
@@ -329,10 +323,9 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setSelectedIndex(-1);
         jTextFieldValorUnitario.setText("");
         jTextFieldPeso.setText("");
-
         jComboBoxCategoria.setSelectedIndex(-1);
-
         buttonGroup.clearSelection();
+        jTextFieldDescricao.requestFocus();
     }
 
     private void acaoBotaoLimpar() {
@@ -367,96 +360,92 @@ public class Cadastro implements BaseInterfaceJava {
 
     private void validacao() {
         if (jTextFieldDescricao.getText().length() <= 2) {
-                    JOptionPane.showMessageDialog(null,
-                            "A descricao deve conter no mínimo três caracteres", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    return;
-                }
+            JOptionPane.showMessageDialog(null,
+                    "A descricao deve conter no mínimo três caracteres", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldDescricao.requestFocus();
+            return;
+        }
         if (!jRadioButtonNovo.isSelected() && !jRadioButtonSemiNovo.isSelected()) {
-                    JOptionPane.showMessageDialog(null,
-                            "Deve ser selecionado se é novo ou semi novo", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
+            JOptionPane.showMessageDialog(null,
+                    "Deve ser selecionado se é novo ou semi novo", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
 
-                }
-        
-        if(jTextFieldQuantiade.getText().isEmpty()){
-             JOptionPane.showMessageDialog(null,
-                            "Quantidade deve ser informada", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    jTextFieldQuantiade.requestFocus();
-                    return;
         }
-        
+
+        if (jTextFieldQuantiade.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Quantidade deve ser informada", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldQuantiade.requestFocus();
+            return;
+        }
+
         if (Float.parseFloat(jTextFieldQuantiade.getText()) <= 0) {
-                    JOptionPane.showMessageDialog(null,
-                            "Quantidade deve ser no minímo uma unidade", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    jTextFieldQuantiade.requestFocus();
-                    return;
-                }
-        if (jComboBoxUnidadeDeMedida.getSelectedIndex()== -1) {
-                    JOptionPane.showMessageDialog(null,
-                            "Unidade de Medida deve ser Preenchida", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                   jComboBoxUnidadeDeMedida.requestFocus();
-                    return;
-                }
-        if (jTextFieldPeso.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null,
-                            "O Peso deve ser Informado", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
+                    "Quantidade deve ser no minímo uma unidade", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldQuantiade.requestFocus();
+            return;
+        }
+        if (jComboBoxUnidadeDeMedida.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null,
+                    "Unidade de Medida deve ser Preenchida", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jComboBoxUnidadeDeMedida.requestFocus();
+            return;
+        }
+        if (jTextFieldPeso.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "O Peso deve ser Informado", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
             jTextFieldPeso.requestFocus();
-                    return;
+            return;
         }
-        if(jComboBoxLocalizacao.getSelectedIndex()== -1){
+        if (jComboBoxLocalizacao.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null,
-                            "A Localização deve ser Informado", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
+                    "A Localização deve ser Informado", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
             jComboBoxLocalizacao.requestFocus();
-                    return;
+            return;
         }
-        if(jTextFieldValor.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,
-                            "Valor deve ser informado.", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    jTextFieldValor.requestFocus();
-                    return;
-                
-                }
-                if (Float.parseFloat(jTextFieldValor.getText()) <= 0) {
-                    JOptionPane.showMessageDialog(null,
-                            "Valor deve ser maior que 0", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    jTextFieldValor.requestFocus();
-                    return;
-                }
-                if (jComboBoxCategoria.getSelectedIndex()== -1){
-                    JOptionPane.showMessageDialog(null,
-                            "A Categoria deve ser Informado", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
+        if (jTextFieldValor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Valor deve ser informado.", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldValor.requestFocus();
+            return;
+
+        }
+        if (Float.parseFloat(jTextFieldValor.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Valor deve ser maior que 0", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldValor.requestFocus();
+            return;
+        }
+        if (jComboBoxCategoria.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null,
+                    "A Categoria deve ser Informado", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
             jComboBoxCategoria.requestFocus();
-                    return;
-                }
-               if(jTextFieldValorUnitario.getText().trim().isEmpty()){
-                   JOptionPane.showMessageDialog(null,
-                            "o Valor Unitario deve ser Informado", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                   jTextFieldValorUnitario.requestFocus();
-                   return;
-               }
-                if (jTextAreaAplicacao.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(null,
-                            "A Aplicacao deve ser preenchida", "Cadastro",
-                            JOptionPane.ERROR_MESSAGE);
-                    jTextFieldDescricao.requestFocus();
-                    return;
-                }
-                
-                
-                
-                
+            return;
+        }
+        if (jTextFieldValorUnitario.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "o Valor Unitario deve ser Informado", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldValorUnitario.requestFocus();
+            return;
+        }
+        if (jTextAreaAplicacao.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "A Aplicacao deve ser preenchida", "Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextFieldDescricao.requestFocus();
+            return;
+        }
 
     }
 }
