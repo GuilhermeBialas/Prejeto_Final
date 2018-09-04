@@ -6,6 +6,7 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -68,6 +69,9 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.setLocationRelativeTo(null);
         jFrameCadastro.setResizable(false);
         jFrameCadastro.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        //Troca de cor
+          jFrameCadastro.getContentPane().setBackground(Color.decode("#BEBEBE")); 
     }
 
     @Override
@@ -343,7 +347,7 @@ public class Cadastro implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent e) {
                int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja sair?"
-                                                                  +"\nSe você não salvou perderá todo o cadastro","Aviso",JOptionPane.ERROR_MESSAGE);
+                                                                 +"\nSe você não salvou, perderá todo o cadastro","Aviso",JOptionPane.ERROR_MESSAGE);
                 if (resposta == 0) {
                     jFrameCadastro.dispose();
                 }
