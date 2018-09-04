@@ -47,6 +47,8 @@ public class Vendas implements BaseInterfaceJava {
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
     private JComboBox jComboBoxCategoriaC;
+    String Pedido = "";
+    int contador = 0;
 
     public Vendas() {
         instanciarComponentes();
@@ -188,11 +190,61 @@ public class Vendas implements BaseInterfaceJava {
     }
 
     ;
+    private void IncluirNoPedido(){
+       ArrayList<String> status = new ArrayList<>();
+       ArrayList<String> categoria = new ArrayList<>();
+       ArrayList<String> produto = new ArrayList<>();
+       ArrayList<Float> quantidade = new ArrayList<>();
+       ArrayList<Integer> id =new ArrayList<>();
+       ArrayList<Integer> item = new ArrayList<>();
+       contador++;
+       if(jRadioButtonNovo.isSelected()){
+           status.add("Novo");
+       }
+       if(jRadioButtonSemiNovo.isSelected()){
+           status.add("Semi-novo");
+       }
+       int resultadoCombo = jComboBoxCategoriaC.getSelectedIndex();
+       
+       if(resultadoCombo == 0){
+           categoria.add("Acessorios e acabamento");
+       }
+       if(resultadoCombo == 1){
+           categoria.add("Centrais e modulos");
+       }
+       if(resultadoCombo == 2){
+           categoria.add("Injeção e carburador");
+       }
+       if(resultadoCombo == 3){
+           categoria.add("Motor");
+       }
+       if(resultadoCombo == 4){
+           categoria.add("Polias e Tensores");
+       }
+       if(resultadoCombo == 5){
+           categoria.add("Retentor e Junta");
+       }
+       if(resultadoCombo == 6){
+           categoria.add("Suspenção e Freio");
+       }
+       if(resultadoCombo == 7){
+           categoria.add("Correias e Corente de Comando");
+       }
+       
+       produto.add(jTextFieldDescricao.getText());
+       quantidade.add(Float.parseFloat(jTextFieldQuantidade.getText()));
+       id.add(Integer.parseInt(jTextFieldId.getSelectedText()));
+       item.add(contador);
+       
+             
+    }
 
     private void radionGroup() {
         ButtonGroup jradioButtonGroup = new ButtonGroup();
         jradioButtonGroup.add(jRadioButtonSemiNovo);
         jradioButtonGroup.add(jRadioButtonNovo);
+        jRadioButtonNovo.setText("Novo");
+        jRadioButtonSemiNovo.setText("Semi - novo");
     }
 
     private void validacao() {
@@ -220,9 +272,18 @@ public class Vendas implements BaseInterfaceJava {
         if (jTextFieldQuantidade.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Você deve informar a quantidade", "Erro Quantidade null", JOptionPane.ERROR_MESSAGE);
             jLabelQuantidade.setForeground(Color.red);
+            jTextFieldQuantidade.requestFocus();
             return;
         }
+        jLabelBlack();
         
+    }
+    
+    private void jLabelBlack(){
+        jLabelStatus.setForeground(Color.black);
+        jLabelCategoria.setForeground(Color.black);
+        jLabelDescricao.setForeground(Color.black);
+        jLabelQuantidade.setForeground(Color.black);
     }
 
     private void acaobotaoSair() {
