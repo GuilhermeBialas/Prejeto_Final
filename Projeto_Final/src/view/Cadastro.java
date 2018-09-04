@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-import sun.misc.FloatingDecimal;
+
 
 /**
  *
@@ -37,11 +37,11 @@ public class Cadastro implements BaseInterfaceJava {
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
             jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelValorUnitario, jLabelStatusPeca, jLabelPeso,
             jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
-    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao, jTextFieldUnidadeDeMedida,
+    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao,
             jTextFieldValorUnitario, jTextFieldPeso;
     private JButton jButtonSair, jButtonLimpar, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
-    private JComboBox jComboBoxLocalizacao, jComboBoxCategoria;
+    private JComboBox jComboBoxLocalizacao, jComboBoxCategoria, jComboBoxUnidadeDeMedida;
     private JTextArea jTextAreaAplicacao;
     private JScrollPane jScrollPaneAplicacao;
     private ButtonGroup buttonGroup;
@@ -59,6 +59,7 @@ public class Cadastro implements BaseInterfaceJava {
         limparCampos();
         acaoSair();
         configurarJScrollPane();
+        adicionarComboBoxUnidadeDeMedida();
         jFrameCadastro.setVisible(true);
 
     }
@@ -95,7 +96,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jTextFieldValor);
         jFrameCadastro.add(jTextFieldDescricao);
 
-        jFrameCadastro.add(jTextFieldUnidadeDeMedida);
+      
 
         jFrameCadastro.add(jTextFieldValorUnitario);
 
@@ -113,6 +114,7 @@ public class Cadastro implements BaseInterfaceJava {
         //ComboBox
         jFrameCadastro.add(jComboBoxLocalizacao);
         jFrameCadastro.add(jComboBoxCategoria);
+        jFrameCadastro.add(jComboBoxUnidadeDeMedida);
 
         //TextArea
         jFrameCadastro.add(jTextAreaAplicacao);
@@ -143,7 +145,7 @@ public class Cadastro implements BaseInterfaceJava {
 
         //UnidadeDeMedida
         jLabelUnidadeDeMedida.setLocation(190, 85);
-        jTextFieldUnidadeDeMedida.setLocation(190, 110);
+        jComboBoxUnidadeDeMedida.setLocation(190, 110);
 
         //Localizacao
         jLabelLocalizacao.setLocation(420, 85);
@@ -195,7 +197,7 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldValor.setSize(150, 20);
         jTextFieldDescricao.setSize(350, 20);
 
-        jTextFieldUnidadeDeMedida.setSize(100, 20);
+        jComboBoxUnidadeDeMedida.setSize(100, 20);
 
         jTextFieldValorUnitario.setSize(150, 20);
 
@@ -252,7 +254,6 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
 
-        jTextFieldUnidadeDeMedida = new JTextField("");
 
         jTextFieldValorUnitario = new JTextField("");
 
@@ -275,6 +276,7 @@ public class Cadastro implements BaseInterfaceJava {
         //ComboBox
         jComboBoxLocalizacao = new JComboBox();
         jComboBoxCategoria = new JComboBox();
+        jComboBoxUnidadeDeMedida = new JComboBox();
 
         jLabelAutoSystems = new JLabel("");
 
@@ -300,7 +302,11 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setModel(modelo);
         jComboBoxLocalizacao.setSelectedIndex(-1);
     }
-
+    private void adicionarComboBoxUnidadeDeMedida(){
+         DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Kit","Peça"});
+        jComboBoxUnidadeDeMedida.setModel(modelo);
+        jComboBoxUnidadeDeMedida.setSelectedIndex(-1);
+    }
     private void acaoBotaoAdicionar() {
         jButtonAdicionar.addActionListener(new ActionListener() {
 
@@ -319,7 +325,7 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldValor.setText("");
         jTextFieldDescricao.setText("");
         jTextAreaAplicacao.setText("");
-        jTextFieldUnidadeDeMedida.setText("");
+        jComboBoxUnidadeDeMedida.setSelectedIndex(-1);
         jComboBoxLocalizacao.setSelectedIndex(-1);
         jTextFieldValorUnitario.setText("");
         jTextFieldPeso.setText("");
@@ -390,11 +396,11 @@ public class Cadastro implements BaseInterfaceJava {
                     jTextFieldQuantiade.requestFocus();
                     return;
                 }
-        if (jTextFieldUnidadeDeMedida.getText().trim().isEmpty()) {
+        if (jComboBoxUnidadeDeMedida.getSelectedIndex()== -1) {
                     JOptionPane.showMessageDialog(null,
                             "Unidade de Medida deve ser Preenchida", "Cadastro",
                             JOptionPane.ERROR_MESSAGE);
-                    jTextFieldUnidadeDeMedida.requestFocus();
+                   jComboBoxUnidadeDeMedida.requestFocus();
                     return;
                 }
         if (jTextFieldPeso.getText().trim().isEmpty()){
