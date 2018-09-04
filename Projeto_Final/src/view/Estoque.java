@@ -104,7 +104,7 @@ public class Estoque extends javax.swing.JFrame {
 
             },
             new String [] {
-                "número", "Categoria", "Valor total", "valor Unitário", "Status", "Peso", "Localização"
+                "número", "Categoria", "Quantidade", "valor Unitário", "Status", "Peso", "Localização"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -249,7 +249,7 @@ public class Estoque extends javax.swing.JFrame {
             dtm.addRow(new Object[]{
                 produto.getId(),
                 produto.getCategoria(),
-                produto.getValor(),
+                produto.getQuantidade(),
                 produto.getValorUnitario(),
                 produto.getStatusPecas(),
                 produto.getPeso(),

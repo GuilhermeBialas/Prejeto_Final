@@ -224,7 +224,7 @@
               <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="n&#xfa;mero" type="java.lang.Object"/>
                 <Column editable="false" title="Categoria" type="java.lang.Object"/>
-                <Column editable="false" title="Valor total" type="java.lang.Object"/>
+                <Column editable="false" title="Quantidade" type="java.lang.Object"/>
                 <Column editable="false" title="valor Unit&#xe1;rio" type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
                 <Column editable="false" title="Peso" type="java.lang.Object"/>
