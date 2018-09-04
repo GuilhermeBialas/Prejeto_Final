@@ -7,8 +7,8 @@ package view;
 
 import Interface.BaseInterfaceJava;
 import view.Estoque;
+import view.Vendas;
 import view.Cadastro;
-import teste.VendasOld;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;

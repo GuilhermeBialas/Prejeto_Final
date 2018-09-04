@@ -41,8 +41,7 @@ public class Vendas implements BaseInterfaceJava {
     private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo, jLabelDescricao, jLabelQuantidade;
     private JTextField jTextFieldId, jTextFieldDescricao, jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
-    private ButtonGroup buttonGroup;
-    private JButton jButtonSair, jButtonIncuir;
+    private ButtonGroup jradioButtonGroup;
     private DefaultTableModel dtm, dtmp;
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
@@ -99,6 +98,7 @@ public class Vendas implements BaseInterfaceJava {
         //JButton's
         jFrameVendas.add(jButtonSair);
         jFrameVendas.add(jButtonIncuir);
+        jFrameVendas.add(jButtonTestes);
         //adiciona a JTable's
         jFrameVendas.add(jScrollPaneBuscador);
         jFrameVendas.add(jScrollPanePedido);
@@ -126,6 +126,7 @@ public class Vendas implements BaseInterfaceJava {
         //JButton's
         jButtonSair.setLocation(680, 530);
         jButtonIncuir.setLocation(10, 530);
+        jButtonTestes.setLocation(680,30);
         //Jtable's
         jScrollPaneBuscador.setLocation(10, 70);
         jScrollPanePedido.setLocation(410, 70);
@@ -152,6 +153,7 @@ public class Vendas implements BaseInterfaceJava {
 
         jButtonSair.setSize(100, 35);
         jButtonIncuir.setSize(100, 35);
+        jButtonTestes.setSize(100,35);
 
         jScrollPaneBuscador.setSize(360, 360);
         jScrollPanePedido.setSize(360, 360);
@@ -179,6 +181,7 @@ public class Vendas implements BaseInterfaceJava {
 
         jButtonSair = new JButton("Sair");
         jButtonIncuir = new JButton("Incluir");
+        jButtonTestes = new JButton("teste");
 
         jTableBusca = new JTable();
         jTablePedido = new JTable();
@@ -189,7 +192,14 @@ public class Vendas implements BaseInterfaceJava {
         jComboBoxCategoriaC = new JComboBox();
     }
 
-    ;
+    
+    private void pesquisarPorNome(){
+        //todo
+    }
+    
+    private void pesquisarPorId(){
+        //todo
+    }
     private void IncluirNoPedido(){
        ArrayList<String> status = new ArrayList<>();
        ArrayList<String> categoria = new ArrayList<>();
@@ -236,7 +246,8 @@ public class Vendas implements BaseInterfaceJava {
        id.add(Integer.parseInt(jTextFieldId.getSelectedText()));
        item.add(contador);
        
-             
+       
+       
     }
 
     private void radionGroup() {
@@ -278,6 +289,14 @@ public class Vendas implements BaseInterfaceJava {
         jLabelBlack();
         
     }
+    private void limpatela(){
+        jTextFieldId.setText("");
+        
+       jradioButtonGroup.clearSelection();
+        jComboBoxCategoriaC.setSelectedIndex(-1);
+        jTextFieldDescricao.setText("");
+        jTextFieldQuantidade.setText("");
+    }
     
     private void jLabelBlack(){
         jLabelStatus.setForeground(Color.black);
@@ -292,6 +311,16 @@ public class Vendas implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jFrameVendas.dispose();
+            }
+        });
+    }
+    
+    private  void acaoBotaotests(){
+        jButtonTestes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpatela();
+                JOptionPane.showMessageDialog(null, "teste");
             }
         });
     }
