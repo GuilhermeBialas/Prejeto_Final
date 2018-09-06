@@ -6,6 +6,8 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import bean.ProdutoBean;
+import dao.ProdutoDao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,20 +31,20 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @date 2018-08-27
  */
 public class Cadastro implements BaseInterfaceJava {
-
+    
     private JFrame jFrameCadastro;
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
             jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelStatusPeca, jLabelPeso,
             jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
     private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao,
-             jTextFieldPeso;
+            jTextFieldPeso;
     private JButton jButtonSair, jButtonLimpar, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private JComboBox jComboBoxLocalizacao, jComboBoxCategoria, jComboBoxUnidadeDeMedida;
     private JTextArea jTextAreaAplicacao;
     private JScrollPane jScrollPaneAplicacao;
     private ButtonGroup buttonGroup;
-
+    
     public Cadastro() {
         instanciarComponentes();
         gerarTela();
@@ -57,10 +59,11 @@ public class Cadastro implements BaseInterfaceJava {
         acaoSair();
         configurarJScrollPane();
         adicionarComboBoxUnidadeDeMedida();
+        salvarBanco();
         jFrameCadastro.setVisible(true);
-
+        
     }
-
+    
     @Override
     public void gerarTela() {
         jFrameCadastro = new JFrame("Cadastro");
@@ -69,11 +72,11 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.setLocationRelativeTo(null);
         jFrameCadastro.setResizable(false);
         jFrameCadastro.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
-        //Troca de cor
-         // jFrameCadastro.getContentPane().setBackground(Color.decode("#BEBEBE")); 
-    }
 
+        //Troca de cor
+        // jFrameCadastro.getContentPane().setBackground(Color.decode("#BEBEBE")); 
+    }
+    
     @Override
     public void adicionarComponentes() {
         //jLabel's
@@ -95,9 +98,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jTextFieldQuantiade);
         jFrameCadastro.add(jTextFieldValor);
         jFrameCadastro.add(jTextFieldDescricao);
-
-       
-
+        
         jFrameCadastro.add(jTextFieldPeso);
 
         //JButton's
@@ -119,9 +120,9 @@ public class Cadastro implements BaseInterfaceJava {
 
         //JScrollPane
         jFrameCadastro.add(jScrollPaneAplicacao);
-
+        
     }
-
+    
     @Override
     public void gerarLocalizacoes() {
 
@@ -150,8 +151,6 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao.setLocation(420, 110);
 
         //ValorUnitario
-       
-
         //StatusPeca
         jLabelStatusPeca.setLocation(420, 35);
         jRadioButtonNovo.setLocation(420, 60);
@@ -175,13 +174,13 @@ public class Cadastro implements BaseInterfaceJava {
         //Categoria
         jLabelCategoria.setLocation(190, 135);
         jComboBoxCategoria.setLocation(190, 160);
-
+        
         jLabelAutoSystems.setLocation(10, 10);
 
         //SCrollPane
         jScrollPaneAplicacao.setLocation(20, 210);
     }
-
+    
     @Override
     public void gerarDimensoes() {
 
@@ -193,11 +192,9 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldQuantiade.setSize(150, 20);
         jTextFieldValor.setSize(150, 20);
         jTextFieldDescricao.setSize(350, 20);
-
+        
         jComboBoxUnidadeDeMedida.setSize(100, 20);
-
-      
-
+        
         jTextFieldPeso.setSize(110, 20);
 
         //JLabel's
@@ -211,7 +208,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelStatusPeca.setSize(100, 20);
         jLabelPeso.setSize(100, 20);
         jLabelCategoria.setSize(100, 20);
-
+        
         jLabelRadioButtonNovo.setSize(50, 20);
         jLabelRadioButtonSemiNovo.setSize(100, 20);
         //RadioButton
@@ -229,7 +226,7 @@ public class Cadastro implements BaseInterfaceJava {
         //ScrollPane
         jScrollPaneAplicacao.setSize(600, 80);
     }
-
+    
     @Override
     public void instanciarComponentes() {
         //JLabel's 
@@ -239,7 +236,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelAplicacao = new JLabel("Aplicação: ");
         jLabelUnidadeDeMedida = new JLabel("Und Medida: ");
         jLabelLocalizacao = new JLabel("Localização: ");
-      
+        
         jLabelStatusPeca = new JLabel("Status da Peça: ");
         jLabelPeso = new JLabel("Peso: ");
         jLabelCategoria = new JLabel("Categoria: ");
@@ -250,22 +247,20 @@ public class Cadastro implements BaseInterfaceJava {
         jTextFieldQuantiade = new JTextField("");
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
-
-      
-
+        
         jTextFieldPeso = new JTextField("");
 
         //JButton's
         jButtonSair = new JButton("Sair");
         jButtonLimpar = new JButton("Limpar");
         jButtonAdicionar = new JButton("Adicionar");
-
+        
         buttonGroup = new ButtonGroup();
 
         //RadioButton
         jRadioButtonNovo = new JRadioButton("Novo");
         jRadioButtonSemiNovo = new JRadioButton("");
-
+        
         buttonGroup.add(jRadioButtonNovo);
         buttonGroup.add(jRadioButtonSemiNovo);
 
@@ -273,15 +268,15 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxLocalizacao = new JComboBox();
         jComboBoxCategoria = new JComboBox();
         jComboBoxUnidadeDeMedida = new JComboBox();
-
+        
         jLabelAutoSystems = new JLabel("");
-
+        
         jTextAreaAplicacao = new JTextArea();
 
         //SCrollPane
         jScrollPaneAplicacao = new JScrollPane();
     }
-
+    
     private void adicionarComboBoxCategoria() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Acessórios e acabamento", "Injeção e carburador",
             "Motor", "Polias e tensores", "Retentor e junta", "Supenção e freios", "Correas e corrente de comando"
@@ -289,32 +284,99 @@ public class Cadastro implements BaseInterfaceJava {
         jComboBoxCategoria.setModel(modelo);
         jComboBoxCategoria.setSelectedIndex(-1);
     }
-
+    
     private void adicionarComboBoxLocalizacao() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Acre", "Alagoas", "Amapá", "Amazonas", "Bahia",
-            "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais,"
-            + "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia",
-            "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"});
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Acessórios","Acessorios do Motor",
+            "Componentes eletricos","Correias","Correntes de CV","Farois","freio","Kits de Junta",
+            "motor","Parachoques","polias","Portas e Carrroceria(recortes)","retentores","Rolamentos","suspensão",
+            "Tensores","vidros"});
         jComboBoxLocalizacao.setModel(modelo);
         jComboBoxLocalizacao.setSelectedIndex(-1);
     }
-
+    
     private void adicionarComboBoxUnidadeDeMedida() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel(new Object[]{"Kit", "Peça"});
         jComboBoxUnidadeDeMedida.setModel(modelo);
         jComboBoxUnidadeDeMedida.setSelectedIndex(-1);
     }
-
+    
     private void acaoBotaoAdicionar() {
         jButtonAdicionar.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 validacao();
-
+                salvarBanco();
+                
             }
         });
+        
+    }
 
+    private void salvarBanco() {
+        ProdutoBean produto = new ProdutoBean();
+        produto.setDescricao(jTextFieldDescricao.getText());
+        if (jRadioButtonNovo.isSelected()) {
+            produto.setStatusPecas("Novo");
+        } else if (jRadioButtonSemiNovo.isSelected()) {
+            produto.setStatusPecas("Semi Novo");
+        }
+        produto.setQuantidade(Float.parseFloat(jTextFieldQuantiade.getText()));
+        if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 0) {
+            produto.setUnidadeDeMedida("Kit");
+        } else if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 1) {
+            produto.setUnidadeDeMedida("Peça");
+        }
+        produto.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
+        produto.setValorUnitario(Float.parseFloat(jTextFieldValor.getText()));
+        
+        switch (jComboBoxCategoria.getSelectedIndex()) {
+            case 1:
+                produto.setCategoria("Acessórios e acabamento");
+                break;
+            case 2:
+                produto.setCategoria("Injeção e carburador");
+                break;
+            case 3:
+                produto.setCategoria("Motor");
+                break;
+            case 4:
+                produto.setCategoria("Polias e tensores");
+            case 5:
+                produto.setCategoria("Retentor e junta");
+                break;
+            case 6:
+                produto.setCategoria("Supenção e freios");
+                break;
+            case 7:
+                produto.setCategoria("Correas e corrente de comando");
+                break;
+        }
+        switch (jComboBoxLocalizacao.getSelectedIndex()) {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+                break;
+            case 7:
+                
+                break;
+            
+        }
+        produto.setAplicacao(jTextAreaAplicacao.getText());
     }
 
     private void limparCampos() {
@@ -324,38 +386,38 @@ public class Cadastro implements BaseInterfaceJava {
         jTextAreaAplicacao.setText("");
         jComboBoxUnidadeDeMedida.setSelectedIndex(-1);
         jComboBoxLocalizacao.setSelectedIndex(-1);
-       
+        
         jTextFieldPeso.setText("");
         jComboBoxCategoria.setSelectedIndex(-1);
         buttonGroup.clearSelection();
         jTextFieldDescricao.requestFocus();
     }
-
+    
     private void acaoBotaoLimpar() {
         jButtonLimpar.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 limparCampos();
             }
         });
     }
-
+    
     private void acaoSair() {
         jButtonSair.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
-               int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja sair?"
-                                                                 +"\nSe você não salvou, perderá todo o cadastro","Aviso",JOptionPane.ERROR_MESSAGE);
+                int resposta = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja sair?"
+                        + "\nSe você não salvou, perderá todo o cadastro", "Aviso", JOptionPane.ERROR_MESSAGE);
                 if (resposta == 0) {
                     jFrameCadastro.dispose();
                 }
-                                                              
+                
             }
         });
     }
-
+    
     private void configurarJScrollPane() {
         jScrollPaneAplicacao.setViewportView(jTextAreaAplicacao);
         jScrollPaneAplicacao.setHorizontalScrollBarPolicy(
@@ -363,9 +425,9 @@ public class Cadastro implements BaseInterfaceJava {
         jScrollPaneAplicacao.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         jTextAreaAplicacao.setLineWrap(true);
-
+        
     }
-
+    
     private void validacao() {
         if (jTextFieldDescricao.getText().length() <= 2) {
             JOptionPane.showMessageDialog(null,
@@ -379,9 +441,9 @@ public class Cadastro implements BaseInterfaceJava {
                     "Deve ser selecionado se é novo ou semi novo", "Cadastro",
                     JOptionPane.ERROR_MESSAGE);
             return;
-
+            
         }
-
+        
         if (jTextFieldQuantiade.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "Quantidade deve ser informada", "Cadastro",
@@ -389,7 +451,7 @@ public class Cadastro implements BaseInterfaceJava {
             jTextFieldQuantiade.requestFocus();
             return;
         }
-
+        
         if (Float.parseFloat(jTextFieldQuantiade.getText()) <= 0) {
             JOptionPane.showMessageDialog(null,
                     "Quantidade deve ser no minímo uma unidade", "Cadastro",
@@ -424,7 +486,7 @@ public class Cadastro implements BaseInterfaceJava {
                     JOptionPane.ERROR_MESSAGE);
             jTextFieldValor.requestFocus();
             return;
-
+            
         }
         if (Float.parseFloat(jTextFieldValor.getText()) <= 0) {
             JOptionPane.showMessageDialog(null,
@@ -440,7 +502,7 @@ public class Cadastro implements BaseInterfaceJava {
             jComboBoxCategoria.requestFocus();
             return;
         }
-      
+        
         if (jTextAreaAplicacao.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "A Aplicacao deve ser preenchida", "Cadastro",
@@ -448,6 +510,6 @@ public class Cadastro implements BaseInterfaceJava {
             jTextFieldDescricao.requestFocus();
             return;
         }
-
+        
     }
 }
