@@ -307,6 +307,10 @@ public class Vendas implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 validacao();
+                int linhaSelecionada = jTableBusca.getSelectedRow();
+                //int id = Integer.parseInt(jTableBusca.getValueAt(linhaSelecionada,0).toString());
+                
+                
             }
         });
     }
@@ -333,6 +337,4 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.setIconImage(imagemTitulo);
 
     }
-
-
 }

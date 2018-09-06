@@ -19,9 +19,9 @@ public class ProdutoDao {
     public int inserir(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
-            String sql = "INSERT INTO produto"
+            String sql = "INSERT INTO produtos"
                     + "\n(aplicacao,categoria,descricao,localizacao,status_peca,unidade_de_medida,quantidade,valor,valor_unitario,peso)"
-                    + "\nVALUES(?,?,?,?,?,?,?,?,?,?)";
+                    + "\nVALUES(?,?,?,?,?,?,?,?,?,?);";
             try {
                 PreparedStatement preparedStatement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 

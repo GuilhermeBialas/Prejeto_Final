@@ -36,7 +36,7 @@ public class Cadastro implements BaseInterfaceJava {
     private JLabel jLabelQuantidade, jLabelValor, jLabelDescricao, jLabelAplicacao,
             jLabelUnidadeDeMedida, jLabelLocalizacao, jLabelStatusPeca, jLabelPeso,
             jLabelCategoria, jLabelAutoSystems, jLabelRadioButtonNovo, jLabelRadioButtonSemiNovo;
-    private JTextField jTextFieldQuantiade, jTextFieldValor, jTextFieldDescricao,
+    private JTextField jTextFieldQuantidade, jTextFieldValor, jTextFieldDescricao,
             jTextFieldPeso;
     private JButton jButtonSair, jButtonLimpar, jButtonAdicionar;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
@@ -95,7 +95,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.add(jLabelRadioButtonSemiNovo);
 
         //JTextField's
-        jFrameCadastro.add(jTextFieldQuantiade);
+        jFrameCadastro.add(jTextFieldQuantidade);
         jFrameCadastro.add(jTextFieldValor);
         jFrameCadastro.add(jTextFieldDescricao);
 
@@ -132,7 +132,7 @@ public class Cadastro implements BaseInterfaceJava {
 
         //Quantidade
         jLabelQuantidade.setLocation(20, 85);
-        jTextFieldQuantiade.setLocation(20, 110);
+        jTextFieldQuantidade.setLocation(20, 110);
 
         //Valor
         jLabelValor.setLocation(20, 135);
@@ -189,7 +189,7 @@ public class Cadastro implements BaseInterfaceJava {
         jButtonLimpar.setSize(100, 35);
         jButtonAdicionar.setSize(100, 35);
         //JTextField's
-        jTextFieldQuantiade.setSize(150, 20);
+        jTextFieldQuantidade.setSize(150, 20);
         jTextFieldValor.setSize(150, 20);
         jTextFieldDescricao.setSize(350, 20);
 
@@ -244,7 +244,7 @@ public class Cadastro implements BaseInterfaceJava {
         jLabelRadioButtonSemiNovo = new JLabel("Semi Novo: ");
 
         //JTextField's
-        jTextFieldQuantiade = new JTextField("");
+        jTextFieldQuantidade = new JTextField("");
         jTextFieldValor = new JTextField("");
         jTextFieldDescricao = new JTextField("");
 
@@ -322,7 +322,7 @@ public class Cadastro implements BaseInterfaceJava {
         } else if (jRadioButtonSemiNovo.isSelected()) {
             produto.setStatusPecas("Semi Novo");
         }
-        produto.setQuantidade(Float.parseFloat(jTextFieldQuantiade.getText()));
+        produto.setQuantidade(Float.parseFloat(jTextFieldQuantidade.getText()));
         if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 0) {
             produto.setUnidadeDeMedida("Kit");
         } else if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 1) {
@@ -412,7 +412,7 @@ public class Cadastro implements BaseInterfaceJava {
     }
 
     private void limparCampos() {
-        jTextFieldQuantiade.setText("");
+        jTextFieldQuantidade.setText("");
         jTextFieldValor.setText("");
         jTextFieldDescricao.setText("");
         jTextAreaAplicacao.setText("");
@@ -476,19 +476,19 @@ public class Cadastro implements BaseInterfaceJava {
 
         }
 
-        if (jTextFieldQuantiade.getText().isEmpty()) {
+        if (jTextFieldQuantidade.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "Quantidade deve ser informada", "Cadastro",
                     JOptionPane.ERROR_MESSAGE);
-            jTextFieldQuantiade.requestFocus();
+            jTextFieldQuantidade.requestFocus();
             return;
         }
 
-        if (Float.parseFloat(jTextFieldQuantiade.getText()) <= 0) {
+        if (Float.parseFloat(jTextFieldQuantidade.getText()) <= 0) {
             JOptionPane.showMessageDialog(null,
                     "Quantidade deve ser no minímo uma unidade", "Cadastro",
                     JOptionPane.ERROR_MESSAGE);
-            jTextFieldQuantiade.requestFocus();
+            jTextFieldQuantidade.requestFocus();
             return;
         }
         if (jComboBoxUnidadeDeMedida.getSelectedIndex() == -1) {

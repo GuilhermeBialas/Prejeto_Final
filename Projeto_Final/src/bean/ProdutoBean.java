@@ -7,13 +7,13 @@ package bean;
 public class ProdutoBean {
     
     private String categoria, descricao, aplicacao, unidadeDeMedida , localizacao, statusPecas;
-    private Float quantidade, valor, valorUnitario, peso; 
+    private float quantidade, valor, valorUnitario, peso; 
 
-    public Float getPeso() {
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(Float peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
     private int id;
@@ -74,27 +74,27 @@ public class ProdutoBean {
         this.statusPecas = statusPecas;
     }
 
-    public Float getQuantidade() {
+    public float getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Float quantidade) {
+    public void setQuantidade(float quantidade) {
         this.quantidade = quantidade;
     }
 
-    public Float getValor() {
+    public float getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 
-    public Float getValorUnitario() {
+    public float getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(Float valorUnitario) {
+    public void setValorUnitario(float valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
 }
