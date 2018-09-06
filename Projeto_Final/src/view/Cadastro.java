@@ -71,7 +71,7 @@ public class Cadastro implements BaseInterfaceJava {
         jFrameCadastro.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         //Troca de cor
-          jFrameCadastro.getContentPane().setBackground(Color.decode("#BEBEBE")); 
+         // jFrameCadastro.getContentPane().setBackground(Color.decode("#BEBEBE")); 
     }
 
     @Override

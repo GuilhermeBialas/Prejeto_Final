@@ -65,7 +65,7 @@ public class Vendas implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         acaoBotaoIncluir();
-        acaoBotaotests();
+       // acaoBotaotests();
         acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
     }
@@ -100,7 +100,7 @@ public class Vendas implements BaseInterfaceJava {
         //JButton's
         jFrameVendas.add(jButtonSair);
         jFrameVendas.add(jButtonIncuir);
-        jFrameVendas.add(jButtonTestes);
+       // jFrameVendas.add(jButtonTestes);
         //adiciona a JTable's
         jFrameVendas.add(jScrollPaneBuscador);
         jFrameVendas.add(jScrollPanePedido);
@@ -128,7 +128,7 @@ public class Vendas implements BaseInterfaceJava {
         //JButton's
         jButtonSair.setLocation(680, 530);
         jButtonIncuir.setLocation(10, 530);
-        jButtonTestes.setLocation(680,30);
+      //  jButtonTestes.setLocation(680,30);
         //Jtable's
         jScrollPaneBuscador.setLocation(10, 70);
         jScrollPanePedido.setLocation(410, 70);
@@ -155,7 +155,7 @@ public class Vendas implements BaseInterfaceJava {
 
         jButtonSair.setSize(100, 35);
         jButtonIncuir.setSize(100, 35);
-        jButtonTestes.setSize(100,35);
+       // jButtonTestes.setSize(100,35);
 
         jScrollPaneBuscador.setSize(360, 360);
         jScrollPanePedido.setSize(360, 360);
@@ -183,7 +183,7 @@ public class Vendas implements BaseInterfaceJava {
 
         jButtonSair = new JButton("Sair");
         jButtonIncuir = new JButton("Incluir");
-        jButtonTestes = new JButton("teste");
+        //jButtonTestes = new JButton("teste");
 
         jTableBusca = new JTable();
         jTablePedido = new JTable();
@@ -264,7 +264,7 @@ public class Vendas implements BaseInterfaceJava {
         });
     }
     
-    private  void acaoBotaotests(){
+  /*  private  void acaoBotaotests(){
         jButtonTestes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -272,7 +272,7 @@ public class Vendas implements BaseInterfaceJava {
                 JOptionPane.showMessageDialog(null, "teste");
             }
         });
-    }
+    }*/
 
     private void configuarJTableBusca() {
         dtm = new DefaultTableModel();
