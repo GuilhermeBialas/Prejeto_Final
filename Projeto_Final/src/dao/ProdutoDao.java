@@ -20,7 +20,7 @@ public class ProdutoDao {
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
             String sql = "INSERT INTO produto"
-                    + "\n(categoria, quantidade, valor, descricao, aplicacao, unidade_de_medida, localizacao, valor_unitario, status_peca, peso)"
+                    + "\n(aplicacao,categoria,descricao,localizacao,status_peca,unidade_de_medida,quantidade,valor,valor_unitario,peso)"
                     + "\nVALUES(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
