@@ -65,6 +65,7 @@ public class Vendas implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         acaoBotaoIncluir();
+        acaoJtextFieldDescricao();
        // acaoBotaotests();
         acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
@@ -245,6 +246,7 @@ public class Vendas implements BaseInterfaceJava {
         jComboBoxCategoriaC.setSelectedIndex(-1);
         jTextFieldDescricao.setText("");
         jTextFieldQuantidade.setText("");
+        jTextFieldId.requestFocus();
     }
     
     private void jLabelBlack(){
@@ -263,7 +265,15 @@ public class Vendas implements BaseInterfaceJava {
             }
         });
     }
-    
+    private void acaoJtextFieldDescricao (){
+    jTextFieldDescricao.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+                            validacao();
+                            JOptionPane.showMessageDialog(null, "Teste");
+			}
+		});
+    }
   /*  private  void acaoBotaotests(){
         jButtonTestes.addActionListener(new ActionListener() {
             @Override
@@ -279,12 +289,12 @@ public class Vendas implements BaseInterfaceJava {
         dtm.addColumn("Descrição");
         dtm.addColumn("Quantidade");
         dtm.addColumn("Valor unitario");
-        dtm.addColumn("Valor Total");
         jTableBusca.setModel(dtm);
     }
 
     private void configurarJTablePedido() {
         dtmp = new DefaultTableModel();
+        dtmp.addColumn("Item");
         dtmp.addColumn("Descrição");
         dtmp.addColumn("Quantidade");
         dtmp.addColumn("Valor unitario");
@@ -307,8 +317,6 @@ public class Vendas implements BaseInterfaceJava {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 validacao();
-                int linhaSelecionada = jTableBusca.getSelectedRow();
-                //int id = Integer.parseInt(jTableBusca.getValueAt(linhaSelecionada,0).toString());
                 
                 
             }
@@ -325,8 +333,7 @@ public class Vendas implements BaseInterfaceJava {
             dtm.addRow(new Object[]{
                 produto.getDescricao(),
                 produto.getQuantidade(),
-                produto.getValorUnitario(),
-                produto.getValor()
+                produto.getValorUnitario()
             });
         }
     }
