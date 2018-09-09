@@ -13,6 +13,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -226,12 +228,6 @@ public class Vendas implements BaseInterfaceJava {
             return;
         }
         
-        if (jTextFieldQuantidade.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Você deve informar a quantidade", "Erro Quantidade null", JOptionPane.ERROR_MESSAGE);
-            jLabelQuantidade.setForeground(Color.red);
-            jTextFieldQuantidade.requestFocus();
-            return;
-        }
         jLabelBlack();
         
     }
@@ -266,14 +262,38 @@ public class Vendas implements BaseInterfaceJava {
         });
     }
     private void acaoJtextFieldDescricao (){
-    jTextFieldDescricao.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-                            validacao();
-                            JOptionPane.showMessageDialog(null, "Teste");
-			}
-		});
-    }
+        jTextFieldDescricao.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                if(jTextFieldDescricao.getText().length()>3){
+                    validacao();
+                     List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(jTextFieldDescricao.getText());
+        DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+       
+        dtm.setRowCount(0);
+        
+        for (ProdutoBean produto : produtos) {
+            dtm.addRow(new Object[]{
+                produto.getDescricao(),
+                produto.getQuantidade(),
+                produto.getValorUnitario()
+            });
+        }
+    
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                
+            }
+        });
+           }
   /*  private  void acaoBotaotests(){
         jButtonTestes.addActionListener(new ActionListener() {
             @Override

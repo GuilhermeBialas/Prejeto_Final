@@ -117,6 +117,41 @@ public class ProdutoDao {
         }
         return null;
     }
+    public List<ProdutoBean> obterProdutoBusca(String nome){
+        List<ProdutoBean> produtos = new ArrayList<>();
+        Connection conexao = Conexao.obterConexao();
+        if (conexao != null) {
+            String sql = "SELECT * FROM produtos WHERE descricao LIKE '%" + nome +"%';";
+            try {
+                Statement statement = conexao.createStatement();
+                statement.execute(sql);
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()) {
+                    ProdutoBean produto = new ProdutoBean();
+                    produto.setId(resultSet.getInt("id"));
+                    produto.setCategoria(resultSet.getString("categoria"));
+                    produto.setStatusPecas(resultSet.getString("status_peca"));
+                    produto.setPeso(resultSet.getFloat("peso"));
+                    produto.setLocalizacao(resultSet.getString("localizacao"));
+                    produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQuantidade(resultSet.getFloat("quantidade"));
+                    produto.setValor(resultSet.getFloat("valor"));
+                    produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
+                    
+                    produtos.add(produto);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                Conexao.fecharConexao();
+            }
+        }
+
+       return produtos;
+    }
+
+    
 
     public List<ProdutoBean> obterProdutos() {
         List<ProdutoBean> produtos = new ArrayList<>();
