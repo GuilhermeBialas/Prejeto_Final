@@ -51,6 +51,7 @@ public class Vendas implements BaseInterfaceJava {
     private JComboBox jComboBoxCategoriaC;
     String Pedido = "";
     int contador = 0;
+    float quantidade =0f;
 
     public Vendas() {
         instanciarComponentes();
@@ -68,6 +69,7 @@ public class Vendas implements BaseInterfaceJava {
         gerarDimensoes();
         acaoBotaoIncluir();
         acaoJtextFieldDescricao();
+        acaoJtextFieldId();
        // acaoBotaotests();
         acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
@@ -267,7 +269,7 @@ public class Vendas implements BaseInterfaceJava {
             public void keyTyped(KeyEvent ke) {
                 if(jTextFieldDescricao.getText().length()>3){
                     validacao();
-                     List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(jTextFieldDescricao.getText());
+                     List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(jTextFieldDescricao.getText().trim());
         DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
        
         dtm.setRowCount(0);
@@ -275,7 +277,7 @@ public class Vendas implements BaseInterfaceJava {
         for (ProdutoBean produto : produtos) {
             dtm.addRow(new Object[]{
                 produto.getDescricao(),
-                produto.getQuantidade(),
+                quantidade,
                 produto.getValorUnitario()
             });
         }
@@ -294,6 +296,29 @@ public class Vendas implements BaseInterfaceJava {
             }
         });
            }
+    private void acaoJtextFieldId (){
+        jLabelID.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                if(jTextFieldId.getText().length()>0){
+                JOptionPane.showMessageDialog(null, "teste");
+                 /*int codigo = Integer.parseInt(jTextFieldId.getText().toString());
+               ProdutoBean produto = new ProdutoDao().obterProdutoPeloId(codigo);
+               jTextFieldDescricao.setText(produto.getDescricao());*/
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                
+            }
+        });
+    }
   /*  private  void acaoBotaotests(){
         jButtonTestes.addActionListener(new ActionListener() {
             @Override
@@ -304,12 +329,30 @@ public class Vendas implements BaseInterfaceJava {
         });
     }*/
 
+    
     private void configuarJTableBusca() {
         dtm = new DefaultTableModel();
         dtm.addColumn("Descrição");
         dtm.addColumn("Quantidade");
         dtm.addColumn("Valor unitario");
         jTableBusca.setModel(dtm);
+    }
+    private void populaPedido(){
+       List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(dtm.getValueAt(jTableBusca.getSelectedRow(), 0).toString());
+        DefaultTableModel dtmp = (DefaultTableModel) jTablePedido.getModel();
+       
+        //dtmp.setRowCount(0);
+        quantidade = Float.parseFloat(JOptionPane.showInputDialog(null, "Informe a quantidade que o cliente deseja levar","informe a quantidade",JOptionPane.QUESTION_MESSAGE));
+        for (ProdutoBean produto : produtos) {
+            dtmp.addRow(new Object[]{contador,
+                produto.getDescricao(),
+                quantidade,
+                produto.getValorUnitario(),
+                quantidade * produto.getValorUnitario()
+            });
+        } 
+        quantidade = 0F;
+       contador++;
     }
 
     private void configurarJTablePedido() {
@@ -332,12 +375,17 @@ public class Vendas implements BaseInterfaceJava {
 
     }
 
+    
     private void acaoBotaoIncluir() {
         jButtonIncuir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                validacao();
-                
+              int linnhaSeleciona = jTableBusca.getSelectedRow();
+              if(linnhaSeleciona == -1){
+                  JOptionPane.showMessageDialog(null, "Você deve selecionar um Registro");
+              }else{
+                  populaPedido();
+              }
                 
             }
         });

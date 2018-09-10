@@ -12,6 +12,7 @@ import java.util.List;
 /**
  *
  * @author Guilherme Bialas
+ * @author Marcio Pedro Schiehl
  */
 public class ProdutoDao {
 
@@ -50,28 +51,26 @@ public class ProdutoDao {
         }
         return 0;
     }
-    public boolean vender(ProdutoBean produto){
+     public ProdutoBean vender(int quantidad,String descr){
         Connection conexao = Conexao.obterConexao();
-        String sql = "UPDATE pecas SET quantidade = ? WHERE descricao = ?;";
-      
+        String sql = "SET SQL_SAFE_UPDATES = 0;\n" +
+        "UPDATE produtos SET quantidade = quantidade + "+quantidad+" WHERE descricao = "+descr+";";
+       if(conexao !=null){
         try {
-            PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setString(1, produto.getDescricao());
-                  
-            ps.setFloat(2, produto.getQuantidade());
-            
-            return ps.executeUpdate() == 1;
+            PreparedStatement ps =conexao.prepareStatement(sql);
+            ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Conexao.fecharConexao();
         }
-        return false;
+       }
+      return null;
     }
 
     public boolean alterar(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
-        String sql = "UPDATE pecas SET quantidade = ?,"
+        String sql = "UPDATE produtos SET quantidade = ?,"
                 + " valor = ?, descricao = ?,unidade_de_medida = ?, localizacao = ?, valor_unitario = ? ";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
