@@ -6,7 +6,7 @@ USE auto_pecas;
 CREATE TABLE produtos(
     id int AUTO_INCREMENT PRIMARY KEY,
     categoria         varchar(50),
-    quantidade        float,
+    quantidade        int,
     valor             float,
     descricao         Varchar(150),
     aplicacao         varchar(300),

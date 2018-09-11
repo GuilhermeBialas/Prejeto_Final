@@ -40,18 +40,18 @@ import javax.swing.table.DefaultTableModel;
 public class Vendas implements BaseInterfaceJava {
 
     private JFrame jFrameVendas;
-    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo, jLabelDescricao, jLabelQuantidade;
-    private JTextField jTextFieldId, jTextFieldDescricao, jTextFieldQuantidade;
+    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo, jLabelDescricao;// jLabelQuantidade;
+    private JTextField jTextFieldId, jTextFieldDescricao;//jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private ButtonGroup jradioButtonGroup;
-    private JButton jButtonSair, jButtonIncuir, jButtonTestes;
+    private JButton jButtonSair, jButtonIncuir, jButtonFinalizar;
     private DefaultTableModel dtm, dtmp;
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
     private JComboBox jComboBoxCategoriaC;
-    String Pedido = "";
+    String pedido = "";
     int contador = 0;
-    float quantidade =0f;
+    int quantidade =0;
 
     public Vendas() {
         instanciarComponentes();
@@ -70,7 +70,7 @@ public class Vendas implements BaseInterfaceJava {
         acaoBotaoIncluir();
         acaoJtextFieldDescricao();
         acaoJtextFieldId();
-       // acaoBotaotests();
+        //acaoVender();
         acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
     }
@@ -94,18 +94,18 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.add(jLabelNovo);
         jFrameVendas.add(jLabelSemiNovo);
         jFrameVendas.add(jLabelDescricao);
-        jFrameVendas.add(jLabelQuantidade);
+//        jFrameVendas.add(jLabelQuantidade);
         //JTextField's do Projeto
         jFrameVendas.add(jTextFieldId);
         jFrameVendas.add(jTextFieldDescricao);
-        jFrameVendas.add(jTextFieldQuantidade);
+  //      jFrameVendas.add(jTextFieldQuantidade);
         //JRadionButton's
         jFrameVendas.add(jRadioButtonNovo);
         jFrameVendas.add(jRadioButtonSemiNovo);
         //JButton's
         jFrameVendas.add(jButtonSair);
         jFrameVendas.add(jButtonIncuir);
-       // jFrameVendas.add(jButtonTestes);
+        jFrameVendas.add(jButtonFinalizar);
         //adiciona a JTable's
         jFrameVendas.add(jScrollPaneBuscador);
         jFrameVendas.add(jScrollPanePedido);
@@ -122,18 +122,18 @@ public class Vendas implements BaseInterfaceJava {
         jLabelNovo.setLocation(180, 10);
         jLabelSemiNovo.setLocation(180, 40);
         jLabelDescricao.setLocation(500, 10);
-        jLabelQuantidade.setLocation(10, 40);
+    //    jLabelQuantidade.setLocation(10, 40);
         //JTextiField's
         jTextFieldId.setLocation(60, 10);
         jTextFieldDescricao.setLocation(550, 10);
-        jTextFieldQuantidade.setLocation(90, 40);
+    //    jTextFieldQuantidade.setLocation(90, 40);
         //jRadion's
         jRadioButtonSemiNovo.setLocation(160, 10);
         jRadioButtonNovo.setLocation(160, 40);
         //JButton's
         jButtonSair.setLocation(680, 530);
         jButtonIncuir.setLocation(10, 530);
-      //  jButtonTestes.setLocation(680,30);
+        jButtonFinalizar.setLocation(560,530);
         //Jtable's
         jScrollPaneBuscador.setLocation(10, 70);
         jScrollPanePedido.setLocation(410, 70);
@@ -149,18 +149,18 @@ public class Vendas implements BaseInterfaceJava {
         jLabelNovo.setSize(100, 20);
         jLabelSemiNovo.setSize(100, 20);
         jLabelDescricao.setSize(45, 20);
-        jLabelQuantidade.setSize(70, 20);
+    //    jLabelQuantidade.setSize(70, 20);
 
         jTextFieldId.setSize(50, 20);
         jTextFieldDescricao.setSize(230, 20);
-        jTextFieldQuantidade.setSize(50, 20);
+    //    jTextFieldQuantidade.setSize(50, 20);
 
         jRadioButtonNovo.setSize(20, 20);
         jRadioButtonSemiNovo.setSize(20, 20);
 
         jButtonSair.setSize(100, 35);
         jButtonIncuir.setSize(100, 35);
-       // jButtonTestes.setSize(100,35);
+        jButtonFinalizar.setSize(100,35);
 
         jScrollPaneBuscador.setSize(360, 360);
         jScrollPanePedido.setSize(360, 360);
@@ -177,18 +177,18 @@ public class Vendas implements BaseInterfaceJava {
         jLabelSemiNovo = new JLabel("Semi Novo");
         jLabelNovo = new JLabel("Novo");
         jLabelDescricao = new JLabel("Produto");
-        jLabelQuantidade = new JLabel("Quantidade");
+    //    jLabelQuantidade = new JLabel("Quantidade");
 
         jTextFieldId = new JTextField();
         jTextFieldDescricao = new JTextField();
-        jTextFieldQuantidade = new JTextField();
+    //    jTextFieldQuantidade = new JTextField();
 
         jRadioButtonNovo = new JRadioButton();
         jRadioButtonSemiNovo = new JRadioButton();
 
         jButtonSair = new JButton("Sair");
         jButtonIncuir = new JButton("Incluir");
-        //jButtonTestes = new JButton("teste");
+        jButtonFinalizar = new JButton("Finalizar");
 
         jTableBusca = new JTable();
         jTablePedido = new JTable();
@@ -243,7 +243,7 @@ public class Vendas implements BaseInterfaceJava {
         }
         jComboBoxCategoriaC.setSelectedIndex(-1);
         jTextFieldDescricao.setText("");
-        jTextFieldQuantidade.setText("");
+    //    jTextFieldQuantidade.setText("");
         jTextFieldId.requestFocus();
     }
     
@@ -251,7 +251,7 @@ public class Vendas implements BaseInterfaceJava {
         jLabelStatus.setForeground(Color.black);
         jLabelCategoria.setForeground(Color.black);
         jLabelDescricao.setForeground(Color.black);
-        jLabelQuantidade.setForeground(Color.black);
+      //  jLabelQuantidade.setForeground(Color.black);
     }
 
     private void acaobotaoSair() {
@@ -319,15 +319,15 @@ public class Vendas implements BaseInterfaceJava {
             }
         });
     }
-  /*  private  void acaoBotaotests(){
-        jButtonTestes.addActionListener(new ActionListener() {
+    private  void acaoBotaoFinaly(){
+        jButtonFinalizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                limpatela();
-                JOptionPane.showMessageDialog(null, "teste");
+                //  acaoVender();
+                JOptionPane.showMessageDialog(null, "venda realizada ");
             }
         });
-    }*/
+    }
 
     
     private void configuarJTableBusca() {
@@ -342,7 +342,7 @@ public class Vendas implements BaseInterfaceJava {
         DefaultTableModel dtmp = (DefaultTableModel) jTablePedido.getModel();
        
         //dtmp.setRowCount(0);
-        quantidade = Float.parseFloat(JOptionPane.showInputDialog(null, "Informe a quantidade que o cliente deseja levar","informe a quantidade",JOptionPane.QUESTION_MESSAGE));
+        quantidade = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a quantidade que o cliente deseja levar","informe a quantidade",JOptionPane.QUESTION_MESSAGE));
         for (ProdutoBean produto : produtos) {
             dtmp.addRow(new Object[]{contador,
                 produto.getDescricao(),
@@ -351,11 +351,11 @@ public class Vendas implements BaseInterfaceJava {
                 quantidade * produto.getValorUnitario()
             });
         } 
-        quantidade = 0F;
+        quantidade = 0;
        contador++;
     }
 
-    private void configurarJTablePedido() {
+    private void configurarJTablePedido(){
         dtmp = new DefaultTableModel();
         dtmp.addColumn("Item");
         dtmp.addColumn("Descrição");
@@ -412,4 +412,13 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.setIconImage(imagemTitulo);
 
     }
+
+   /* private void acaoVender() {
+       for(int i = 0; i <=contador;i++){       
+          pedido = jTablePedido.getModel().getValueAt(contador, 1).toString();
+          quantidade = Integer.parseInt(jTablePedido.getModel().getValueAt(contador, 2).toString());
+          vender(quantidade, pedido);
+       }
+       pedido = "";
+    }*/
 }

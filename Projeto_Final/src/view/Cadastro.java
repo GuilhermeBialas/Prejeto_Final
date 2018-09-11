@@ -322,7 +322,7 @@ public class Cadastro implements BaseInterfaceJava {
         } else if (jRadioButtonSemiNovo.isSelected()) {
             produto.setStatusPecas("Semi Novo");
         }
-        produto.setQuantidade(Float.parseFloat(jTextFieldQuantidade.getText()));
+        produto.setQuantidade(Integer.parseInt(jTextFieldQuantidade.getText()));
         if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 0) {
             produto.setUnidadeDeMedida("Kit");
         } else if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 1) {
@@ -484,7 +484,7 @@ public class Cadastro implements BaseInterfaceJava {
             return;
         }
 
-        if (Float.parseFloat(jTextFieldQuantidade.getText()) <= 0) {
+        if (Integer.parseInt(jTextFieldQuantidade.getText()) <= 0) {
             JOptionPane.showMessageDialog(null,
                     "Quantidade deve ser no minímo uma unidade", "Cadastro",
                     JOptionPane.ERROR_MESSAGE);

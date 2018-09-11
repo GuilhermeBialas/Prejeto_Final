@@ -32,7 +32,7 @@ public class ProdutoDao {
                 preparedStatement.setString(4, produto.getLocalizacao());
                 preparedStatement.setString(5, produto.getStatusPecas());
                 preparedStatement.setString(6, produto.getUnidadeDeMedida());
-                preparedStatement.setFloat(7, produto.getQuantidade());
+                preparedStatement.setInt(7, produto.getQuantidade());
                 preparedStatement.setFloat(8, produto.getValor());
                 preparedStatement.setFloat(9, produto.getValorUnitario());
                 preparedStatement.setFloat(10, produto.getPeso());
@@ -54,7 +54,7 @@ public class ProdutoDao {
      public ProdutoBean vender(int quantidad,String descr){
         Connection conexao = Conexao.obterConexao();
         String sql = "SET SQL_SAFE_UPDATES = 0;\n" +
-        "UPDATE produtos SET quantidade = quantidade + "+quantidad+" WHERE descricao = "+descr+";";
+        "UPDATE produtos SET quantidade = quantidade - "+quantidad+" WHERE descricao = "+descr+";";
        if(conexao !=null){
         try {
             PreparedStatement ps =conexao.prepareStatement(sql);
@@ -78,7 +78,7 @@ public class ProdutoDao {
             ps.setString(2, produto.getUnidadeDeMedida());
             ps.setString(3, produto.getLocalizacao());
             ps.setFloat(4, produto.getValorUnitario());
-            ps.setFloat(5, produto.getQuantidade());
+            ps.setInt(5, produto.getQuantidade());
             ps.setFloat(6, produto.getValor());
             return ps.executeUpdate() == 1;
         } catch (Exception e) {
@@ -104,7 +104,7 @@ public class ProdutoDao {
                     produto.setAplicacao(resultSet.getString("aplicacao"));
                     produto.setValor(resultSet.getFloat("valor"));
                     produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
-                    produto.setQuantidade(resultSet.getFloat("quantidade"));
+                    produto.setQuantidade(resultSet.getInt("quantidade"));
                     produto.setPeso(resultSet.getFloat("peso"));
                     return produto;
                 }
@@ -134,7 +134,7 @@ public class ProdutoDao {
                     produto.setLocalizacao(resultSet.getString("localizacao"));
                     produto.setAplicacao(resultSet.getString("aplicacao"));
                     produto.setDescricao(resultSet.getString("descricao"));
-                    produto.setQuantidade(resultSet.getFloat("quantidade"));
+                    produto.setQuantidade(resultSet.getInt("quantidade"));
                     produto.setValor(resultSet.getFloat("valor"));
                     produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
                     
@@ -170,7 +170,7 @@ public class ProdutoDao {
                     produto.setLocalizacao(resultSet.getString("localizacao"));
                     produto.setAplicacao(resultSet.getString("aplicacao"));
                     produto.setDescricao(resultSet.getString("descricao"));
-                    produto.setQuantidade(resultSet.getFloat("quantidade"));
+                    produto.setQuantidade(resultSet.getInt("quantidade"));
                     produto.setValor(resultSet.getFloat("valor"));
                     produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
                     
