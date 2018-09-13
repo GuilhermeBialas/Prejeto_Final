@@ -105,11 +105,11 @@ public class Estoque extends javax.swing.JFrame {
 
             },
             new String [] {
-                "número", "Categoria", "Quantidade", "valor Unitário", "Status", "Peso", "Localização"
+                "número", "Produto", "Categoria", "Quantidade", "valor Unitário", "Status", "Título 7", "Título 8"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, true, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -120,17 +120,15 @@ public class Estoque extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancel.png"))); // NOI18N
         jButton1.setText("Sair");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 51, 51), null, null));
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(0, null, new java.awt.Color(0, 51, 51), null, null));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -265,6 +263,7 @@ public class Estoque extends javax.swing.JFrame {
         for (ProdutoBean produto : produtos) {
             dtm.addRow(new Object[]{
                 produto.getId(),
+                produto.getDescricao(),
                 produto.getCategoria(),
                 produto.getQuantidade(),
                 produto.getValorUnitario(),

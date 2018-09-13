@@ -70,7 +70,8 @@ public class Vendas implements BaseInterfaceJava {
         acaoBotaoIncluir();
         acaoJtextFieldDescricao();
         acaoJtextFieldId();
-        //acaoVender();
+        acaoBotaoFinaly();
+        acaoVender();
         acaoPopularTabelaCampoVazio();
         jFrameVendas.setVisible(true);
     }
@@ -323,8 +324,8 @@ public class Vendas implements BaseInterfaceJava {
         jButtonFinalizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //  acaoVender();
-                JOptionPane.showMessageDialog(null, "venda realizada ");
+                acaoVender();
+                JOptionPane.showMessageDialog(null, "venda realizada com sucesso. ");
             }
         });
     }
@@ -413,12 +414,14 @@ public class Vendas implements BaseInterfaceJava {
 
     }
 
-   /* private void acaoVender() {
-       for(int i = 0; i <=contador;i++){       
-          pedido = jTablePedido.getModel().getValueAt(contador, 1).toString();
-          quantidade = Integer.parseInt(jTablePedido.getModel().getValueAt(contador, 2).toString());
-          vender(quantidade, pedido);
+    private void acaoVender() {
+        //contador++;
+       for(int i = 0; i <contador;i++){       
+          pedido = jTablePedido.getModel().getValueAt(i, 1).toString();
+          quantidade = Integer.parseInt(jTablePedido.getModel().getValueAt(i, 2).toString());
+          new  ProdutoDao().vender(quantidade, pedido);
+         
        }
        pedido = "";
-    }*/
+    }
 }

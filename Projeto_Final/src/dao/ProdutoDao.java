@@ -5,6 +5,7 @@ import database.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,22 +52,41 @@ public class ProdutoDao {
         }
         return 0;
     }
-     public ProdutoBean vender(int quantidad,String descr){
+    public boolean  vender(int quantidade, String descricao){
         Connection conexao = Conexao.obterConexao();
-        String sql = "SET SQL_SAFE_UPDATES = 0;\n" +
-        "UPDATE produtos SET quantidade = quantidade - "+quantidad+" WHERE descricao = "+descr+";";
+        String sql = "UPDATE produtos SET quantidade = quantidade - ? WHERE descricao = ?;";
+        if (conexao !=null){
+            try{
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setInt(1, quantidade);
+                ps.setString(2, descricao);
+                return ps.executeUpdate() == 1;
+            }catch (SQLException e){
+                e.printStackTrace();
+            }finally{
+                Conexao.fecharConexao();
+            }
+        }
+        return false;
+    }
+    /* public boolean vender(int quantidade,String descricao){
+        Connection conexao = Conexao.obterConexao();
+        String sql = "SET SQL_SAFE_UPDATES = 0; UPDATE produtos SET quantidade = quantidade - ? WHERE descricao = ?;";
        if(conexao !=null){
         try {
             PreparedStatement ps =conexao.prepareStatement(sql);
-            ps.execute();
-        } catch (Exception e) {
+             ps.setInt(1, quantidade);
+             ps.setString(2, descricao);
+            
+            return ps.executeUpdate() == 1;
+            } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Conexao.fecharConexao();
         }
        }
-      return null;
-    }
+      return false;
+    }*/
 
     public boolean alterar(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
