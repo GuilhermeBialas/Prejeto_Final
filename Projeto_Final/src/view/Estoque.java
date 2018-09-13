@@ -105,11 +105,11 @@ public class Estoque extends javax.swing.JFrame {
 
             },
             new String [] {
-                "número", "Produto", "Categoria", "Quantidade", "valor Unitário", "Status", "Título 7", "Título 8"
+                "número", "Produto", "Categoria", "Quantidade", "valor Unitário", "Status", "Peso", "Localização"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, true, true
+                false, true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -124,6 +124,8 @@ public class Estoque extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancel.png"))); // NOI18N

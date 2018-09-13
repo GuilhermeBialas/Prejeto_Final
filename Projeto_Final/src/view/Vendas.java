@@ -423,5 +423,6 @@ public class Vendas implements BaseInterfaceJava {
          
        }
        pedido = "";
+       acaoPopularTabelaCampoVazio();
     }
 }
