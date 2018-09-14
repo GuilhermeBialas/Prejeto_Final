@@ -168,7 +168,7 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Em andamento");
+                new CadastroCliente().setVisible(true);
             }
         });
     }
