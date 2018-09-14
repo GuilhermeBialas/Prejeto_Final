@@ -42,18 +42,12 @@ email varchar(50)
 CREATE table funcionarios(
 nome VARCHAR(50),
 cpf VARCHAR(20),
-idade int,
 cep VARCHAR(50),
 bairro varchar(50),
 endereco varchar(50),
 cidade  varchar(50),
-longradouro varchar(50),
-numero int,
 email VARCHAR(50)
 );
-
-
-
 
 
 
