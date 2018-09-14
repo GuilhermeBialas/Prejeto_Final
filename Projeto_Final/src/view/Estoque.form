@@ -233,8 +233,8 @@
                 <Column editable="false" title="Quantidade" type="java.lang.Object"/>
                 <Column editable="false" title="valor Unit&#xe1;rio" type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
-                <Column editable="true" title="T&#xed;tulo 7" type="java.lang.Object"/>
-                <Column editable="true" title="T&#xed;tulo 8" type="java.lang.Object"/>
+                <Column editable="false" title="Peso" type="java.lang.Object"/>
+                <Column editable="false" title="Localiza&#xe7;&#xe3;o" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -269,12 +269,12 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
