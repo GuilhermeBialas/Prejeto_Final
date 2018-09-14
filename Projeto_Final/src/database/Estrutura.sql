@@ -23,12 +23,19 @@ insert into produtos(categoria, quantidade, valor, descricao, aplicacao, unidade
 ('parachoque',5,5000,'parachoque para fiesta','parachoque para fiesta/2005','kit','São Paulo',2000,'semi novo',600),
 ('Acessorios',8,12000,'rodas Unique','rodas originais do Nissan New Versa Unique','Peça','Santa Catarina',400,'Semi-novo',5);
 
+
+
 CREATE TABLE clientes(
 
 nome VARCHAR(100),
 telefone VARCHAR(15),
-cef_cnpj VARCHAR(25),
-localizacao VARCHAR(50),
+cpf_cnpj VARCHAR(25),
+cep      varchar(25),
+bairro   varchar(25),
+endereco varchar(50),
+cidade   Varchar(50),
+numero   INT,
+logradouro varchar(50),
 email varchar(50)
 );
 
@@ -36,9 +43,15 @@ CREATE table funcionarios(
 nome VARCHAR(50),
 cpf VARCHAR(20),
 idade int,
-localizacao VARCHAR(50),
+cep VARCHAR(50),
+bairro varchar(50),
+endereco varchar(50),
+cidade  varchar(50),
+longradouro varchar(50),
+numero int,
 email VARCHAR(50)
 );
+
 
 
 

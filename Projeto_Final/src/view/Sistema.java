@@ -19,6 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
@@ -27,9 +29,12 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
  * @date 2018-08-27
  */
 public class Sistema implements BaseInterfaceJava {
+
     //construtor da clase
+
     public Sistema() {
         gerarTela();
+        ConfigurandoLookAndFeel();
         trocaIcone();
         instanciarComponentes();
         adicionarComponentes();
@@ -73,8 +78,8 @@ public class Sistema implements BaseInterfaceJava {
         jButtonEstoque.setLocation(120, 10);
         jButtonVenda.setLocation(240, 10);
         jButtonSair.setLocation(360, 10);
-        jButtonCadastroCliente.setLocation(480,10);
-        jButtonCadastroFuncionario.setLocation(600,10);
+        jButtonCadastroCliente.setLocation(480, 10);
+        jButtonCadastroFuncionario.setLocation(600, 10);
     }
 
     @Override
@@ -83,16 +88,18 @@ public class Sistema implements BaseInterfaceJava {
         jButtonEstoque.setSize(100, 50);
         jButtonSair.setSize(100, 50);
         jButtonVenda.setSize(100, 50);
-        jButtonCadastroFuncionario.setSize(100,50);
-        jButtonCadastroCliente.setSize(100,50);
-       
+        jButtonCadastroFuncionario.setSize(100, 50);
+        jButtonCadastroCliente.setSize(100, 50);
+
     }
-        //troca o icone padrao
+
+    //troca o icone padrao
+
     private void trocaIcone() {
         URL url = this.getClass().getResource("/icones/Air-filter.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         jFrameSistema.setIconImage(imagemTitulo);
-       // jButtonCadastro.setIcon(new ImageIcon("/icones/add_item.png"));
+        // jButtonCadastro.setIcon(new ImageIcon("/icones/add_item.png"));
     }
 
     private void acaoBotaoCadastro() {
@@ -100,7 +107,7 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              new Cadastro();
+                new Cadastro();
             }
         });
     }
@@ -120,8 +127,7 @@ public class Sistema implements BaseInterfaceJava {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               new Vendas();
-               
+                new Vendas();
 
             }
         });
@@ -146,23 +152,51 @@ public class Sistema implements BaseInterfaceJava {
         jFrameSistema.add(jButtonCadastroCliente);
         jFrameSistema.add(jButtonCadastroFuncionario);
     }
-     private void acaoBotaoCadastroFuncionario(){
-         jButtonCadastroFuncionario.addActionListener(new ActionListener() {
+
+    private void acaoBotaoCadastroFuncionario() {
+        jButtonCadastroFuncionario.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Em andamento");
             }
         });
+    }
+
+    private void acaoBotaoCadastroCliente() {
+        jButtonCadastroCliente.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em andamento");
+            }
+        });
+    }
+
+    /*public static void ConfigurandoLookAndFeel() {
+     try {
+     for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+     if ("Nimbus".equals(info.getName())) {
+     UIManager.setLookAndFeel(info.getClassName());
+     break;
      }
+     }
+     } catch (UnsupportedLookAndFeelException e) {
 
-  private void acaoBotaoCadastroCliente(){
-      jButtonCadastroCliente.addActionListener(new ActionListener() {
+     } catch (ClassNotFoundException e) {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Em andamento");
-            }
-        });
-  }
+     } catch (InstantiationException e) {
+            
+     } catch (IllegalAccessException e) {
+            
+     }
+     }*/
+    public void ConfigurandoLookAndFeel() {
+        try {
+            javax.swing.UIManager.setLookAndFeel(
+                    "com.jtattoo.plaf.texture.TextureLookAndFeel");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

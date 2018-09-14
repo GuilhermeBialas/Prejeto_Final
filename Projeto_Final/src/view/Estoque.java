@@ -129,9 +129,7 @@ public class Estoque extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cancel.png"))); // NOI18N
         jButton1.setText("Sair");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(0, null, new java.awt.Color(0, 51, 51), null, null));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
