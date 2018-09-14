@@ -39,11 +39,13 @@ public class Sistema implements BaseInterfaceJava {
         acaoBotaoEstoque();
         acaoBotaoVenda();
         acaoBotaoSair();
+        acaoBotaoCadastroFuncionario();
+        acaoBotaoCadastroCliente();
         jFrameSistema.setVisible(true);
     }
 
     private JFrame jFrameSistema;
-    private JButton jButtonCadastro, jButtonEstoque, jButtonVenda, jButtonSair;
+    private JButton jButtonCadastro, jButtonEstoque, jButtonVenda, jButtonSair, jButtonCadastroCliente, jButtonCadastroFuncionario;
 
     @Override
     public void instanciarComponentes() {
@@ -51,11 +53,13 @@ public class Sistema implements BaseInterfaceJava {
         jButtonEstoque = new JButton("Estoque");
         jButtonVenda = new JButton("Venda");
         jButtonSair = new JButton("Sair");
+        jButtonCadastroCliente = new JButton("Cliente");
+        jButtonCadastroFuncionario = new JButton("Funcionario");
     }
 
     @Override
     public void gerarTela() {
-        jFrameSistema = new JFrame("Auto System");
+        jFrameSistema = new JFrame("CGLM System");
         jFrameSistema.setSize(800, 600);
         jFrameSistema.setLocationRelativeTo(null);
         jFrameSistema.setLayout(null);
@@ -69,6 +73,8 @@ public class Sistema implements BaseInterfaceJava {
         jButtonEstoque.setLocation(120, 10);
         jButtonVenda.setLocation(240, 10);
         jButtonSair.setLocation(360, 10);
+        jButtonCadastroCliente.setLocation(480,10);
+        jButtonCadastroFuncionario.setLocation(600,10);
     }
 
     @Override
@@ -77,6 +83,8 @@ public class Sistema implements BaseInterfaceJava {
         jButtonEstoque.setSize(100, 50);
         jButtonSair.setSize(100, 50);
         jButtonVenda.setSize(100, 50);
+        jButtonCadastroFuncionario.setSize(100,50);
+        jButtonCadastroCliente.setSize(100,50);
        
     }
         //troca o icone padrao
@@ -135,6 +143,26 @@ public class Sistema implements BaseInterfaceJava {
         jFrameSistema.add(jButtonEstoque);
         jFrameSistema.add(jButtonVenda);
         jFrameSistema.add(jButtonSair);
+        jFrameSistema.add(jButtonCadastroCliente);
+        jFrameSistema.add(jButtonCadastroFuncionario);
     }
+     private void acaoBotaoCadastroFuncionario(){
+         jButtonCadastroFuncionario.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em andamento");
+            }
+        });
+     }
+
+  private void acaoBotaoCadastroCliente(){
+      jButtonCadastroCliente.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em andamento");
+            }
+        });
+  }
 }
