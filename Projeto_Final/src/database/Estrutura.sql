@@ -35,13 +35,15 @@ bairro   varchar(25),
 endereco varchar(50),
 cidade   Varchar(50),
 numero   INT,
-logradouro varchar(50),
 email varchar(50)
 );
+  insert into clientes(nome,telefone,cpf_cnpj,cep,bairro,endereco,cidade,numero,email)values
+('Guilherme','30303-3232','123.456.825-10','12345-123','Fortaleza','Rua da Goiaba','Blumenau',85,'gui@gmail.com'),
+('Francico','13131-1313','123.123.123-12','12345-123','Escola Agricola','Rua do mamão','Blumenau',69,'fracisco@gmail.com');
 
 CREATE table funcionarios(
 nome VARCHAR(50),
-cpf VARCHAR(20),
+cpf VARCHAR(50),
 cep VARCHAR(50),
 bairro varchar(50),
 endereco varchar(50),
@@ -49,7 +51,8 @@ cidade  varchar(50),
 email VARCHAR(50)
 );
 
-
+ insert into funcionarios(nome,cpf,cep,bairro,endereco,cidade,email)values
+('FrancisGod','123.123.123-12','12345-123','Escola Agricola','Rua das uvas','Blumenau','fracisGod@gmai.com');
 
 
 
