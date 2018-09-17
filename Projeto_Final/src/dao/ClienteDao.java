@@ -11,7 +11,7 @@ import bean.ProdutoBean;
  *
  * @author Marcio Pedro Schiehl
  */
-public class ClienteDao {
+/*public class ClienteDao {
     public void obterNome(){
         
     }
@@ -28,4 +28,4 @@ public class ClienteDao {
         
     }
     
-}
+}*/
