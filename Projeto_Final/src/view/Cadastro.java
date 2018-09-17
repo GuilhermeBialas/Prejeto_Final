@@ -318,9 +318,9 @@ public class Cadastro implements BaseInterfaceJava {
         ProdutoBean produto = new ProdutoBean();
         produto.setDescricao(jTextFieldDescricao.getText());
         if (jRadioButtonNovo.isSelected()) {
-            produto.setStatusPecas("Novo");
+            produto.setStatusPecas("novo");
         } else if (jRadioButtonSemiNovo.isSelected()) {
-            produto.setStatusPecas("Semi Novo");
+            produto.setStatusPecas("semi Novo");
         }
         produto.setQuantidade(Integer.parseInt(jTextFieldQuantidade.getText()));
         if (jComboBoxUnidadeDeMedida.getSelectedIndex() == 0) {

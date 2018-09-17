@@ -51,7 +51,7 @@ public class Vendas implements BaseInterfaceJava {
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
     private JComboBox jComboBoxCategoriaC;
-    String pedido = "";
+    String pedido = "",busca ="";
     int contador = 0;
     int quantidade = 0;
 
@@ -76,25 +76,10 @@ public class Vendas implements BaseInterfaceJava {
         acaoVender();
         acaoPopularTabelaCampoVazio();
         acaoChecBoxStatus();
+        acaoComboBoxCategoria();
         jFrameVendas.setVisible(true);
 
-        jRadioButtonNovo.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    System.out.println("NOVO");
-                }
-            }
-        });
-
-        jRadioButtonSemiNovo.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    System.out.println("SEMINOVO");
-                }
-            }
-        });
+        
     }
 
     @Override
@@ -105,6 +90,7 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.setLocationRelativeTo(null);
         jFrameVendas.setResizable(false);
         jFrameVendas.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       
     }
 
     @Override
@@ -202,7 +188,9 @@ public class Vendas implements BaseInterfaceJava {
         //    jLabelQuantidade = new JLabel("Quantidade");
 
         jTextFieldId = new JTextField();
+        jTextFieldId.setToolTipText("Digite o Codigo e presione a Tecla enter de seu teclado");
         jTextFieldDescricao = new JTextField();
+        jTextFieldDescricao.setToolTipText("Informe o nome para pesquisa");
         //    jTextFieldQuantidade = new JTextField();
 
         jRadioButtonNovo = new JRadioButton();
@@ -298,7 +286,7 @@ public class Vendas implements BaseInterfaceJava {
                     for (ProdutoBean produto : produtos) {
                         dtm.addRow(new Object[]{
                             produto.getDescricao(),
-                            quantidade,
+                            produto.getQuantidade(),
                             produto.getValorUnitario()
                         });
                     }
@@ -319,29 +307,25 @@ public class Vendas implements BaseInterfaceJava {
     }
 
     private void acaoJtextFieldId() {
-        jLabelID.addKeyListener(new KeyListener() {
+        jTextFieldId.addActionListener(new ActionListener() {
             @Override
-            public void keyTyped(KeyEvent ke) {
-                if (jTextFieldId.getText().length() > 0) {
-                    JOptionPane.showMessageDialog(null, "teste");
-                    /*int codigo = Integer.parseInt(jTextFieldId.getText().toString());
-               ProdutoBean produto = new ProdutoDao().obterProdutoPeloId(codigo);
-               jTextFieldDescricao.setText(produto.getDescricao());*/
-                }
-            }
+            public void actionPerformed(ActionEvent ae) {
+              List<ProdutoBean> produtos = new ProdutoDao().buscarPorId(Integer.parseInt(jTextFieldId.getText().trim()));
+              DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();  
+              dtm.setRowCount(0);
 
-            @Override
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent ke) {
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }
 
             }
         });
     }
-
+         
     private void acaoBotaoFinaly() {
         jButtonFinalizar.addActionListener(new ActionListener() {
             @Override
@@ -387,6 +371,35 @@ public class Vendas implements BaseInterfaceJava {
         dtmp.addColumn("Valor Total");
         jTablePedido.setModel(dtmp);
     }
+    
+    private void acaoComboBoxCategoria(){
+        
+        jComboBoxCategoriaC.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                // 
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    //pegando o texto do item selecionado
+                    busca = e.getItem().toString();
+                 }
+                List<ProdutoBean> produtos = new ProdutoDao().obterProdutoCategoria(busca);
+                    DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+                    dtm.setRowCount(0);
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }   
+             
+            }
+        });        
+    }
+
+
+
 
     private void comboBoxConfigura() {
 
@@ -394,7 +407,7 @@ public class Vendas implements BaseInterfaceJava {
             "Injeção e carburador", "Motor", "Polias e Tensores", "Retentor e Junta",
             "Suspenção e Freio", "Correias e Corente de Comando"}));
         jComboBoxCategoriaC.setSelectedIndex(-1);
-        jComboBoxCategoriaC.setToolTipText("Categoria");
+        jComboBoxCategoriaC.setToolTipText("Escolha uma Opção");
 
     }
 
@@ -450,47 +463,50 @@ public class Vendas implements BaseInterfaceJava {
     }
 
     private void acaoChecBoxStatus() {
-        /*if(jRadioButtonNovo.isEnabled()){
-         List<ProdutoBean> produtos = new ProdutoDao().obterProdutoStatus("novo");
-        DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
-       
-        dtm.setRowCount(0);
-        
-        for (ProdutoBean produto : produtos) {
-            dtm.addRow(new Object[]{
-                produto.getDescricao(),
-                produto.getQuantidade(),
-                produto.getValorUnitario()
-            });
-        }
-     }*/
-        jRadioButtonNovo.addKeyListener(new KeyListener() {
+        jRadioButtonNovo.addItemListener(new ItemListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoStatus("novo");
+                    DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
 
-            }
+                    dtm.setRowCount(0);
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                List<ProdutoBean> produtos = new ProdutoDao().obterProdutoStatus("novo");
-                DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }
 
-                dtm.setRowCount(0);
-
-                for (ProdutoBean produto : produtos) {
-                    dtm.addRow(new Object[]{
-                        produto.getDescricao(),
-                        produto.getQuantidade(),
-                        produto.getValorUnitario()
-                    });
+                
                 }
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
             }
         });
+
+        jRadioButtonSemiNovo.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoStatus("semi-novo");
+                    DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+
+                    dtm.setRowCount(0);
+
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }
+
+                
+                }
+            }
+        });
+                
     }
-}
+        }
+                

@@ -77,9 +77,9 @@ public class Sistema implements BaseInterfaceJava {
         jButtonCadastro.setLocation(10, 10);
         jButtonEstoque.setLocation(120, 10);
         jButtonVenda.setLocation(240, 10);
-        jButtonSair.setLocation(360, 10);
+        jButtonSair.setLocation(600, 10);
         jButtonCadastroCliente.setLocation(480, 10);
-        jButtonCadastroFuncionario.setLocation(600, 10);
+        jButtonCadastroFuncionario.setLocation(360, 10);
     }
 
     @Override

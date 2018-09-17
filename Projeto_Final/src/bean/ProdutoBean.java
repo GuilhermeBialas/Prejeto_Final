@@ -8,7 +8,7 @@ public class ProdutoBean {
     
     private String categoria, descricao, aplicacao, unidadeDeMedida , localizacao, statusPecas;
     private float  valor, valorUnitario, peso; 
-    private int quantidade;
+    private int quantidade,id;
 
     public float getPeso() {
         return peso;
@@ -17,7 +17,6 @@ public class ProdutoBean {
     public void setPeso(float peso) {
         this.peso = peso;
     }
-    private int id;
 
     public int getId() {
         return id;
