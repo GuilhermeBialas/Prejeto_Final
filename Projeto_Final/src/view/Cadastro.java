@@ -27,6 +27,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 /**
  *
  * @author Guilherme Bialas(guilhermebialas31@gmail.com)
+ * @author Guilherme Bialas(guilhermebialas31@gmail.com)
  * @author Marcio Pedro Schiehl(mpschiehl@outlook.com)
  * @date 2018-08-27
  */
