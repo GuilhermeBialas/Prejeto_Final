@@ -109,24 +109,29 @@ public class ProdutoDao {
         return false;
     }
 
-    public ProdutoBean obterProdutoPeloId(int id) {
-        String sql = "SELECT id, aplicacao, valor, valor_unitario, quantidade , peso";
+        public List<ProdutoBean> buscarPorId(int id) {
+       List<ProdutoBean> produtos = new ArrayList<>();
         Connection conexao = Conexao.obterConexao();
         if (conexao != null) {
+            String sql = "SELECT * FROM produtos WHERE id=" + id+";";
             try {
-                PreparedStatement ps = conexao.prepareStatement(sql);
-                ps.setInt(1, id);
-                ps.execute();
-                ResultSet resultSet = ps.getResultSet();
-                if (resultSet.next()) {
+                Statement statement = conexao.createStatement();
+                statement.execute(sql);
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()) {
                     ProdutoBean produto = new ProdutoBean();
                     produto.setId(resultSet.getInt("id"));
+                    produto.setCategoria(resultSet.getString("categoria"));
+                    produto.setStatusPecas(resultSet.getString("status_peca"));
+                    produto.setPeso(resultSet.getFloat("peso"));
+                    produto.setLocalizacao(resultSet.getString("localizacao"));
                     produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQuantidade(resultSet.getInt("quantidade"));
                     produto.setValor(resultSet.getFloat("valor"));
                     produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
-                    produto.setQuantidade(resultSet.getInt("quantidade"));
-                    produto.setPeso(resultSet.getFloat("peso"));
-                    return produto;
+                    
+                    produtos.add(produto);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -134,8 +139,11 @@ public class ProdutoDao {
                 Conexao.fecharConexao();
             }
         }
-        return null;
+
+       return produtos;
     }
+    
+
     public List<ProdutoBean> obterProdutoBusca(String nome){
         List<ProdutoBean> produtos = new ArrayList<>();
         Connection conexao = Conexao.obterConexao();
@@ -204,6 +212,75 @@ public class ProdutoDao {
         }
 
        return produtos;
+    }
+    public List<ProdutoBean> obterProdutoStatus(String status){
+        List<ProdutoBean> produtos = new ArrayList<>();
+        Connection conexao = Conexao.obterConexao();
+        if (conexao != null) {
+            String sql = "SELECT * FROM produtos WHERE status_peca = '" + status +"';";
+            try {
+                Statement statement = conexao.createStatement();
+                statement.execute(sql);
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()) {
+                    ProdutoBean produto = new ProdutoBean();
+                    produto.setId(resultSet.getInt("id"));
+                    produto.setCategoria(resultSet.getString("categoria"));
+                    produto.setStatusPecas(resultSet.getString("status_peca"));
+                    produto.setPeso(resultSet.getFloat("peso"));
+                    produto.setLocalizacao(resultSet.getString("localizacao"));
+                    produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQuantidade(resultSet.getInt("quantidade"));
+                    produto.setValor(resultSet.getFloat("valor"));
+                    produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
+                    
+                    produtos.add(produto);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                Conexao.fecharConexao();
+            }
+        }
+
+       return produtos;
+   
+    }
+
+    public List<ProdutoBean> obterProdutoCategoria(String categoria){
+        List<ProdutoBean> produtos = new ArrayList<>();
+        Connection conexao = Conexao.obterConexao();
+        if (conexao != null) {
+            String sql = "SELECT * FROM produtos WHERE categoria = '" + categoria +"';";
+            try {
+                Statement statement = conexao.createStatement();
+                statement.execute(sql);
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()) {
+                    ProdutoBean produto = new ProdutoBean();
+                    produto.setId(resultSet.getInt("id"));
+                    produto.setCategoria(resultSet.getString("categoria"));
+                    produto.setStatusPecas(resultSet.getString("status_peca"));
+                    produto.setPeso(resultSet.getFloat("peso"));
+                    produto.setLocalizacao(resultSet.getString("localizacao"));
+                    produto.setAplicacao(resultSet.getString("aplicacao"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQuantidade(resultSet.getInt("quantidade"));
+                    produto.setValor(resultSet.getFloat("valor"));
+                    produto.setValorUnitario(resultSet.getFloat("valor_unitario"));
+                    
+                    produtos.add(produto);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                Conexao.fecharConexao();
+            }
+        }
+
+       return produtos;
+   
     }
 
 }
