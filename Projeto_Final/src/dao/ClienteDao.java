@@ -19,15 +19,12 @@ import java.util.List;
  *
  * @author Marcio Pedro Schiehl
  */
-<<<<<<< HEAD
-/*public class ClienteDao {
-    public void obterNome(){
-        
-    }
-=======
+
+/*
+*/
 public class ClienteDao {
-    
-    public List<ClienteBean> obterNome(){
+   
+     public List<ClienteBean> obterNome(){
      List<ClienteBean> clientes = new ArrayList<>();
      Connection conexao = Conexao.obterConexao();
      if(conexao != null)       {
@@ -52,7 +49,7 @@ public class ClienteDao {
             
        
     }/*
->>>>>>> 04ee1aea9e53899730fce6a8de237451be9c099e
+
     public int inserir(ProdutoBean cliente){
         
     }
@@ -66,4 +63,4 @@ public class ClienteDao {
         
     }*/
     
-}*/
+}
