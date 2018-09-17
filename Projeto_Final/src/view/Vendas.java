@@ -6,7 +6,9 @@
 package view;
 
 import Interface.BaseInterfaceJava;
+import bean.ClienteBean;
 import bean.ProdutoBean;
+import dao.ClienteDao;
 import dao.ProdutoDao;
 import java.awt.Color;
 import java.awt.Image;
@@ -42,16 +44,16 @@ import javax.swing.table.DefaultTableModel;
 public class Vendas implements BaseInterfaceJava {
 
     private JFrame jFrameVendas;
-    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo, jLabelDescricao;// jLabelQuantidade;
+    private JLabel jLabelID, jLabelStatus, jLabelCategoria, jLabelNovo, jLabelSemiNovo, jLabelDescricao,jLabelCliente;
     private JTextField jTextFieldId, jTextFieldDescricao;//jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private ButtonGroup jradioButtonGroup;
-    private JButton jButtonSair, jButtonIncuir, jButtonFinalizar,jButtonLimpar;
+    private JButton jButtonSair, jButtonIncuir, jButtonFinalizar, jButtonLimpar;
     private DefaultTableModel dtm, dtmp;
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
-    private JComboBox jComboBoxCategoriaC;
-    String pedido = "",busca ="";
+    private JComboBox jComboBoxCategoriaC, jComboBoxCliente;
+    String pedido = "", busca = "";
     int contador = 0;
     int quantidade = 0;
 
@@ -80,7 +82,6 @@ public class Vendas implements BaseInterfaceJava {
         acaoBotaoLimpar();
         jFrameVendas.setVisible(true);
 
-        
     }
 
     @Override
@@ -91,7 +92,7 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.setLocationRelativeTo(null);
         jFrameVendas.setResizable(false);
         jFrameVendas.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       
+
     }
 
     @Override
@@ -103,7 +104,7 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.add(jLabelNovo);
         jFrameVendas.add(jLabelSemiNovo);
         jFrameVendas.add(jLabelDescricao);
-//        jFrameVendas.add(jLabelQuantidade);
+        jFrameVendas.add(jLabelCliente);
         //JTextField's do Projeto
         jFrameVendas.add(jTextFieldId);
         jFrameVendas.add(jTextFieldDescricao);
@@ -121,6 +122,7 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.add(jScrollPanePedido);
         //JComboBox's
         jFrameVendas.add(jComboBoxCategoriaC);
+        jFrameVendas.add(jComboBoxCliente);
     }
 
     @Override
@@ -132,7 +134,7 @@ public class Vendas implements BaseInterfaceJava {
         jLabelNovo.setLocation(180, 10);
         jLabelSemiNovo.setLocation(180, 40);
         jLabelDescricao.setLocation(500, 10);
-        //    jLabelQuantidade.setLocation(10, 40);
+        jLabelCliente.setLocation(500, 80);
         //JTextiField's
         jTextFieldId.setLocation(60, 10);
         jTextFieldDescricao.setLocation(550, 10);
@@ -144,13 +146,14 @@ public class Vendas implements BaseInterfaceJava {
         jButtonSair.setLocation(680, 530);
         jButtonIncuir.setLocation(10, 530);
         jButtonFinalizar.setLocation(560, 530);
-        jButtonLimpar.setLocation(680,32);
-        
+        jButtonLimpar.setLocation(680, 32);
+
         //Jtable's
-        jScrollPaneBuscador.setLocation(10, 70);
-        jScrollPanePedido.setLocation(410, 70);
+        jScrollPaneBuscador.setLocation(10, 110);
+        jScrollPanePedido.setLocation(420, 110);
         //JComboBox's
         jComboBoxCategoriaC.setLocation(300, 10);
+        jComboBoxCliente.setLocation(550, 80);
     }
 
     @Override
@@ -161,6 +164,7 @@ public class Vendas implements BaseInterfaceJava {
         jLabelNovo.setSize(100, 20);
         jLabelSemiNovo.setSize(100, 20);
         jLabelDescricao.setSize(45, 20);
+        jLabelCliente.setSize(70,20);
         //    jLabelQuantidade.setSize(70, 20);
 
         jTextFieldId.setSize(50, 20);
@@ -173,12 +177,13 @@ public class Vendas implements BaseInterfaceJava {
         jButtonSair.setSize(100, 35);
         jButtonIncuir.setSize(100, 35);
         jButtonFinalizar.setSize(100, 35);
-        jButtonLimpar.setSize(100,35);
+        jButtonLimpar.setSize(100, 35);
 
         jScrollPaneBuscador.setSize(360, 360);
         jScrollPanePedido.setSize(360, 360);
 
         jComboBoxCategoriaC.setSize(192, 20);
+        jComboBoxCliente.setSize(230, 20);
 
     }
 
@@ -190,7 +195,7 @@ public class Vendas implements BaseInterfaceJava {
         jLabelSemiNovo = new JLabel("Semi Novo");
         jLabelNovo = new JLabel("Novo");
         jLabelDescricao = new JLabel("Produto");
-        //    jLabelQuantidade = new JLabel("Quantidade");
+        jLabelCliente = new JLabel("Cliente");
 
         jTextFieldId = new JTextField();
         jTextFieldId.setToolTipText("Digite o Codigo e presione a Tecla enter de seu teclado");
@@ -214,6 +219,7 @@ public class Vendas implements BaseInterfaceJava {
         jScrollPanePedido = new JScrollPane(jTablePedido);
 
         jComboBoxCategoriaC = new JComboBox();
+        jComboBoxCliente = new JComboBox();
     }
 
     private void radionGroup() {
@@ -312,22 +318,22 @@ public class Vendas implements BaseInterfaceJava {
         jTextFieldId.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-              List<ProdutoBean> produtos = new ProdutoDao().buscarPorId(Integer.parseInt(jTextFieldId.getText().trim()));
-              DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();  
-              dtm.setRowCount(0);
+                List<ProdutoBean> produtos = new ProdutoDao().buscarPorId(Integer.parseInt(jTextFieldId.getText().trim()));
+                DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+                dtm.setRowCount(0);
 
-                    for (ProdutoBean produto : produtos) {
-                        dtm.addRow(new Object[]{
-                            produto.getDescricao(),
-                            produto.getQuantidade(),
-                            produto.getValorUnitario()
-                        });
-                    }
+                for (ProdutoBean produto : produtos) {
+                    dtm.addRow(new Object[]{
+                        produto.getDescricao(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario()
+                    });
+                }
 
             }
         });
     }
-         
+
     private void acaoBotaoFinaly() {
         jButtonFinalizar.addActionListener(new ActionListener() {
             @Override
@@ -373,9 +379,9 @@ public class Vendas implements BaseInterfaceJava {
         dtmp.addColumn("Valor Total");
         jTablePedido.setModel(dtmp);
     }
-    
-    private void acaoComboBoxCategoria(){
-        
+
+    private void acaoComboBoxCategoria() {
+
         jComboBoxCategoriaC.addItemListener(new ItemListener() {
 
             @Override
@@ -384,24 +390,21 @@ public class Vendas implements BaseInterfaceJava {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     //pegando o texto do item selecionado
                     busca = e.getItem().toString();
-                 }
+                }
                 List<ProdutoBean> produtos = new ProdutoDao().obterProdutoCategoria(busca);
-                    DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
-                    dtm.setRowCount(0);
-                    for (ProdutoBean produto : produtos) {
-                        dtm.addRow(new Object[]{
-                            produto.getDescricao(),
-                            produto.getQuantidade(),
-                            produto.getValorUnitario()
-                        });
-                    }   
-             
+                DefaultTableModel dtm = (DefaultTableModel) jTableBusca.getModel();
+                dtm.setRowCount(0);
+                for (ProdutoBean produto : produtos) {
+                    dtm.addRow(new Object[]{
+                        produto.getDescricao(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario()
+                    });
+                }
+
             }
-        });        
+        });
     }
-
-
-
 
     private void comboBoxConfigura() {
 
@@ -411,6 +414,15 @@ public class Vendas implements BaseInterfaceJava {
         jComboBoxCategoriaC.setSelectedIndex(-1);
         jComboBoxCategoriaC.setToolTipText("Escolha uma Opção");
 
+        jComboBoxCliente.setToolTipText("Escolha uma Opção");
+        List<ClienteBean> cliente = new ClienteDao().obterNome();
+        DefaultComboBoxModel<ClienteBean> defaultComboBox = (DefaultComboBoxModel<ClienteBean>) 
+                jComboBoxCliente.getModel();
+        
+        for (ClienteBean clienteBean : cliente) {
+            defaultComboBox.addElement(clienteBean);
+        }
+        
     }
 
     private void acaoBotaoIncluir() {
@@ -482,7 +494,6 @@ public class Vendas implements BaseInterfaceJava {
                         });
                     }
 
-                
                 }
             }
         });
@@ -504,14 +515,13 @@ public class Vendas implements BaseInterfaceJava {
                         });
                     }
 
-                
                 }
             }
         });
-                
+
     }
-    
-    private void acaoBotaoLimpar(){
+
+    private void acaoBotaoLimpar() {
         jButtonLimpar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -519,5 +529,4 @@ public class Vendas implements BaseInterfaceJava {
             }
         });
     }
-        }
-                
+}
