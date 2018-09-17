@@ -10,8 +10,14 @@ package bean;
  * @author Marcio Pedro Schiehl
  */
 public class ClienteBean {
-    private String nome,telefone,cpf,cep,bairro,endereco,cidade,logradouro,email;
+
+    private String nome, telefone, cpf, cep, bairro, endereco, cidade, logradouro, email;
     private int numero;
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 
     public String getNome() {
         return nome;
@@ -92,5 +98,5 @@ public class ClienteBean {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    
+
 }
