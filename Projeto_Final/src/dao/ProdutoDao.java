@@ -69,25 +69,6 @@ public class ProdutoDao {
         }
         return false;
     }
-    /* public boolean vender(int quantidade,String descricao){
-        Connection conexao = Conexao.obterConexao();
-        String sql = "SET SQL_SAFE_UPDATES = 0; UPDATE produtos SET quantidade = quantidade - ? WHERE descricao = ?;";
-       if(conexao !=null){
-        try {
-            PreparedStatement ps =conexao.prepareStatement(sql);
-             ps.setInt(1, quantidade);
-             ps.setString(2, descricao);
-            
-            return ps.executeUpdate() == 1;
-            } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Conexao.fecharConexao();
-        }
-       }
-      return false;
-    }*/
-
     public boolean alterar(ProdutoBean produto) {
         Connection conexao = Conexao.obterConexao();
         String sql = "UPDATE produtos SET quantidade = ?,"
@@ -282,5 +263,5 @@ public class ProdutoDao {
        return produtos;
    
     }
-
+    
 }
