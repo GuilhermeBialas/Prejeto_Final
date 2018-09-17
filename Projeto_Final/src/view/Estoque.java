@@ -10,6 +10,7 @@ import bean.ProdutoBean;
 import dao.ProdutoDao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,19 +40,18 @@ public class Estoque extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        jRbuttonGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldNumero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonNovo = new javax.swing.JRadioButton();
+        jRadioButtonSeminovo = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableEstoque = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -77,15 +77,30 @@ public class Estoque extends javax.swing.JFrame {
 
         jLabel1.setText("Número: ");
 
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jLabel2.setText("Quantidade: ");
+        jTextFieldNumero.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextFieldNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNumeroKeyPressed(evt);
+            }
+        });
 
         jLabel3.setText("Status: ");
 
-        jRadioButton1.setText("Novo");
+        jRbuttonGroup.add(jRadioButtonNovo);
+        jRadioButtonNovo.setText("Novo");
+        jRadioButtonNovo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRadioButtonNovoItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton2.setText("Semi novo");
+        jRbuttonGroup.add(jRadioButtonSeminovo);
+        jRadioButtonSeminovo.setText("Semi novo");
+        jRadioButtonSeminovo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRadioButtonSeminovoItemStateChanged(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento,", "centrais e modulos,", "injeção e carburador,", "motor,", "polias e tensores,", "retentor e junta,", "supenção e freios,", "correas e corrente de comando", " " }));
         jComboBox1.setSelectedIndex(-1);
@@ -101,7 +116,7 @@ public class Estoque extends javax.swing.JFrame {
 
         jLabel5.setText("Pesquisa");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -117,16 +132,16 @@ public class Estoque extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
+        jTableEstoque.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableEstoque);
+        if (jTableEstoque.getColumnModel().getColumnCount() > 0) {
+            jTableEstoque.getColumnModel().getColumn(0).setResizable(false);
+            jTableEstoque.getColumnModel().getColumn(2).setResizable(false);
+            jTableEstoque.getColumnModel().getColumn(3).setResizable(false);
+            jTableEstoque.getColumnModel().getColumn(4).setResizable(false);
+            jTableEstoque.getColumnModel().getColumn(5).setResizable(false);
+            jTableEstoque.getColumnModel().getColumn(6).setResizable(false);
+            jTableEstoque.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jButton1.setText("Sair");
@@ -168,24 +183,19 @@ public class Estoque extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1)
+                        .addGap(0, 83, Short.MAX_VALUE)
+                        .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioButtonNovo)
                                 .addGap(60, 60, 60)
                                 .addComponent(jLabel4))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton2)
+                                .addComponent(jRadioButtonSeminovo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)))
                         .addGap(18, 18, 18)
@@ -214,20 +224,16 @@ public class Estoque extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jRadioButton1)
+                            .addComponent(jRadioButtonNovo)
                             .addComponent(jLabel4)))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonSeminovo))
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -257,7 +263,7 @@ public class Estoque extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
          List<ProdutoBean> produtos = new ProdutoDao().obterProdutos();
-        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
        
         dtm.setRowCount(0);
         
@@ -288,6 +294,56 @@ public class Estoque extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextFieldNumeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroKeyPressed
+         List<ProdutoBean> produtos = new ProdutoDao().buscarPorId(Integer.parseInt(jTextFieldNumero.getText().trim()));
+                DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
+                dtm.setRowCount(0);
+
+                for (ProdutoBean produto : produtos) {
+                    dtm.addRow(new Object[]{
+                        produto.getDescricao(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario()
+                    });
+                }
+    }//GEN-LAST:event_jTextFieldNumeroKeyPressed
+
+    private void jRadioButtonNovoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButtonNovoItemStateChanged
+         if (evt.getStateChange() == ItemEvent.SELECTED) {
+                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoStatus("novo");
+                    DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
+
+                    dtm.setRowCount(0);
+
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }
+
+         } 
+    }//GEN-LAST:event_jRadioButtonNovoItemStateChanged
+
+    private void jRadioButtonSeminovoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButtonSeminovoItemStateChanged
+       if (evt.getStateChange() == ItemEvent.SELECTED) {
+                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoStatus("semi-novo");
+                    DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
+
+                    dtm.setRowCount(0);
+
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }
+
+         } 
+    }//GEN-LAST:event_jRadioButtonSeminovoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -338,16 +394,15 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonNovo;
+    private javax.swing.JRadioButton jRadioButtonSeminovo;
+    private javax.swing.ButtonGroup jRbuttonGroup;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jTableEstoque;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldNumero;
     // End of variables declaration//GEN-END:variables
 }
