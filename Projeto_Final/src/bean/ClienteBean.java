@@ -11,7 +11,15 @@ package bean;
  */
 public class ClienteBean {
 
-    private String nome, telefone, cpf, cep, bairro, endereco, cidade, logradouro, email;
+    private String nome, telefone, cpf, cep,cnpj, bairro, endereco, cidade, logradouro, email;
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
     private int numero;
 
     @Override

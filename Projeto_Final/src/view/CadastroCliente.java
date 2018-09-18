@@ -5,6 +5,7 @@
  */
 package view;
 
+import bean.ClienteBean;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -26,9 +27,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         mascaraCnpj();
         mascaraCep();
         mascarTelefone();
-
-
-        
 
     }
 
@@ -67,6 +65,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jFormattedTextFieldCnpj = new javax.swing.JFormattedTextField();
         jFormattedTextFieldCep = new javax.swing.JFormattedTextField();
         jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
+        jButtonLimpar = new javax.swing.JButton();
 
         jTextField8.setText("jTextField8");
 
@@ -97,10 +96,22 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel13.setText("Número");
 
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
 
         jButtonAdicionar.setText("Adicionar");
 
         jLabel5.setText("Cnpj");
+
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +134,11 @@ public class CadastroCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFormattedTextFieldCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFormattedTextFieldCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jButtonLimpar)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonAdicionar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,20 +218,32 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSair)
+                        .addComponent(jButtonAdicionar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextFieldCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonSair)
-                        .addComponent(jButtonAdicionar)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonLimpar)
+                            .addComponent(jLabel10))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        // TODO add your handling code here:
+        limparCampos();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +310,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             jTextFieldEndereco.requestFocus();
             return;
         }
-        
+
     }
 
     public void mascaraCpf() {
@@ -304,48 +331,73 @@ public class CadastroCliente extends javax.swing.JFrame {
         }
     }
 
-  public void mascaraCep(){
-      try {
-             MaskFormatter maskFormatter = new MaskFormatter("#####-###");
-             maskFormatter.install(jFormattedTextFieldCep);
-      } catch (Exception e) {
+    public void mascaraCep() {
+        try {
+            MaskFormatter maskFormatter = new MaskFormatter("#####-###");
+            maskFormatter.install(jFormattedTextFieldCep);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Chame o prog");
-      }
-  }
+        }
+    }
 
-
-
-   
-
-   
-     public void acaoBotaoAdicionar(){
-         jButtonAdicionar.addActionListener(new ActionListener() {
-
+    public void acaoBotaoAdicionar() {
+        jButtonAdicionar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 validacao();
-                //salvarBanco();
+                salvarBanco();
+                JOptionPane.showMessageDialog(null, "Clinte cadastrado com sucesso");
 
             }
         });
 
-     }
-     
-   public void mascarTelefone(){
-       try {
-             MaskFormatter maskFormatter = new MaskFormatter("(##)####-####");
-             maskFormatter.install(jFormattedTextFieldTelefone);
-       } catch (Exception e) {
-       JOptionPane.showMessageDialog(null, "Chame o prog");
-       }
-   
-   }
+    }
 
+    public void mascarTelefone() {
+        try {
+            MaskFormatter maskFormatter = new MaskFormatter("(##)####-####");
+            maskFormatter.install(jFormattedTextFieldTelefone);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Chame o prog");
+        }
+
+    }
+
+    public void limparCampos() {
+        jTextFieldNome.setText("");
+        jTextFieldBairro.setText("");
+        jTextFieldCidade.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldEndereco.setText("");
+        jTextFieldNumero.setText("");
+        jFormattedTextFieldCep.setText("");
+        jFormattedTextFieldCnpj.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldTelefone.setText("");
+
+    }
+
+    public void salvarBanco() {
+        ClienteBean cliente = new ClienteBean();
+        cliente.setNome(jTextFieldNome.getText());
+        cliente.setTelefone(jFormattedTextFieldTelefone.getText());
+        cliente.setCpf(jFormattedTextFieldCpf.getText());
+        cliente.setNumero(Integer.parseInt(jTextFieldNumero.getText()));
+        cliente.setEndereco(jTextFieldEndereco.getText());
+        cliente.setCpf(jFormattedTextFieldCpf.getText());
+        cliente.setCep(jFormattedTextFieldCep.getText());
+        cliente.setCnpj(jFormattedTextFieldCnpj.getText());
+        cliente.setBairro(jTextFieldBairro.getText());
+        cliente.setCidade(jTextFieldCidade.getText());
+        cliente.setEmail(jTextFieldEmail.getText());
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JFormattedTextField jFormattedTextFieldCep;
     private javax.swing.JFormattedTextField jFormattedTextFieldCnpj;
@@ -370,5 +422,5 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldNumero;
     // End of variables declaration//GEN-END:variables
-        
+
 }
