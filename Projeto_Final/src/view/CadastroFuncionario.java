@@ -376,13 +376,13 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         }
         //VALIDACAO TELEFONE
        /*
-        String tel = jTextFieldNumero.getText();
-        if (tel.isEmpty()) {
-            JOptionPane.showMessageDialog(null,
-                    "Informe o telefone", "Cadastro Funcionários", JOptionPane.ERROR_MESSAGE);
-            jTextFieldTelefone.requestFocus();
-            return;
-        }*/
+         String tel = jTextFieldNumero.getText();
+         if (tel.isEmpty()) {
+         JOptionPane.showMessageDialog(null,
+         "Informe o telefone", "Cadastro Funcionários", JOptionPane.ERROR_MESSAGE);
+         jTextFieldTelefone.requestFocus();
+         return;
+         }*/
     }
 
     // mask cpf      
@@ -422,12 +422,26 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         }
 
     }
-    public void adicionarMaskTelefone(){
+
+    public void adicionarMaskTelefone() {
         try {
-             MaskFormatter maskFormatter = new MaskFormatter("(##)####-####");
-             maskFormatter.install(jFormattedTextFieldTelefone);
+            MaskFormatter maskFormatter = new MaskFormatter("(##)####-####");
+            maskFormatter.install(jFormattedTextFieldTelefone);
         } catch (Exception e) {
-       e.printStackTrace();
+            e.printStackTrace();
         }
     }
+
+    public void salvarBanco() {
+        
+    }
+    
+    public void limparCampos(){
+    jFormattedTextFieldTelefone.setText("");
+    jFormattedTextFieldPis.setText("");
+    jFormattedTextFieldDataAdimissao.setText("");
+    jFormattedTextFieldCep.setText("");
+    }
+
+
 }
