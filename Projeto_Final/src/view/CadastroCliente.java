@@ -25,10 +25,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         mascaraCpf();
         mascaraCnpj();
         mascaraCep();
-<<<<<<< HEAD
-=======
 
->>>>>>> bf16cbcf4649c6d300731d80fca9fb7fcc4c59c6
+
         
 
     }
@@ -299,7 +297,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Chame o prog");
         }
     }
-<<<<<<< HEAD
+
   public void mascaraCep(){
       try {
              MaskFormatter maskFormatter = new MaskFormatter("#####-###");
@@ -308,21 +306,12 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Chame o prog");
       }
   }
-=======
 
 
-    public void mascaraCep() {
-        try {
-            MaskFormatter maskFormatter = new MaskFormatter("#####-###");
-            maskFormatter.install(jFormattedTextFieldCep);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Chame o prog");
-        }
-    }
 
-    public void acaoBotaoAdicionar() {
-        jButtonAdicionar.addActionListener(new ActionListener() {
->>>>>>> bf16cbcf4649c6d300731d80fca9fb7fcc4c59c6
+   
+
+   
      public void acaoBotaoAdicionar(){
          jButtonAdicionar.addActionListener(new ActionListener() {
 
@@ -334,7 +323,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
             }
         });
-<<<<<<< HEAD
+
      }
      
      
@@ -345,11 +334,10 @@ public class CadastroCliente extends javax.swing.JFrame {
      
      
      
-=======
-    }
+
+    
 
 
->>>>>>> bf16cbcf4649c6d300731d80fca9fb7fcc4c59c6
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -379,3 +367,4 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTelefone;
     // End of variables declaration//GEN-END:variables
         
+}
