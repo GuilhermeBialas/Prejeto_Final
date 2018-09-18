@@ -102,7 +102,7 @@ public class Estoque extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento,", "centrais e modulos,", "injeção e carburador,", "motor,", "polias e tensores,", "retentor e junta,", "supenção e freios,", "correas e corrente de comando", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento,", "centrais e modulos,", "injeção e carburador,", "motor,", "polias e tensores,", "retentor e junta,", "supenção e freios,", "correas e corrente de comando" }));
         jComboBox1.setSelectedIndex(-1);
         jComboBox1.setMinimumSize(new java.awt.Dimension(300, 26));
         jComboBox1.setPreferredSize(new java.awt.Dimension(350, 20));
@@ -115,6 +115,12 @@ public class Estoque extends javax.swing.JFrame {
         jLabel4.setText("Categoria");
 
         jLabel5.setText("Pesquisa");
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jTableEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -344,6 +350,24 @@ public class Estoque extends javax.swing.JFrame {
 
          } 
     }//GEN-LAST:event_jRadioButtonSeminovoItemStateChanged
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        if (jTextField3.getText().length() > 3) {
+                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(jTextField3.getText().trim());
+                    DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
+
+                    dtm.setRowCount(0);
+
+                    for (ProdutoBean produto : produtos) {
+                        dtm.addRow(new Object[]{
+                            produto.getDescricao(),
+                            produto.getQuantidade(),
+                            produto.getValorUnitario()
+                        });
+                    }
+
+                }
+    }//GEN-LAST:event_jTextField3KeyTyped
 
     /**
      * @param args the command line arguments
