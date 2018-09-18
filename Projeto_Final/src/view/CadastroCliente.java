@@ -25,7 +25,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         mascaraCpf();
         mascaraCnpj();
         mascaraCep();
-        
+
     }
 
     /**
@@ -245,67 +245,67 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
     }
 
-    public void validacao(){
-      if(jTextFieldNome.getText().length() <3){
-          JOptionPane.showMessageDialog(null,
+    public void validacao() {
+        if (jTextFieldNome.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null,
                     "O nome deve conter no mínimo três caracteres", "Cadastro Cliente",
                     JOptionPane.ERROR_MESSAGE);
-         jTextFieldNome.requestFocus(); 
+            jTextFieldNome.requestFocus();
             return;
-      }
-      if(jTextFieldEmail.getText().length()<3){
+        }
+        if (jTextFieldEmail.getText().length() < 3) {
             JOptionPane.showMessageDialog(null,
                     "O e-mail deve conter no mínimo três caracteres", "Cadastro Cliente",
                     JOptionPane.ERROR_MESSAGE);
-         jTextFieldEmail.requestFocus();
+            jTextFieldEmail.requestFocus();
             return;
-      }
-      if(jTextFieldBairro.getText().length()<3){
-           JOptionPane.showMessageDialog(null,
+        }
+        if (jTextFieldBairro.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null,
                     "O bairro deve conter no mínimo três caracteres", "Cadastro Cliente",
                     JOptionPane.ERROR_MESSAGE);
-         jTextFieldBairro.requestFocus();
+            jTextFieldBairro.requestFocus();
             return;
-      }
-     if(jTextFieldEndereco.getText().length()<3){
-         JOptionPane.showMessageDialog(null,
+        }
+        if (jTextFieldEndereco.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null,
                     "O e-mail deve conter no mínimo três caracteres", "Cadastro Cliente",
                     JOptionPane.ERROR_MESSAGE);
-         jTextFieldEndereco.requestFocus();
+            jTextFieldEndereco.requestFocus();
             return;
+        }
+        
     }
-    
-       
-    }
-    
-    
-    public void mascaraCpf(){
+
+    public void mascaraCpf() {
         try {
-             MaskFormatter maskFormatter = new MaskFormatter("###.###.###-##");
-             maskFormatter.install(jFormattedTextFieldCpf);
+            MaskFormatter maskFormatter = new MaskFormatter("###.###.###-##");
+            maskFormatter.install(jFormattedTextFieldCpf);
         } catch (Exception e) {
-                  JOptionPane.showMessageDialog(null, "Chame o prog");
+            JOptionPane.showMessageDialog(null, "Chame o prog");
         }
     }
-    
-    public void mascaraCnpj(){
+
+    public void mascaraCnpj() {
         try {
             MaskFormatter maskFormatter = new MaskFormatter("##.###./####-##");
-             maskFormatter.install(jFormattedTextFieldCnpj);
+            maskFormatter.install(jFormattedTextFieldCnpj);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Chame o prog");
         }
     }
-  public void mascaraCep(){
-      try {
-             MaskFormatter maskFormatter = new MaskFormatter("#####-###");
-             maskFormatter.install(jFormattedTextFieldCep);
-      } catch (Exception e) {
+
+    public void mascaraCep() {
+        try {
+            MaskFormatter maskFormatter = new MaskFormatter("#####-###");
+            maskFormatter.install(jFormattedTextFieldCep);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Chame o prog");
-      }
-  }
-     public void acaoBotaoAdicionar(){
-         jButtonAdicionar.addActionListener(new ActionListener() {
+        }
+    }
+
+    public void acaoBotaoAdicionar() {
+        jButtonAdicionar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -314,17 +314,9 @@ public class CadastroCliente extends javax.swing.JFrame {
 
             }
         });
-     }
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;

@@ -49,11 +49,17 @@ cep VARCHAR(50),
 bairro varchar(50),
 endereco varchar(50),
 cidade  varchar(50),
-email VARCHAR(50)
+numero int,
+email VARCHAR(50),
+salario FLOAT,
+data_admissao  varchar(50),
+cargo VARCHAR(50),
+pis varchar(50)
 );
 
- insert into funcionarios(nome,cpf,cep,bairro,endereco,cidade,email)values
-('FrancisGod','123.123.123-12','12345-123','Escola Agricola','Rua das uvas','Blumenau','fracisGod@gmai.com');
+ insert into funcionarios(nome,cpf,cep,bairro,endereco,cidade,numero,email,salario,data_admissao,cargo,pis)values
+('FrancisGod','123.123.123-12','12345-123','Escola Agricola','Rua das uvas','Blumenau',15,'fracisGod@gmai.com',
+  5000,'15/03/2015','Deus','696.69696.69-6');
 
 
 
