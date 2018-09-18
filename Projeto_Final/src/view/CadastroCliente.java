@@ -347,6 +347,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 validacao();
                 salvarBanco();
+                limparCampos();
                 JOptionPane.showMessageDialog(null, "Clinte cadastrado com sucesso");
 
             }
