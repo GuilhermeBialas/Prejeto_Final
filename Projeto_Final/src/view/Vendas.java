@@ -340,8 +340,12 @@ public class Vendas implements BaseInterfaceJava {
             public void actionPerformed(ActionEvent e) {
                 acaoVender();
                 JOptionPane.showMessageDialog(null, "venda realizada com sucesso. ");
+                limparTabela();
             }
         });
+    }
+    private void limparTabela(){
+        dtmp.setRowCount(0);
     }
 
     private void configuarJTableBusca() {
@@ -359,7 +363,7 @@ public class Vendas implements BaseInterfaceJava {
         
         quantidade = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a quantidade que o cliente deseja levar", "informe a quantidade", JOptionPane.QUESTION_MESSAGE));
         int quantidadeTabela=  Integer.parseInt(jTableBusca.getValueAt(jTableBusca.getSelectedRow(), 1).toString());
-        if (quantidadeTabela <quantidade){
+        if (quantidadeTabela <quantidade || quantidade == 0){
            JOptionPane.showMessageDialog(null, "O Estoque não possui a quantidade solicitada","Erro",JOptionPane.ERROR_MESSAGE);
            jTextFieldId.requestFocus();
         }else{
