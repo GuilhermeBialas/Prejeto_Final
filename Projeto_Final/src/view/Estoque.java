@@ -102,10 +102,14 @@ public class Estoque extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento,", "centrais e modulos,", "injeção e carburador,", "motor,", "polias e tensores,", "retentor e junta,", "supenção e freios,", "correas e corrente de comando" }));
-        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento", "centrais e modulos", "injeção e carburador", "motor", "polias e tensores", "retentor e junta", "supenção e freio,", "correas e corrente de comando" }));
         jComboBox1.setMinimumSize(new java.awt.Dimension(300, 26));
         jComboBox1.setPreferredSize(new java.awt.Dimension(350, 20));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -368,6 +372,25 @@ public class Estoque extends javax.swing.JFrame {
 
                 }
     }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        String busca="";
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+                    //pegando o texto do item selecionado
+                    busca = evt.getItem().toString();
+                }
+                List<ProdutoBean> produtos = new ProdutoDao().obterProdutoCategoria(busca);
+                DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
+                dtm.setRowCount(0);
+                for (ProdutoBean produto : produtos) {
+                    dtm.addRow(new Object[]{
+                        produto.getDescricao(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario()
+                    });
+                }
+
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
