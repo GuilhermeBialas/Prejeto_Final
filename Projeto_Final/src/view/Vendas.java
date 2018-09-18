@@ -356,8 +356,13 @@ public class Vendas implements BaseInterfaceJava {
         List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(dtm.getValueAt(jTableBusca.getSelectedRow(), 0).toString());
         DefaultTableModel dtmp = (DefaultTableModel) jTablePedido.getModel();
 
-        //dtmp.setRowCount(0);
+        
         quantidade = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a quantidade que o cliente deseja levar", "informe a quantidade", JOptionPane.QUESTION_MESSAGE));
+        int quantidadeTabela=  Integer.parseInt(jTableBusca.getValueAt(jTableBusca.getSelectedRow(), 1).toString());
+        if (quantidadeTabela <quantidade){
+           JOptionPane.showMessageDialog(null, "O Estoque não possui a quantidade solicitada","Erro",JOptionPane.ERROR_MESSAGE);
+           jTextFieldId.requestFocus();
+        }else{
         for (ProdutoBean produto : produtos) {
             dtmp.addRow(new Object[]{contador,
                 produto.getDescricao(),
@@ -365,6 +370,7 @@ public class Vendas implements BaseInterfaceJava {
                 produto.getValorUnitario(),
                 quantidade * produto.getValorUnitario()
             });
+        }
         }
         quantidade = 0;
         contador++;
