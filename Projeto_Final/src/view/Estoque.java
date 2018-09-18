@@ -46,10 +46,10 @@ public class Estoque extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jRadioButtonNovo = new javax.swing.JRadioButton();
         jRadioButtonSeminovo = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxCategoria = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEstoque = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -102,17 +102,17 @@ public class Estoque extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento", "centrais e modulos", "injeção e carburador", "motor", "polias e tensores", "retentor e junta", "supenção e freio,", "correas e corrente de comando" }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(300, 26));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(350, 20));
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acessorios e acabamento", "centrais e modulos", "injeção e carburador", "motor", "polias e tensores", "retentor e junta", "supenção e freio,", "correas e corrente de comando" }));
+        jComboBoxCategoria.setMinimumSize(new java.awt.Dimension(300, 26));
+        jComboBoxCategoria.setPreferredSize(new java.awt.Dimension(350, 20));
+        jComboBoxCategoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
+                jComboBoxCategoriaItemStateChanged(evt);
             }
         });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jComboBoxCategoriaActionPerformed(evt);
             }
         });
 
@@ -120,9 +120,9 @@ public class Estoque extends javax.swing.JFrame {
 
         jLabel5.setText("Pesquisa");
 
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                jTextFieldPesquisaKeyTyped(evt);
             }
         });
 
@@ -210,8 +210,8 @@ public class Estoque extends javax.swing.JFrame {
                                 .addComponent(jLabel5)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3))
+                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPesquisa))
                         .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(298, 298, 298)
@@ -238,11 +238,11 @@ public class Estoque extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jRadioButtonNovo)
                             .addComponent(jLabel4)))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButtonSeminovo))
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,9 +263,9 @@ public class Estoque extends javax.swing.JFrame {
        new Cadastro();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       dispose();
@@ -312,9 +312,14 @@ public class Estoque extends javax.swing.JFrame {
 
                 for (ProdutoBean produto : produtos) {
                     dtm.addRow(new Object[]{
+                        produto.getId(),
                         produto.getDescricao(),
+                        produto.getCategoria(),
                         produto.getQuantidade(),
-                        produto.getValorUnitario()
+                        produto.getValorUnitario(),
+                        produto.getStatusPecas(),
+                        produto.getPeso(),
+                        produto.getLocalizacao()
                     });
                 }
     }//GEN-LAST:event_jTextFieldNumeroKeyPressed
@@ -328,9 +333,14 @@ public class Estoque extends javax.swing.JFrame {
 
                     for (ProdutoBean produto : produtos) {
                         dtm.addRow(new Object[]{
-                            produto.getDescricao(),
-                            produto.getQuantidade(),
-                            produto.getValorUnitario()
+                            produto.getId(),
+                        produto.getDescricao(),
+                        produto.getCategoria(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario(),
+                        produto.getStatusPecas(),
+                        produto.getPeso(),
+                        produto.getLocalizacao()
                         });
                     }
 
@@ -345,35 +355,43 @@ public class Estoque extends javax.swing.JFrame {
                     dtm.setRowCount(0);
 
                     for (ProdutoBean produto : produtos) {
-                        dtm.addRow(new Object[]{
-                            produto.getDescricao(),
-                            produto.getQuantidade(),
-                            produto.getValorUnitario()
+                        dtm.addRow(new Object[]{produto.getId(),
+                        produto.getDescricao(),
+                        produto.getCategoria(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario(),
+                        produto.getStatusPecas(),
+                        produto.getPeso(),
+                        produto.getLocalizacao()
                         });
                     }
 
          } 
     }//GEN-LAST:event_jRadioButtonSeminovoItemStateChanged
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-        if (jTextField3.getText().length() > 3) {
-                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(jTextField3.getText().trim());
+    private void jTextFieldPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaKeyTyped
+        if (jTextFieldPesquisa.getText().length() > 3) {
+                    List<ProdutoBean> produtos = new ProdutoDao().obterProdutoBusca(jTextFieldPesquisa.getText().trim());
                     DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
 
                     dtm.setRowCount(0);
 
                     for (ProdutoBean produto : produtos) {
-                        dtm.addRow(new Object[]{
-                            produto.getDescricao(),
-                            produto.getQuantidade(),
-                            produto.getValorUnitario()
+                        dtm.addRow(new Object[]{produto.getId(),
+                        produto.getDescricao(),
+                        produto.getCategoria(),
+                        produto.getQuantidade(),
+                        produto.getValorUnitario(),
+                        produto.getStatusPecas(),
+                        produto.getPeso(),
+                        produto.getLocalizacao()
                         });
                     }
 
                 }
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_jTextFieldPesquisaKeyTyped
 
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+    private void jComboBoxCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaItemStateChanged
         String busca="";
         if (evt.getStateChange() == ItemEvent.SELECTED) {
                     //pegando o texto do item selecionado
@@ -383,14 +401,18 @@ public class Estoque extends javax.swing.JFrame {
                 DefaultTableModel dtm = (DefaultTableModel) jTableEstoque.getModel();
                 dtm.setRowCount(0);
                 for (ProdutoBean produto : produtos) {
-                    dtm.addRow(new Object[]{
+                    dtm.addRow(new Object[]{produto.getId(),
                         produto.getDescricao(),
+                        produto.getCategoria(),
                         produto.getQuantidade(),
-                        produto.getValorUnitario()
+                        produto.getValorUnitario(),
+                        produto.getStatusPecas(),
+                        produto.getPeso(),
+                        produto.getLocalizacao()
                     });
                 }
 
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
+    }//GEN-LAST:event_jComboBoxCategoriaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -438,7 +460,7 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBoxCategoria;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -449,7 +471,7 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.ButtonGroup jRbuttonGroup;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEstoque;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextFieldNumero;
+    private javax.swing.JTextField jTextFieldPesquisa;
     // End of variables declaration//GEN-END:variables
 }
