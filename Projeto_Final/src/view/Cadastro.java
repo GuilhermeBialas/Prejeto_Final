@@ -8,7 +8,6 @@ package view;
 import Interface.BaseInterfaceJava;
 import bean.ProdutoBean;
 import dao.ProdutoDao;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
