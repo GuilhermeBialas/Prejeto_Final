@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
- *
+ *mn
  * 
  * @author Guilherme Bialas(guilhermebialas31@gmail.com)
  * @author Marcio Pedro Schiehl(mpschiehl@outlook.com)
