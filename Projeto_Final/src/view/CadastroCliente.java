@@ -103,6 +103,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
 
         jButtonAdicionar.setText("Adicionar");
+    
 
         jLabel5.setText("Cnpj");
 

@@ -10,6 +10,7 @@ import bean.ProdutoBean;
 import dao.ProdutoDao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -330,8 +331,8 @@ public class Cadastro implements BaseInterfaceJava {
         }
         produto.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
         produto.setValorUnitario(Float.parseFloat(jTextFieldValor.getText()));
-
-        switch (jComboBoxCategoria.getSelectedIndex()) {
+        
+       switch (jComboBoxCategoria.getSelectedIndex()) {
             case 1:
                 produto.setCategoria("Acessórios e acabamento");
                 break;

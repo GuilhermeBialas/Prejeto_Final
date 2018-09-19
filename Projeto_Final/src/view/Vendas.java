@@ -48,7 +48,7 @@ public class Vendas implements BaseInterfaceJava {
     private JTextField jTextFieldId, jTextFieldDescricao;//jTextFieldQuantidade;
     private JRadioButton jRadioButtonNovo, jRadioButtonSemiNovo;
     private ButtonGroup jradioButtonGroup;
-    private JButton jButtonSair, jButtonIncuir, jButtonFinalizar, jButtonLimpar;
+    private JButton  jButtonIncuir, jButtonFinalizar,jButtonCancelarItem, jButtonLimpar,jButtonCancelar;
     private DefaultTableModel dtm, dtmp;
     private JScrollPane jScrollPaneBuscador, jScrollPanePedido;
     private JTable jTableBusca, jTablePedido;
@@ -65,7 +65,7 @@ public class Vendas implements BaseInterfaceJava {
         gerarLocalizacoes();
         gerarDimensoes();
         radionGroup();
-        acaobotaoSair();
+        //acaobotaoSair();
         configuarJTableBusca();
         configurarJTablePedido();
         comboBoxConfigura();
@@ -79,6 +79,8 @@ public class Vendas implements BaseInterfaceJava {
         acaoPopularTabelaCampoVazio();
         acaoChecBoxStatus();
         acaoComboBoxCategoria();
+        acaoCancelar();
+        cancelarItem();
         acaoBotaoLimpar();
         jFrameVendas.setVisible(true);
 
@@ -113,10 +115,12 @@ public class Vendas implements BaseInterfaceJava {
         jFrameVendas.add(jRadioButtonNovo);
         jFrameVendas.add(jRadioButtonSemiNovo);
         //JButton's
-        jFrameVendas.add(jButtonSair);
+        //jFrameVendas.add(jButtonSair);
         jFrameVendas.add(jButtonIncuir);
         jFrameVendas.add(jButtonFinalizar);
         jFrameVendas.add(jButtonLimpar);
+        jFrameVendas.add(jButtonCancelar);
+        jFrameVendas.add(jButtonCancelarItem);
         //adiciona a JTable's
         jFrameVendas.add(jScrollPaneBuscador);
         jFrameVendas.add(jScrollPanePedido);
@@ -143,10 +147,12 @@ public class Vendas implements BaseInterfaceJava {
         jRadioButtonSemiNovo.setLocation(160, 10);
         jRadioButtonNovo.setLocation(160, 40);
         //JButton's
-        jButtonSair.setLocation(680, 530);
-        jButtonIncuir.setLocation(10, 530);
-        jButtonFinalizar.setLocation(560, 530);
+        //jButtonSair.setLocation(680, 530);
+        jButtonCancelar.setLocation(372,207);
+        jButtonIncuir.setLocation(372,137);
+        jButtonFinalizar.setLocation(680, 530);
         jButtonLimpar.setLocation(680, 32);
+        jButtonCancelarItem.setLocation(372,172);
 
         //Jtable's
         jScrollPaneBuscador.setLocation(10, 110);
@@ -174,10 +180,12 @@ public class Vendas implements BaseInterfaceJava {
         jRadioButtonNovo.setSize(20, 20);
         jRadioButtonSemiNovo.setSize(20, 20);
 
-        jButtonSair.setSize(100, 35);
-        jButtonIncuir.setSize(100, 35);
+        //jButtonSair.setSize(100, 35);
+        jButtonIncuir.setSize(45, 35);
         jButtonFinalizar.setSize(100, 35);
         jButtonLimpar.setSize(100, 35);
+        jButtonCancelar.setSize(45, 35);
+        jButtonCancelarItem.setSize(45, 35);
 
         jScrollPaneBuscador.setSize(360, 360);
         jScrollPanePedido.setSize(360, 360);
@@ -206,10 +214,15 @@ public class Vendas implements BaseInterfaceJava {
         jRadioButtonNovo = new JRadioButton();
         jRadioButtonSemiNovo = new JRadioButton();
 
-        jButtonSair = new JButton("Sair");
-        jButtonIncuir = new JButton("Incluir");
+        //jButtonSair = new JButton("Sair");
+        jButtonIncuir = new JButton();
+        jButtonIncuir.setToolTipText("Incluir");
         jButtonFinalizar = new JButton("Finalizar");
         jButtonLimpar = new JButton("Limpar Filtros");
+        jButtonCancelar = new JButton();
+        jButtonCancelar.setToolTipText("Cancelar Venda");
+        jButtonCancelarItem = new JButton();
+        jButtonCancelarItem.setToolTipText("Cancelar item");
         jButtonLimpar.setToolTipText("Clique para Limpar os filtros de Busca");
 
         jTableBusca = new JTable();
@@ -220,6 +233,21 @@ public class Vendas implements BaseInterfaceJava {
 
         jComboBoxCategoriaC = new JComboBox();
         jComboBoxCliente = new JComboBox();
+    }
+    private void cancelarItem(){
+      jButtonCancelarItem.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              if (jTablePedido.getSelectedRow() >= 0){
+            dtmp.removeRow(jTablePedido.getSelectedRow());
+            jTablePedido.setModel(dtmp);
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
+          }
+      });
+       /* int linnhaSeleciona = jTablePedido.getSelectedRow();
+       jTablePedido.remove(linnhaSeleciona);*/
     }
 
     private void radionGroup() {
@@ -271,7 +299,7 @@ public class Vendas implements BaseInterfaceJava {
         //  jLabelQuantidade.setForeground(Color.black);
     }
 
-    private void acaobotaoSair() {
+    /*private void acaobotaoSair() {
         jButtonSair.addActionListener(new ActionListener() {
 
             @Override
@@ -279,7 +307,7 @@ public class Vendas implements BaseInterfaceJava {
                 jFrameVendas.dispose();
             }
         });
-    }
+    }*/
 
     private void acaoJtextFieldDescricao() {
         jTextFieldDescricao.addKeyListener(new KeyListener() {
@@ -338,9 +366,14 @@ public class Vendas implements BaseInterfaceJava {
         jButtonFinalizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               if(contador == 0){
+                   JOptionPane.showMessageDialog(null, "Não a items para faturar");
+               }else{                   
+                
                 acaoVender();
                 JOptionPane.showMessageDialog(null, "venda realizada com sucesso. ");
                 limparTabela();
+               }
             }
         });
     }
@@ -366,7 +399,8 @@ public class Vendas implements BaseInterfaceJava {
         if (quantidadeTabela <quantidade || quantidade == 0){
            JOptionPane.showMessageDialog(null, "O Estoque não possui a quantidade solicitada","Erro",JOptionPane.ERROR_MESSAGE);
            jTextFieldId.requestFocus();
-        }else{
+           return;
+        }
         for (ProdutoBean produto : produtos) {
             dtmp.addRow(new Object[]{contador,
                 produto.getDescricao(),
@@ -374,7 +408,7 @@ public class Vendas implements BaseInterfaceJava {
                 produto.getValorUnitario(),
                 quantidade * produto.getValorUnitario()
             });
-        }
+        
         }
         quantidade = 0;
         contador++;
@@ -471,7 +505,10 @@ public class Vendas implements BaseInterfaceJava {
         URL url = this.getClass().getResource("/icones/shopping_cart.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         jFrameVendas.setIconImage(imagemTitulo);
-
+        
+        jButtonIncuir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/arrow_right.png")));
+        jButtonCancelarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/arrow_left.png")));
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cross.png")));
     }
 
     private void acaoVender() {
@@ -538,5 +575,15 @@ public class Vendas implements BaseInterfaceJava {
                 limpatela();
             }
         });
+    }
+    private void acaoCancelar(){
+        jButtonCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limparTabela();
+                dtm.setRowCount(0);
+            }
+        });
+        
     }
 }
